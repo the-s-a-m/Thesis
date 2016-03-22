@@ -16,39 +16,39 @@
 
 \begin{document}
 \begin{titlepage}
-	\title{IP6 - Report Street Networks} 
-	\date{\today} 
-	\author{J. Peyer, S. Merki} 
-	\maketitle	
+    \title{IP6 - Report Street Networks}
+    \date{\today}
+    \author{J. Peyer, S. Merki}
+    \maketitle
 \end{titlepage}
 \setcounter{page}{1}
 
-\tableofcontents 
+\tableofcontents
 
 
 
 \begin{abstract}
-	Text here.
+    Text here.
 \end{abstract}
 
-\chapter{Introduction} 
+\chapter{Introduction}
 
-\chapter{Theoretical Task} 
-\section{Shape Grammar} 
+\chapter{Theoretical Task}
+\section{Shape Grammar}
 
 \citep{shapeGrammars:1972}
 
-The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. 
+The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes.
 \newline
 Shape grammar is a language based on an alphabet of shapes and generated shapes.
 \begin{displayquote}
-	Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
-	\begin{enumerate}
-		\item $V_T$ is a finite set of shapes.
-		\item $V_M$ is a finite set of shapes such that $V_T $* $\cap$  $V_M = \emptyset$
-		\item R is a finite set of ordered pairs (u.v) such that u is a shape consisting of an element of $V_T $* combined with an element of $V_M$ and v is a shape consisting of (A) the element of $V_T $* contained in u or (B) the element of $V_T $* contained in u combined with an element of $V_M$ or (C) the element of $V_T $* contained in u with an additional element of $V_T$* and an element of $V_M$.
-		\item I is a shape consisting of elements of $V_T $* and $V_M$.
-	\end{enumerate}
+    Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
+    \begin{enumerate}
+        \item $V_T$ is a finite set of shapes.
+        \item $V_M$ is a finite set of shapes such that $V_T $* $\cap$  $V_M = \emptyset$
+        \item R is a finite set of ordered pairs (u.v) such that u is a shape consisting of an element of $V_T $* combined with an element of $V_M$ and v is a shape consisting of (A) the element of $V_T $* contained in u or (B) the element of $V_T $* contained in u combined with an element of $V_M$ or (C) the element of $V_T $* contained in u with an additional element of $V_T$* and an element of $V_M$.
+        \item I is a shape consisting of elements of $V_T $* and $V_M$.
+    \end{enumerate}
 \end{displayquote}
 
 \includegraphics{generativ_specification}
@@ -58,31 +58,31 @@ Shape grammar is a language based on an alphabet of shapes and generated shapes.
 \subsection{Selection Rules}
 An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels.
 \begin{displayquote}
-	Level assignments are made to terminals during the generation of a shape using these rules:
-	\begin{enumerate}
-		\item The terminals in the initial shape are assigned level 0.
-		\item If a shape rule is applied, and the highest level assigned to any part ot the terminal corresponding to the level side of the rule is N, then
-		\begin{enumerate}
-			\item If the rule is of type A, any part of the terminal enclosed by the marker in the left side of the rule is assigned N.
-			\item If the rule is of type B, any part of the terminal enclosed by the marker in the left side of the rule is assigned N and any part of the terminal enclosed by the marker is assigned N + 1.
-			\item If the rule is of type C, the terminal added is assigned N + 1.
-		\end{enumerate}
-		\item No other level assignments are made.
-	\end{enumerate}
+    Level assignments are made to terminals during the generation of a shape using these rules:
+    \begin{enumerate}
+        \item The terminals in the initial shape are assigned level 0.
+        \item If a shape rule is applied, and the highest level assigned to any part ot the terminal corresponding to the level side of the rule is N, then
+        \begin{enumerate}
+            \item If the rule is of type A, any part of the terminal enclosed by the marker in the left side of the rule is assigned N.
+            \item If the rule is of type B, any part of the terminal enclosed by the marker in the left side of the rule is assigned N and any part of the terminal enclosed by the marker is assigned N + 1.
+            \item If the rule is of type C, the terminal added is assigned N + 1.
+        \end{enumerate}
+        \item No other level assignments are made.
+    \end{enumerate}
 \end{displayquote}
 \subsection{Painting Rules}
 
 \subsection{Limiting Shapes}
-These Shapes define a limiting area of the canvas where shape painting is allowed. The area is normally defined as a rectangle, but this is not mandatory. 
+These Shapes define a limiting area of the canvas where shape painting is allowed. The area is normally defined as a rectangle, but this is not mandatory.
 
-\section{Procedural Modelling} 
+\section{Procedural Modelling}
 
 \section{L-Systems}
 
-\section{Extended L-Systems} 
+\section{Extended L-Systems}
 
 
-\chapter{Practical Task} 
+\chapter{Practical Task}
 
 \section{CPlan}
 
