@@ -11,8 +11,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 
-\usepackage[round]{natbib}
-
+\usepackage[square]{natbib}
+\bibliographystyle{IEEEtran}
 
 \begin{document}
 \begin{titlepage}
@@ -35,7 +35,8 @@
 
 \chapter{Theoretical Task} 
 \section{Shape Grammar} 
-\citet{Franklin1999}
+
+\citep{abcd:2006a}
 
 The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. 
 \newline
@@ -90,6 +91,7 @@ These Shapes define a limiting area of the canvas where shape painting is allowe
 
 \chapter{Conclusion}
 
+\bibliography{quotations}
 \appendix
 \glsaddall
 \printglossaries
