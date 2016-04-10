@@ -47,7 +47,6 @@ The main key of shape grammar is to generate networks and paintings by a new def
 \end{displayquote}
 The following image describes the generative specifications and some examples rules.
 \pagebreak
-
 \begin{displayquote}
 \begin{figure}[!h]
     \centering
@@ -58,9 +57,11 @@ The following image describes the generative specifications and some examples ru
 \end{displayquote}
 
 \subsection{Shape Rules}
+A shape rule is de definition what should be painted based on the current state of the painting. The Initial Shape has not to be inside of the Limiting Shapes.
 
+\pagebreak
 \subsection{Selection Rules}
-An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels.
+An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels. Like the authors G. Stiny and J. Gips describe in "Shape Grammars and the Generative Specification of Painting and Sculpture  \citep{shapeGrammars:1972}.
 \begin{displayquote}
     Level assignments are made to terminals during the generation of a shape using these rules:
     \begin{enumerate}
@@ -74,23 +75,45 @@ An undefined count of shape rules provide the generation of the painting. Theref
         \item No other level assignments are made.
     \end{enumerate}
 \end{displayquote}
+
 \subsection{Painting Rules}
+Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining this levels the painting colour is described. As describes in more details by the authors G. Stiny and J. Gips in "Shape Grammars and the Generative Specification of Painting and Sculpture \citep{shapeGrammars:1972}.
+\begin{displayquote}
+    Painting rules indicate how the areas contained in a shape painted by considering the shape as a Venn diagram as in naive set theory. The terminals of each level in a shape are taken as the outline of a set in the Venn diagram. As parts ot terminals may be assigned multiple levels, sets may have common boundaries. Levels 0, 1, 2, ..., n are said to define sets L0, L1, L2, ..., Ln respectively where n is given in the selection rule.
+    \newline
+    A painting rule has two sides separated by a double arrow ($\Rightarrow$). The left side of a painting rule defines a set using the sets determined by level assignment and the usual set operators, for example, union($\bigcap$), intersection ($\bigcup$), complementation($\sim$), and exclusive or ($\bigotimes$), The sets defined by the left side of the painting rules of M must partition the universal set. The right side of a painting rule is a rectangle painted in the manner the set defined by the left side of the rule is to be painted.
+\end{displayquote}
 
 \subsection{Limiting Shapes}
-These Shapes define a limiting area of the canvas where shape painting is allowed. The area is normally defined as a rectangle, but this is not mandatory.
+These Shapes define a limiting area on the canvas, where shape painting is allowed. 
+The area could have any form, but normally it is defined as a rectangle. Like a camera view the Limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape 
 
+\subsection{Sculpture}
+
+\subsection{Aesthetics}
+
+\pagebreak
 \section{Procedural Modelling}
 
+\pagebreak
 \section{L-Systems}
 
+\pagebreak
 \section{Extended L-Systems}
 
-
+\pagebreak
 \chapter{Practical Task}
-
 \section{CPlan}
+\subsection{Changes}
+\begin{itemize}
+    \item The function .toArray() creates a complete copy of the existing enumeration in the ram. Therefore the application had an extremely large footprint. To reduce the coping we changed some methods to be called directly with IEnumerable Parameters.
+    \item If some extension methods are created the should be tested by unit tests.
+     
+\end{itemize}
 
-\section{Graph to Tree}
+
+\subsection{New Functions}
+\subsubsection{Graph to Tree}
 
 
 \chapter{Conclusion}
