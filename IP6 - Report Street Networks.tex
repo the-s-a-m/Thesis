@@ -23,6 +23,9 @@
 \setlength{\parindent}{0ex}
 \setlength{\parskip}{1ex}
 
+%Rechtangle painting
+\usepackage{tikz}
+
 \begin{document}
 \begin{titlepage}
     \title{IP6 - Report Street Networks}
@@ -46,13 +49,28 @@
 \section{Shape Grammar}
 The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
-A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains "a shape grammar, a language of two dimensional shapes, and a selection rule" \citep{shapeGrammars:1972}. M specifies a finite list of material specifications and one limiting shape on a canvas.
+A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains "a shape grammar\ref{Shape_Grammar}, defining a language of two dimensional shapes\ref{Shape_Grammar_VT}\ref{Shape_Grammar_VM}, and a selection rule" \citep{shapeGrammars:1972}. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
-\subsection{Shape Specification}
-Shape Grammar \newline
-$SG1 = <V_T, V_M, R, I>$
-$V_T = $
-\begin{figure}[!h]
+\subsection{Shape Specification\citep{shapeGrammars:1972}}
+\subsubsection{Shape Grammar}
+\begin{align}
+\label{eq:Shape_Grammar}
+SG1 &= <V_T, V_M, R, I>  \\
+\label{eq:Shape_Grammar_VT}
+V_T &= \{-\}  \\
+\label{eq:Shape_Grammar_VM}
+V_M &= \{\includegraphics{sg_specification_VM.jpg} \}\ \\
+\label{eq:Shape_Grammar_R}
+R &= Rules\ R\ in\ image\ \ref{fig:Shape Grammars/Shape Specification/Rules_R} \\
+\label{eq:Shape_Grammar_I}
+I &= Initial\ Shape\ I\ in\ image\ \ref{fig:Shape Grammars/Shape Specification/Rules_I}
+\end{align}
+\subsubsection{Selection Rule}
+\begin{equation}
+<0,2>
+\end{equation}
+
+\begin{figure}
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
         \includegraphics[width=\textwidth]{sg_specification_rule1.jpg}
@@ -73,11 +91,54 @@ $V_T = $
         \caption{Rule 3}
         \label{fig:Shape Grammars/Shape Specification/Rule 3}
     \end{subfigure}
-    \caption{ Element R (two-dimensional shapes) \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/two-dimensional  shapes}
+    \caption{ Rules R \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Rules_R}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=2cm]{sg_specification_I.jpg}
+    \caption{ Initial Shape I \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Rules_I}
 \end{figure}
 
-
-\begin{displayquote}
+\subsection{Material Specification\citep{shapeGrammars:1972}}
+\subsubsection{Painting Rules}
+\begin{equation}
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
+L0\cap L1\cap L2 \Longrightarrow  
+\begin{tikzpicture}
+\filldraw[fill=black!00!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture}
+\end{equation}
+\begin{equation}
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_2}
+(L0\cap L1\cap \sim L2)\cup (L0\cap \sim L1\cap L2)\cup (\sim L0\cap L1 \cap L2) \Longrightarrow  
+\begin{tikzpicture}
+\filldraw[fill=black!25!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture}
+\end{equation}
+\begin{equation}
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_3}
+(L0\cap \sim L1\cap \sim L2)\cup (\sim L0\cap L1\cap \sim l2)\cup (\sim L0\cap \sim L1 \cap L2) \Longrightarrow  
+\begin{tikzpicture}
+\filldraw[fill=black!50!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture}
+\end{equation}
+\begin{equation}
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_4}
+\sim (L0\cup L1\cup L2)  \Longrightarrow  
+\begin{tikzpicture}
+\filldraw[fill=black!100!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture}
+\end{equation}
+\subsubsection{Limiting Shape}
+\begin{figure}
+    \centering
+    \includegraphics[width=2cm]{sg_specification_Limiting_shape.jpg}
+    \caption{ Initial Shape I \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Limiting_Shape}
+\end{figure}
+\pagebreak
+\subsection{Shape Grammar Definition}
+Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes\citep{shapeGrammars:1972}.
+\begin{displayquote} 
     Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
     \begin{enumerate}
         \item $V_T$ is a finite set of shapes.
