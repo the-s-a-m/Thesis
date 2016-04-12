@@ -2,6 +2,8 @@
 
 \usepackage{graphicx}
 \graphicspath{ {images/} }
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{hyperref}
 \usepackage[xindy]{glossaries}
@@ -42,7 +44,39 @@
 
 \chapter{Theoretical Task}
 \section{Shape Grammar}
-The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes. Like the authors G. Stiny and J. Gips describe in "Shape Grammars and the Generative Specification of Painting and Sculpture  \citep{shapeGrammars:1972}.
+The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
+
+A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains "a shape grammar, a language of two dimensional shapes, and a selection rule" \citep{shapeGrammars:1972}. M specifies a finite list of material specifications and one limiting shape on a canvas.
+
+\subsection{Shape Specification}
+Shape Grammar \newline
+$SG1 = <V_T, V_M, R, I>$
+$V_T = $
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{sg_specification_rule1.jpg}
+        \caption{Rule 1}
+        \label{fig:Shape Grammars/Shape Specification/Rule 1}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{sg_specification_rule2.jpg}
+        \caption{Rule 2}
+        \label{fig:Shape Grammars/Shape Specification/Rule 2}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{sg_specification_rule3.jpg}
+        \caption{Rule 3}
+        \label{fig:Shape Grammars/Shape Specification/Rule 3}
+    \end{subfigure}
+    \caption{ Element R (two-dimensional shapes) \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/two-dimensional  shapes}
+\end{figure}
+
+
 \begin{displayquote}
     Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
     \begin{enumerate}
@@ -52,16 +86,10 @@ The main key of shape grammar is to generate networks and paintings by a new def
         \item I is a shape consisting of elements of $V_T $* and $V_M$.
     \end{enumerate}
 \end{displayquote}
+$V_T $* 
 The following image describes the generative specifications and some examples rules.
 \pagebreak
-\begin{displayquote}
-\begin{figure}[!h]
-    \centering
-        \includegraphics{generativ_specification}
-    \caption{ Complete, generative specification of the class of  paintings con-
-        taining Urform I, II,  and  III. \citep{shapeGrammars:1972}}
-\end{figure}
-\end{displayquote}
+
 
 \subsection{Shape Rules}
 A shape rule is de definition what should be painted based on the current state of the painting. The Initial Shape has not to be inside of the Limiting Shapes.
@@ -95,9 +123,7 @@ Painting rules describe witch shape should be painted inside of a defined area. 
 These Shapes define a limiting area on the canvas, where shape painting is allowed. 
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the Limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape 
 
-\subsection{Sculpture}
 
-\subsection{Aesthetics}
 
 \pagebreak
 \section{Procedural Modelling}
