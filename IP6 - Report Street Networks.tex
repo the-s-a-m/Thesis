@@ -14,6 +14,10 @@
 \usepackage[square,sort,comma,numbers]{natbib}
 \bibliographystyle{IEEEtran}
 
+\usepackage{amsmath}
+\newcommand\addtag{\refstepcounter{equation}\tag{\theequation}}
+\usepackage{txfonts}
+
 \setlength{\parindent}{0ex}
 \setlength{\parskip}{1ex}
 
@@ -103,11 +107,17 @@ The area could have any form, but normally it is defined as a rectangle. Like a 
 
 L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: [TODO: reference those papers] "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
 \subsection{TODO: reference papers here}
-
+The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
+\[
+pred : \{block1\}\ cond\ \{block2\} \leadsto succ \addtag
+\]
+The symbol \textit{pred} (predecessor) defines the module that will get replaced by the modules defined in \textit{succ} (successor). This replacement is only applied, if the (optional) condition is met. \textit{block1} and \textit{block2} are C statement blocks, of which the first block is executed before and the second after the condition is evaluated.
 \subsection{Notes JP}
 
 \pagebreak
-\section{Extended L-Systems}
+\section{Chomsky Grammars?}
+\citep{PrusinkiewiczEtAl:2001}
+Almost like L-System but with minor modifications.
 
 \pagebreak
 \chapter{Practical Task}
@@ -116,7 +126,6 @@ L-System is a well established modelling approach for the synthesis of realistic
 \begin{itemize}
     \item The function .toArray() creates a complete copy of the existing enumeration in the ram. Therefore the application had an extremely large footprint. To reduce the coping we changed some methods to be called directly with IEnumerable Parameters.
     \item If some extension methods are created the should be tested by unit tests.
-     
 \end{itemize}
 
 
