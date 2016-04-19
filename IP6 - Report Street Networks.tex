@@ -47,96 +47,12 @@
 
 \chapter{Theoretical Task}
 \section{Shape Grammar}
-The main key of shape grammar is to generate networks and paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
+The main key of shape grammar is to generate paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
-A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains "a shape grammar\ref{Shape_Grammar}, defining a language of two dimensional shapes\ref{Shape_Grammar_VT}\ref{Shape_Grammar_VM}, and a selection rule" \citep{shapeGrammars:1972}. M specifies a finite list of material specifications and one limiting shape on a canvas.
+A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains "a shape grammar, defining a language of two dimensional shapes, and a selection rule". M specifies a finite list of material specifications and one limiting shape on a canvas.
 
-\subsection{Shape Specification\citep{shapeGrammars:1972}}
-\subsubsection{Shape Grammar}
-\begin{align}
-\label{eq:Shape_Grammar}
-SG1 &= <V_T, V_M, R, I>  \\
-\label{eq:Shape_Grammar_VT}
-V_T &= \{-\}  \\
-\label{eq:Shape_Grammar_VM}
-V_M &= \{\includegraphics{sg_specification_VM.jpg} \}\ \\
-\label{eq:Shape_Grammar_R}
-R &= Rules\ R\ in\ image\ \ref{fig:Shape Grammars/Shape Specification/Rules_R} \\
-\label{eq:Shape_Grammar_I}
-I &= Initial\ Shape\ I\ in\ image\ \ref{fig:Shape Grammars/Shape Specification/Rules_I}
-\end{align}
-\subsubsection{Selection Rule}
-\begin{equation}
-<0,2>
-\end{equation}
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{sg_specification_rule1.jpg}
-        \caption{Rule 1}
-        \label{fig:Shape Grammars/Shape Specification/Rule 1}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-    %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{sg_specification_rule2.jpg}
-        \caption{Rule 2}
-        \label{fig:Shape Grammars/Shape Specification/Rule 2}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-    %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.3\textwidth}
-        \includegraphics[width=\textwidth]{sg_specification_rule3.jpg}
-        \caption{Rule 3}
-        \label{fig:Shape Grammars/Shape Specification/Rule 3}
-    \end{subfigure}
-    \caption{ Rules R \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Rules_R}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=2cm]{sg_specification_I.jpg}
-    \caption{ Initial Shape I \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Rules_I}
-\end{figure}
-
-\subsection{Material Specification\citep{shapeGrammars:1972}}
-\subsubsection{Painting Rules}
-\begin{equation}
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
-L0\cap L1\cap L2 \Longrightarrow  
-\begin{tikzpicture}
-\filldraw[fill=black!00!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture}
-\end{equation}
-\begin{equation}
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_2}
-(L0\cap L1\cap \sim L2)\cup (L0\cap \sim L1\cap L2)\cup (\sim L0\cap L1 \cap L2) \Longrightarrow  
-\begin{tikzpicture}
-\filldraw[fill=black!25!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture}
-\end{equation}
-\begin{equation}
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_3}
-(L0\cap \sim L1\cap \sim L2)\cup (\sim L0\cap L1\cap \sim l2)\cup (\sim L0\cap \sim L1 \cap L2) \Longrightarrow  
-\begin{tikzpicture}
-\filldraw[fill=black!50!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture}
-\end{equation}
-\begin{equation}
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_4}
-\sim (L0\cup L1\cup L2)  \Longrightarrow  
-\begin{tikzpicture}
-\filldraw[fill=black!100!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture}
-\end{equation}
-\subsubsection{Limiting Shape}
-\begin{figure}
-    \centering
-    \includegraphics[width=2cm]{sg_specification_Limiting_shape.jpg}
-    \caption{ Initial Shape I \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Limiting_Shape}
-\end{figure}
-\pagebreak
 \subsection{Shape Grammar Definition}
+\label{sec:Shape_Grammar_Definition}
 Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes\citep{shapeGrammars:1972}.
 \begin{displayquote} 
     Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
@@ -147,43 +63,104 @@ Shape Grammar is defined over an alphabet of shapes and generated n-dimensional 
         \item I is a shape consisting of elements of $V_T $* and $V_M$.
     \end{enumerate}
 \end{displayquote}
-$V_T $* 
-The following image describes the generative specifications and some examples rules.
-\pagebreak
 
 
 \subsection{Shape Rules}
+\label{sec:Shape_Grammar_Shape_Rules}
 A shape rule is de definition what should be painted based on the current state of the painting. The Initial Shape has not to be inside of the Limiting Shapes.
 
-\pagebreak
 \subsection{Selection Rules}
-An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels. Like the authors G. Stiny and J. Gips describe in "Shape Grammars and the Generative Specification of Painting and Sculpture  \citep{shapeGrammars:1972}.
+\label{sec:Shape_Grammar_Selection_Rules}
+An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:.\citep{shapeGrammars:1972}
 \begin{displayquote}
-    Level assignments are made to terminals during the generation of a shape using these rules:
     \begin{enumerate}
         \item The terminals in the initial shape are assigned level 0.
         \item If a shape rule is applied, and the highest level assigned to any part ot the terminal corresponding to the level side of the rule is N, then
         \begin{enumerate}
             \item If the rule is of type A, any part of the terminal enclosed by the marker in the left side of the rule is assigned N.
-            \item If the rule is of type B, any part of the terminal enclosed by the marker in the left side of the rule is assigned N and any part of the terminal enclosed by the marker is assigned N + 1.
-            \item If the rule is of type C, the terminal added is assigned N + 1.
+            \item If the rule is of type B, any part of the terminal enclosed by the marker in the left side of the rule is assigned N and any part of the terminal enclosed by the marker is assigned N+1.
+            \item If the rule is of type C, the terminal added is assigned N+1.
         \end{enumerate}
         \item No other level assignments are made.
     \end{enumerate}
 \end{displayquote}
 
 \subsection{Painting Rules}
-Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining this levels the painting colour is described. As describes in more details by the authors G. Stiny and J. Gips in "Shape Grammars and the Generative Specification of Painting and Sculpture \citep{shapeGrammars:1972}.
+\label{sec:Shape_Grammar_Painting_Rules}
+Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining this levels the painting colour is described\citep{shapeGrammars:1972}.
 \begin{displayquote}
-    Painting rules indicate how the areas contained in a shape painted by considering the shape as a Venn diagram as in naive set theory. The terminals of each level in a shape are taken as the outline of a set in the Venn diagram. As parts ot terminals may be assigned multiple levels, sets may have common boundaries. Levels 0, 1, 2, ..., n are said to define sets L0, L1, L2, ..., Ln respectively where n is given in the selection rule.
-    \newline
     A painting rule has two sides separated by a double arrow ($\Rightarrow$). The left side of a painting rule defines a set using the sets determined by level assignment and the usual set operators, for example, union($\bigcap$), intersection ($\bigcup$), complementation($\sim$), and exclusive or ($\bigotimes$), The sets defined by the left side of the painting rules of M must partition the universal set. The right side of a painting rule is a rectangle painted in the manner the set defined by the left side of the rule is to be painted.
 \end{displayquote}
 
 \subsection{Limiting Shapes}
+\label{sec:Shape_Grammar_Limiting_Shapes}
 These Shapes define a limiting area on the canvas, where shape painting is allowed. 
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the Limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape 
 
+\subsection{Example}
+\subsubsection{Shape Grammar\citep{shapeGrammars:1972}}
+\begin{align}
+\label{eq:Shape_Grammar}
+SG1 &= <V_T, V_M, R, I>  \\
+\label{eq:Shape_Grammar_VT}
+V_T &= \{-\}  \\
+\label{eq:Shape_Grammar_VM}
+V_M &= \{\includegraphics{sg_specification_VM.jpg} \}\ \\
+\label{eq:Shape_Grammar_R}
+R &= Rules\ [R]\ \ \ \ 
+R1=\includegraphics[width=2cm]{sg_specification_rule1.jpg}
+R2=\includegraphics[width=2cm]{sg_specification_rule2.jpg}
+R3=\includegraphics[width=2cm]{sg_specification_rule3.jpg}
+\\
+\label{eq:Shape_Grammar_I}
+I &= Initial\ Shape\ I\ \ \includegraphics[width=1.5cm]{sg_specification_I.jpg}
+\end{align}
+\subsubsection{Selection Rule}
+\begin{equation}
+<0,2>
+\end{equation}
+
+\subsubsection{Painting Rules}
+\begin{align}
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
+L0\cap L1\cap L2 \Longrightarrow  
+\begin{tikzpicture}
+    \filldraw[fill=black!00!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture} \\
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_2}
+(L0\cap L1\cap \sim L2)\cup (L0\cap \sim L1\cap L2)\cup (\sim L0\cap L1 \cap L2) \Longrightarrow  
+\begin{tikzpicture}
+    \filldraw[fill=black!25!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture} \\
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_3}
+(L0\cap \sim L1\cap \sim L2)\cup (\sim L0\cap L1\cap \sim l2)\cup (\sim L0\cap \sim L1 \cap L2) \Longrightarrow  
+\begin{tikzpicture}
+    \filldraw[fill=black!50!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture} \\
+\label{fig:Shape Grammars/Shape Specification/Painting_Rule_4}
+\sim (L0\cup L1\cup L2)  \Longrightarrow  
+\begin{tikzpicture}
+    \filldraw[fill=black!100!white, draw=black] (0,0) rectangle (1,0.25);
+\end{tikzpicture}
+\end{align}
+\subsubsection{Limiting Shape}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=2cm]{sg_specification_Limiting_shape.jpg}
+    \caption{ Limiting Shape I \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Limiting_Shape}
+\end{figure}
+\pagebreak
+\subsubsection{Generated}
+This image shows the generated painting. The levels are generated like described above \ref{sec:Shape_Grammar_Selection_Rules} 
+\newline
+Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18 and 19
+\begin{figure}[!h]
+    \centering
+    \includegraphics{sg_example.jpg}
+    \caption{ Generated Painting\citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Example}
+\end{figure}
+
+\subsection{Test}
 
 
 \pagebreak
