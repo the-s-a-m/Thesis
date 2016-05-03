@@ -169,8 +169,8 @@ Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18
 \pagebreak
 \section{L-Systems}
 
-L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: [TODO: reference those papers] "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
-\subsection{TODO: reference papers here}
+L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
+
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
 \begin{equation} \label{lsystem context free}
     pred : \{block1\}\ cond\ \{block2\} \leadsto succ
@@ -191,10 +191,7 @@ The cpfg language, described in \citep{PrusinkiewiczEtAl:2001}, also supports co
 \end{equation}
 If the example of listing \ref{lsystem example 2} was applied to the module composition $A(2)B(4)C(0)$, it would result in the modules $A(2)M(2)N(2)C(0)$.
 
-\pagebreak
-\section{Chomsky Grammars?}
-\citep{PrusinkiewiczEtAl:2001}
-Almost like L-System but with minor modifications.
+
 
 \pagebreak
 \chapter{Practical Task}
