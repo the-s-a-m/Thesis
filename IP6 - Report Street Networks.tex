@@ -201,8 +201,8 @@ Almost like L-System but with minor modifications.
 \section{CPlan}
 \subsection{Changes}
 \begin{itemize}
-    \item The function .toArray() creates a complete copy of the existing enumeration in the ram. Therefore the application had an extremely large footprint. To reduce the coping we changed some methods to be called directly with IEnumerable Parameters.
-    \item If some extension methods are created the should be tested by unit tests.
+    \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This methods creates a new array / list and stores every item of the IEnumerable in this new collection. Therefore the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
+    \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
 \end{itemize}
 
 
