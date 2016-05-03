@@ -49,7 +49,7 @@
 \section{Shape Grammar}
 The main key of shape grammar is to generate paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
-A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains "a shape grammar, defining a language of two dimensional shapes, and a selection rule". M specifies a finite list of material specifications and one limiting shape on a canvas.
+A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
 \subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
@@ -97,8 +97,8 @@ Painting rules describe witch shape should be painted inside of a defined area. 
 These Shapes define a limiting area on the canvas, where shape painting is allowed. 
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the Limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape 
 
-\subsection{Example}
-\subsubsection{Shape Grammar\citep{shapeGrammars:1972}}
+\subsection{Example\citep{shapeGrammars:1972}}
+\subsubsection{Shape Grammar}
 \begin{align}
 \label{eq:Shape_Grammar}
 SG1 &= <V_T, V_M, R, I>  \\
@@ -195,6 +195,8 @@ If the example of listing \ref{lsystem example 2} was applied to the module comp
 \section{Chomsky Grammars?}
 \citep{PrusinkiewiczEtAl:2001}
 Almost like L-System but with minor modifications.
+
+\section{Space Syntax}
 
 \pagebreak
 \chapter{Practical Task}
