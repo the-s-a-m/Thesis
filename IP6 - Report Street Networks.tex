@@ -47,7 +47,7 @@
 
 \chapter{Theoretical Task}
 \section{Shape Grammar}
-The main key of shape grammar is to generate paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
+The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
 A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
@@ -64,14 +64,9 @@ Shape Grammar is defined over an alphabet of shapes and generated n-dimensional 
     \end{enumerate}
 \end{displayquote}
 
-
-\subsection{Shape Rules}
-\label{sec:Shape_Grammar_Shape_Rules}
-A shape rule is de definition what should be painted based on the current state of the painting. The Initial Shape has not to be inside of the Limiting Shapes.
-
 \subsection{Selection Rules}
 \label{sec:Shape_Grammar_Selection_Rules}
-An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:.\citep{shapeGrammars:1972}
+An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:\citep{shapeGrammars:1972}.
 \begin{displayquote}
     \begin{enumerate}
         \item The terminals in the initial shape are assigned level 0.
@@ -160,11 +155,26 @@ Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18
     \caption{ Generated Painting\citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Example}
 \end{figure}
 
-\subsection{Test}
+\pagebreak
+\subsection{Street Generation}
+In the following section we compare arguments for and against the usefulness to generate street networks by Shape Grammar. 
+\subsubsection{Features}
+    \begin{itemize}
+        \item Can describe and generate facedes in high details.
+        \item With R Shapes windows and hight detail 3D Models can be generated easily.
+    \end{itemize}
 
+\subsubsection{Problems}
+    \begin{itemize}
+        \item The generates streets result mostly in monotonous streets. 
+        \item A huge number of R shapes is needed to generate a street network.
+        \item Areas with different characteristics (historic district, rectangular raster like New York or radial to center like Paris) are difficult to generate.
+        \item The R rules for the transitions between area characteristics are should not repeat themselves and are therefore difficult to build.
+    \end{itemize}
 
 \pagebreak
 \section{Procedural Modelling}
+Janis
 
 \pagebreak
 \section{L-Systems}
@@ -196,7 +206,13 @@ If the example of listing \ref{lsystem example 2} was applied to the module comp
 \citep{PrusinkiewiczEtAl:2001}
 Almost like L-System but with minor modifications.
 
+\pagebreak
 \section{Space Syntax}
+Samuel
+
+\pagebreak
+\section{K-Means Clustering Algorithm}
+Samuel
 
 \pagebreak
 \chapter{Practical Task}
@@ -205,12 +221,14 @@ Almost like L-System but with minor modifications.
 \begin{itemize}
     \item The function .toArray() creates a complete copy of the existing enumeration in the ram. Therefore the application had an extremely large footprint. To reduce the coping we changed some methods to be called directly with IEnumerable Parameters.
     \item If some extension methods are created the should be tested by unit tests.
+    \item matrix2D not clockwise?
+    \item Geometry2D not correct line intersection!
 \end{itemize}
 
 
 \subsection{New Functions}
 \subsubsection{Graph to Tree}
-
+\subsubsection{Cluster Detection}
 
 \chapter{Conclusion}
 
