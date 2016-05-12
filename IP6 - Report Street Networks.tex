@@ -175,32 +175,29 @@ In the following section we compare arguments for and against the usefulness to 
 \pagebreak
 \section{L-Systems}
 
-L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: [TODO: reference those papers] "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
-\subsection{TODO: reference papers here}
+L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
+
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
-\begin{equation} \label{lsystem context free}
+\begin{equation} \label{eq:lsystem context free}
     pred : \{block1\}\ cond\ \{block2\} \leadsto succ
 \end{equation}
 The symbol \textit{pred} (predecessor) defines the module that will get replaced by the modules defined in \textit{succ} (successor). This replacement is only applied, if the (optional) condition is met. \textit{block1} and \textit{block2} are C statement blocks, of which the first block is executed before and the second after the condition is evaluated. \citep{PrusinkiewiczEtAl:2001} gives the following example.
-\begin{equation} \label{lsystem example 1}
+\begin{equation} \label{eq:lsystem example 1}
     A(x) : \{y = x + 2;\}\ y \geq 5\ \{z = y / 3;\}\ \leadsto B(z)C(z + 1)
 \end{equation}
 If this example production was applied to the module $A(4)$, it would result in the modules $B(2)C(3)$.
 
 The cpfg language, described in \citep{PrusinkiewiczEtAl:2001}, also supports context-sensitive productions. The following listing defines the syntax of such a production.
-\begin{equation} \label{lsystem context sensitive}
+\begin{equation} \label{eq:lsystem context sensitive}
     lcont < pred > rcont : \{block1\}\ cond\ \{block2\} \leadsto succ
 \end{equation}
 \textit{lcont} (left context) and \textit{rcont} (right context) each define a list of modules that have to precede or respectively follow the \textit{pred} (module being replaced). Context modules are limited to query symbols, which are explained later on. \citep{PrusinkiewiczEtAl:2001} gives the following example.
-\begin{equation} \label{lsystem example 2}
+\begin{equation} \label{eq:lsystem example 2}
     A(x) < B(y) > C(z) : x + z > 0 \leadsto M(y / 2)N(y / 2)
 \end{equation}
-If the example of listing \ref{lsystem example 2} was applied to the module composition $A(2)B(4)C(0)$, it would result in the modules $A(2)M(2)N(2)C(0)$.
+If the example of listing \ref{eq:lsystem example 2} was applied to the module composition $A(2)B(4)C(0)$, it would result in the modules $A(2)M(2)N(2)C(0)$.
 
-\pagebreak
-\section{Chomsky Grammars?}
-\citep{PrusinkiewiczEtAl:2001}
-Almost like L-System but with minor modifications.
+A way to generate images with L-Systems is to use a LOGO-style turtle as a graphical model. Certain modules of the L-System are interpreted as commands to this turtle.
 
 \pagebreak
 \section{Space Syntax}
@@ -254,8 +251,8 @@ Result Image here
 \section{CPlan}
 \subsection{Changes}
 \begin{itemize}
-    \item The function .toArray() creates a complete copy of the existing enumeration in the ram. Therefore the application had an extremely large footprint. To reduce the coping we changed some methods to be called directly with IEnumerable Parameters.
-    \item If some extension methods are created the should be tested by unit tests.
+    \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This methods creates a new array / list and stores every item of the IEnumerable in this new collection. Therefore the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
+    \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
     \item matrix2D not clockwise?
     \item Geometry2D not correct line intersection!
 \end{itemize}
