@@ -47,7 +47,7 @@
 
 \chapter{Theoretical Task}
 \section{Shape Grammar}
-The main key of shape grammar is to generate paintings by a new defined grammar based on shape rules, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
+The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
 A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
@@ -64,14 +64,9 @@ Shape Grammar is defined over an alphabet of shapes and generated n-dimensional 
     \end{enumerate}
 \end{displayquote}
 
-
-\subsection{Shape Rules}
-\label{sec:Shape_Grammar_Shape_Rules}
-A shape rule is de definition what should be painted based on the current state of the painting. The Initial Shape has not to be inside of the Limiting Shapes.
-
 \subsection{Selection Rules}
 \label{sec:Shape_Grammar_Selection_Rules}
-An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:.\citep{shapeGrammars:1972}
+An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:\citep{shapeGrammars:1972}.
 \begin{displayquote}
     \begin{enumerate}
         \item The terminals in the initial shape are assigned level 0.
@@ -151,7 +146,7 @@ L0\cap L1\cap L2 \Longrightarrow
 \end{figure}
 \pagebreak
 \subsubsection{Generated}
-This image shows the generated painting. The levels are generated like described above \ref{sec:Shape_Grammar_Selection_Rules} 
+The following image \ref{fig:Shape Grammars/Example} shows the generated painting with the relevant Steps. The levels are generated like described above \ref{sec:Shape_Grammar_Selection_Rules} 
 \newline
 Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18 and 19
 \begin{figure}[!h]
@@ -160,11 +155,26 @@ Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18
     \caption{ Generated Painting\citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Example}
 \end{figure}
 
-\subsection{Test}
+\pagebreak
+\subsection{Street Generation}
+In the following section we compare arguments for and against the usefulness to generate street networks by Shape Grammar. 
+\subsubsection{Features}
+    \begin{itemize}
+        \item Can describe and generate facedes in high details.
+        \item With R Shapes windows and hight detail 3D Models can be generated easily.
+    \end{itemize}
 
+\subsubsection{Problems}
+    \begin{itemize}
+        \item The generates streets result mostly in monotonous streets. 
+        \item A huge number of R shapes is needed to generate a street network.
+        \item Areas with different characteristics (historic district, rectangular raster like New York or radial to center like Paris) are difficult to generate.
+        \item The R rules for the transitions between area characteristics are should not repeat themselves and are therefore difficult to build.
+    \end{itemize}
 
 \pagebreak
 \section{Procedural Modelling}
+Janis
 
 \pagebreak
 \section{L-Systems}
@@ -195,6 +205,50 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 
 \pagebreak
 \section{Space Syntax}
+This Space Syntax grammar was defined 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{shapeGrammars:1972}.
+
+The morphic language space syntax defines these elements:
+\begin{align}
+c &= elementary\ object:\ continuous\ space  \\
+d &= elementary\ object:\ discontinuous\ space  \\
+\supset &= containing\ (left\ contains\ right\ side)  \\
+\supset\ c &= continouse\ space  \\
+\supset\ d &= discontinuous\ space\ (solid\ object) \\
+\rightarrow &= permeability \\
+\rightarrow\ c &= permeability\ space\ (to\ left\ side) \\
+(\ c\ )\ or\ \langle\ c\ \rangle  &= carrier\ space\ of\ c-objects\ are\ called\ differentation  \\
+(\ d\ )\ or\ \langle\ d\ \rangle &= carrier\ space\ of\ d-objects\ are\ called\ distinction  \\
+\overset{\supset}{object} &= selfcontainment\ and\ containing \\
+\overset{\rightarrow}{object} &= selfcontainment\ and\ permeabile \\
+\overset{\rightarrow}{c} &= clear\ path\ into\ space \\
+\overset{\rightarrow}{d} &= path\ through\ d-space\ not\ empty\ space\ or\ c-object 
+\end{align}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{spacesyntax_elementary.png}
+    \caption{Elementary Lexicon\citep{spaceSyntax:1976}}\label{fig:Space Syntax/Elementary Lexicon}
+\end{figure}
+
+Definition Open-Close
+
+\pagebreak
+\section{Clustering Algorithms}
+\subsection{K-Means}
+\subsubsection{Description}
+
+\subsubsection{Result}
+Result Image here
+
+\subsubsection{Problems}
+
+
+\subsection{Single Linkage}
+\subsubsection{Description}
+
+\subsubsection{Result}
+Result Image here
+
+\subsubsection{Problems}
 
 \pagebreak
 \chapter{Practical Task}
@@ -203,12 +257,14 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This methods creates a new array / list and stores every item of the IEnumerable in this new collection. Therefore the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
+    \item matrix2D not clockwise?
+    \item Geometry2D not correct line intersection!
 \end{itemize}
 
 
 \subsection{New Functions}
 \subsubsection{Graph to Tree}
-
+\subsubsection{Cluster Detection}
 
 \chapter{Conclusion}
 
