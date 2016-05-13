@@ -212,32 +212,78 @@ d &= elementary\ object:\ discontinuous\ space  \\
 \supset\ d &= discontinuous\ space\ (solid\ object) \\
 \rightarrow &= permeability \\
 \rightarrow\ c &= permeability\ space\ (to\ left\ side) \\
-(\ c\ )\ or\ \langle\ c\ \rangle  &= carrier\ space\ of\ c-objects\ are\ called\ differentation  \\
-(\ d\ )\ or\ \langle\ d\ \rangle &= carrier\ space\ of\ d-objects\ are\ called\ distinction  \\
 \overset{\supset}{object} &= selfcontainment\ and\ containing \\
 \overset{\rightarrow}{object} &= selfcontainment\ and\ permeabile \\
 \overset{\rightarrow}{c} &= clear\ path\ into\ space \\
-\overset{\rightarrow}{d} &= path\ through\ d-space\ not\ empty\ space\ or\ c-object 
+\overset{\rightarrow}{d} &= path\ through\ d-space\ not\ empty\ space\ or\ c-object \\
+(\ ) &= oneness \\
+\langle\ \rangle &= twoness \\
+\{\ \} &= manyness
 \end{align}
+
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\textwidth]{spacesyntax_elementary.png}
     \caption{Elementary Lexicon\citep{spaceSyntax:1976}}\label{fig:Space Syntax/Elementary Lexicon}
 \end{figure}
+\pagebreak
 
 Definition Open-Close
 
 \pagebreak
-\section{Clustering Algorithms}
-\subsection{K-Means}
-\subsubsection{Description}
-
-\subsubsection{Result}
-Result Image here
+\subsection{Street Generation}
+In the following section we compare arguments for and against the usefulness to generate street networks by Space syntax. 
+\subsubsection{Features}
+\begin{itemize}
+    \item Can describe and generate facedes in high details.
+    \item With R Shapes windows and hight detail 3D Models can be generated easily.
+\end{itemize}
 
 \subsubsection{Problems}
+\begin{itemize}
+    \item The generates streets result mostly in monotonous streets. 
+    \item A huge number of R shapes is needed to generate a street network.
+    \item Areas with different characteristics (historic district, rectangular raster like New York or radial to center like Paris) are difficult to generate.
+    \item The R rules for the transitions between area characteristics are should not repeat themselves and are therefore difficult to build.
+\end{itemize}
 
+\pagebreak
+\section{Clustering Algorithms}
+In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section we analyse the different clustering algorithms and compare the generated results produces by our implementations in CPlan.
+\subsection{K-Means}
+\subsubsection{Description}
+The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster points and the graph points. The algorithm uses the following approach: 
+\begin{enumerate}
+    \item A number of c-points are inserted into the graph.
+    \item All graph points are assigned to there nearest c-point.
+    \item The c-points are moved to the center of his assigned graph points.
+    \item This process is repeated (from 2.) till no c-points are moved.
+\end{enumerate}
+To avoid local minima this process needs to be executed more than once. The result with the optimal global minima will be selected.
 
+\subsubsection{Implementation}
+We implemented in CPlan\citep{cPlan:2015} an optimised version of the described algorithm based on the paper An Efficient k-Means Clustering Algorithm: Analysis and Implementation \cite{kmeans:2002} with an efficiency of $O(n\ insert\ here)$
+
+\pagebreak
+\subsubsection{Result}
+The edges in a cluster are marked by a colour, the transitions between the found clusters are marked black.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{clusteranalysis_kmeans_result.png}
+    \caption{Generated cluster analysis of Weimar\label{fig:KmeansGenerated}}
+\end{figure}
+\pagebreak
+\subsubsection{Problems}
+Because the algorithm is point based the edge data is unused and therefore it leads to unexpected transitions between clusters.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{clusteranalysis_kmeans_problem.png}
+    \caption{Problem of k-kmeans clustering\label{fig:KmeansProblem}}
+\end{figure}
+\newline
+If a point has only connection connections into another cluster the result are many unexpected transitions. The result can be seen in the figure\ref{fig:KmeansProblem} in the read circle. 
+
+\pagebreak
 \subsection{Single Linkage}
 \subsubsection{Description}
 
@@ -248,8 +294,9 @@ Result Image here
 
 \pagebreak
 \chapter{Practical Task}
-\section{CPlan}
-\subsection{Changes}
+\section{CPlan}\label{CPlan}
+CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The goal of this application is to generate/grow street networks dynamically and extend these networks with buildings. 
+\subsection{Improvements}
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This methods creates a new array / list and stores every item of the IEnumerable in this new collection. Therefore the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
