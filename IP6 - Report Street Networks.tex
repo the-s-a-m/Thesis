@@ -44,14 +44,15 @@
 \end{abstract}
 
 \chapter{Introduction}
-
+Genetic analysis of street network, separation, recombination.
 \chapter{Theoretical Task}
-\section{Shape Grammar}
+\section{Street Network Grammars}
+\subsection{Shape Grammar}
 The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
 A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
-\subsection{Shape Grammar Definition}
+\subsubsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
 Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes\citep{shapeGrammars:1972}.
 \begin{displayquote} 
@@ -64,7 +65,7 @@ Shape Grammar is defined over an alphabet of shapes and generated n-dimensional 
     \end{enumerate}
 \end{displayquote}
 
-\subsection{Selection Rules}
+\subsubsection{Selection Rules}
 \label{sec:Shape_Grammar_Selection_Rules}
 An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:\citep{shapeGrammars:1972}.
 \begin{displayquote}
@@ -80,20 +81,20 @@ An undefined count of shape rules provide the generation of the painting. Theref
     \end{enumerate}
 \end{displayquote}
 
-\subsection{Painting Rules}
+\subsubsection{Painting Rules}
 \label{sec:Shape_Grammar_Painting_Rules}
 Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining this levels the painting colour is described\citep{shapeGrammars:1972}.
 \begin{displayquote}
     A painting rule has two sides separated by a double arrow ($\Rightarrow$). The left side of a painting rule defines a set using the sets determined by level assignment and the usual set operators, for example, union($\bigcap$), intersection ($\bigcup$), complementation($\sim$), and exclusive or ($\bigotimes$), The sets defined by the left side of the painting rules of M must partition the universal set. The right side of a painting rule is a rectangle painted in the manner the set defined by the left side of the rule is to be painted.
 \end{displayquote}
 
-\subsection{Limiting Shapes}
+\subsubsection{Limiting Shapes}
 \label{sec:Shape_Grammar_Limiting_Shapes}
 These Shapes define a limiting area on the canvas, where shape painting is allowed. 
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the Limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape 
 
-\subsection{Example\citep{shapeGrammars:1972}}
-\subsubsection{Shape Grammar}
+\subsubsection{Example\citep{shapeGrammars:1972}}
+\paragraph{Shape Grammar}
 \begin{align}
 \label{eq:Shape_Grammar}
 SG1 &= <V_T, V_M, R, I>  \\
@@ -110,42 +111,42 @@ R3=\includegraphics[width=2cm]{sg_specification_rule3.jpg}
 \label{eq:Shape_Grammar_I}
 I &= Initial\ Shape\ I\ \ \includegraphics[width=1.5cm]{sg_specification_I.jpg}
 \end{align}
-\subsubsection{Selection Rule}
+\paragraph{Selection Rule}
 \begin{equation}
 <0,2>
 \end{equation}
 
-\subsubsection{Painting Rules}
+\paragraph{Painting Rules}
 \begin{align}
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
-L0\cap L1\cap L2 \Longrightarrow  
-\begin{tikzpicture}
-    \filldraw[fill=black!00!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture} \\
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_2}
-(L0\cap L1\cap \sim L2)\cup (L0\cap \sim L1\cap L2)\cup (\sim L0\cap L1 \cap L2) \Longrightarrow  
-\begin{tikzpicture}
-    \filldraw[fill=black!25!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture} \\
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_3}
-(L0\cap \sim L1\cap \sim L2)\cup (\sim L0\cap L1\cap \sim l2)\cup (\sim L0\cap \sim L1 \cap L2) \Longrightarrow  
-\begin{tikzpicture}
-    \filldraw[fill=black!50!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture} \\
-\label{fig:Shape Grammars/Shape Specification/Painting_Rule_4}
-\sim (L0\cup L1\cup L2)  \Longrightarrow  
-\begin{tikzpicture}
-    \filldraw[fill=black!100!white, draw=black] (0,0) rectangle (1,0.25);
-\end{tikzpicture}
+    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
+    L0\cap L1\cap L2 \Longrightarrow  
+    \begin{tikzpicture}
+        \filldraw[fill=black!00!white, draw=black] (0,0) rectangle (1,0.25);
+    \end{tikzpicture} \\
+    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_2}
+    (L0\cap L1\cap \sim L2)\cup (L0\cap \sim L1\cap L2)\cup (\sim L0\cap L1 \cap L2) \Longrightarrow  
+    \begin{tikzpicture}
+        \filldraw[fill=black!25!white, draw=black] (0,0) rectangle (1,0.25);
+    \end{tikzpicture} \\
+    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_3}
+    (L0\cap \sim L1\cap \sim L2)\cup (\sim L0\cap L1\cap \sim l2)\cup (\sim L0\cap \sim L1 \cap L2) \Longrightarrow  
+    \begin{tikzpicture}
+        \filldraw[fill=black!50!white, draw=black] (0,0) rectangle (1,0.25);
+    \end{tikzpicture} \\
+    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_4}
+    \sim (L0\cup L1\cup L2)  \Longrightarrow  
+    \begin{tikzpicture}
+        \filldraw[fill=black!100!white, draw=black] (0,0) rectangle (1,0.25);
+    \end{tikzpicture}
 \end{align}
-\subsubsection{Limiting Shape}
+\paragraph{Limiting Shape}
 \begin{figure}[!h]
     \centering
     \includegraphics[width=2cm]{sg_specification_Limiting_shape.jpg}
     \caption{ Limiting Shape I \citep{shapeGrammars:1972}}\label{fig:Shape Grammars/Shape Specification/Limiting_Shape}
 \end{figure}
 \pagebreak
-\subsubsection{Generated}
+\paragraph{Generated}
 The following image \ref{fig:Shape Grammars/Example} shows the generated painting with the relevant Steps. The levels are generated like described above \ref{sec:Shape_Grammar_Selection_Rules} 
 \newline
 Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18 and 19
@@ -156,15 +157,15 @@ Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18
 \end{figure}
 
 \pagebreak
-\subsection{Street Generation}
+\subsubsection{Street Generation}
 In the following section we compare arguments for and against the usefulness to generate street networks by Shape Grammar. 
-\subsubsection{Features}
+\paragraph{Features}
     \begin{itemize}
         \item Can describe and generate facedes in high details.
         \item With R Shapes windows and hight detail 3D Models can be generated easily.
     \end{itemize}
 
-\subsubsection{Problems}
+\paragraph{Problems}
     \begin{itemize}
         \item The generates streets result mostly in monotonous streets. 
         \item A huge number of R shapes is needed to generate a street network.
@@ -173,8 +174,7 @@ In the following section we compare arguments for and against the usefulness to 
     \end{itemize}
 
 \pagebreak
-\section{L-Systems}
-
+\subsection{L-Systems}
 L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
 
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
@@ -200,51 +200,46 @@ If the example of listing \ref{eq:lsystem example 2} was applied to the module c
 A way to generate images with L-Systems is to use a LOGO-style turtle as a graphical model. Certain modules of the L-System are interpreted as commands to this turtle.
 
 \pagebreak
-\section{Space Syntax}
+\subsection{Space Syntax}
 This Space Syntax grammar was defined 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{shapeGrammars:1972}.
 
+Description here 
+
+\subsubsection{Space Syntax Grammar}
 The morphic language space syntax defines these elements:
 \begin{align}
-c &= elementary\ object:\ continuous\ space  \\
-d &= elementary\ object:\ discontinuous\ space  \\
-\supset &= containing\ (left\ contains\ right\ side)  \\
-\supset\ c &= continouse\ space  \\
-\supset\ d &= discontinuous\ space\ (solid\ object) \\
-\rightarrow &= permeability \\
-\rightarrow\ c &= permeability\ space\ (to\ left\ side) \\
-\overset{\supset}{object} &= selfcontainment\ and\ containing \\
-\overset{\rightarrow}{object} &= selfcontainment\ and\ permeabile \\
-\overset{\rightarrow}{c} &= clear\ path\ into\ space \\
-\overset{\rightarrow}{d} &= path\ through\ d-space\ not\ empty\ space\ or\ c-object \\
-(\ ) &= oneness \\
-\langle\ \rangle &= twoness \\
-\{\ \} &= manyness
+    c &= elementary\ object:\ continuous\ space  \\
+    d &= elementary\ object:\ discontinuous\ space  \\
+    \supset &= containing\ (left\ contains\ right\ side)  \\
+    \supset\ c &= continouse\ space  \\
+    \supset\ d &= discontinuous\ space\ (solid\ object) \\
+    \rightarrow &= permeability \\
+    \rightarrow\ c &= permeability\ space\ (to\ left\ side) \\
+    \overset{\supset}{object} &= selfcontainment\ and\ containing \\
+    \overset{\rightarrow}{object} &= selfcontainment\ and\ permeabile \\
+    \overset{\rightarrow}{c} &= clear\ path\ into\ space \\
+    \overset{\rightarrow}{d} &= path\ through\ d-space\ not\ empty\ space\ or\ c-object \\
+    (\ ) &= oneness \\
+    \langle\ \rangle &= twoness \\
+    \{\ \} &= manyness
 \end{align}
-
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\textwidth]{spacesyntax_elementary.png}
     \caption{Elementary Lexicon\citep{spaceSyntax:1976}}\label{fig:Space Syntax/Elementary Lexicon}
 \end{figure}
-\pagebreak
-
-Definition Open-Close
 
 \pagebreak
-\subsection{Street Generation}
+\subsubsection{Street Generation}
 In the following section we compare arguments for and against the usefulness to generate street networks by Space syntax. 
 \subsubsection{Features}
 \begin{itemize}
     \item Can describe and generate facedes in high details.
-    \item With R Shapes windows and hight detail 3D Models can be generated easily.
 \end{itemize}
 
 \subsubsection{Problems}
 \begin{itemize}
-    \item The generates streets result mostly in monotonous streets. 
-    \item A huge number of R shapes is needed to generate a street network.
-    \item Areas with different characteristics (historic district, rectangular raster like New York or radial to center like Paris) are difficult to generate.
-    \item The R rules for the transitions between area characteristics are should not repeat themselves and are therefore difficult to build.
+    \item Can describe and generate facedes in high details.
 \end{itemize}
 
 \pagebreak
@@ -253,11 +248,12 @@ In the application CPlan as described in \ref{CPlan} the street network is gener
 \subsection{K-Means}
 \subsubsection{Description}
 The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster points and the graph points. The algorithm uses the following approach: 
+
 \begin{enumerate}
-    \item A number of c-points are inserted into the graph.
-    \item All graph points are assigned to there nearest c-point.
-    \item The c-points are moved to the center of his assigned graph points.
-    \item This process is repeated (from 2.) till no c-points are moved.
+    \item A number of points are inserted into the graph and used as centroids.
+    \item All graph points are assigned to there nearest centroids.
+    \item The centroids are moved to the center of their assigned graph points.
+    \item This process is repeated (from 2.) till no centroids are moved.
 \end{enumerate}
 To avoid local minima this process needs to be executed more than once. The result with the optimal global minima will be selected.
 
@@ -266,7 +262,7 @@ We implemented in CPlan\citep{cPlan:2015} an optimised version of the described 
 
 \pagebreak
 \subsubsection{Result}
-The edges in a cluster are marked by a colour, the transitions between the found clusters are marked black.
+Our implementation in CPlan\ref{CPlan} has produced the following image\ref{fig:KmeansGenerated}. The edges in a cluster are marked by a colour, the transitions between the found clusters are marked black.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\textwidth]{clusteranalysis_kmeans_result.png}
@@ -304,10 +300,10 @@ CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The
     \item Geometry2D not correct line intersection!
 \end{itemize}
 
+\subsection{Genetic analysis}
+The ETH-Zurich had already genetic optimizations algorithms based on trees. Unfortunately they had not a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles.
 
-\subsection{New Functions}
-\subsubsection{Graph to Tree}
-\subsubsection{Cluster Detection}
+\subsection{Cluster Detection}
 
 \chapter{Conclusion}
 
