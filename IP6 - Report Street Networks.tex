@@ -214,33 +214,33 @@ axial line is treated as a “node” (or space) in a graph and it is connected 
 
 \pagebreak
 \section{Clustering Algorithms}
-In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section we analyse the different clustering algorithms and compare the generated results produces by our implementations in CPlan.
+In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section we analyse the different clustering algorithms and compare the generated results produced by our implementations in CPlan.
 \subsection{K-Means}
 \subsubsection{Description}
-The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster points and the graph points. The algorithm uses the following approach: 
+The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach: 
 
 \begin{enumerate}
     \item A number of points are inserted into the graph and used as centroids.
-    \item All graph points are assigned to there nearest centroids.
+    \item All graph points are assigned to their nearest centroids.
     \item The centroids are moved to the center of their assigned graph points.
-    \item This process is repeated (from 2.) till no centroids are moved.
+    \item Until the maximum number of iterations is reached: Continue the loop with item 2.
 \end{enumerate}
-To avoid local minima this process needs to be executed more than once. The result with the optimal global minima will be selected.
+Because the K-Means algorithm can find local minima, this process needs to be executed more than once. The result with the best found solution will be selected.
 
 \subsubsection{Implementation}
-We implemented in CPlan\citep{cPlan:2015} an optimised version of the described algorithm based on the paper An Efficient k-Means Clustering Algorithm: Analysis and Implementation \cite{kmeans:2002} with an efficiency of $O(n\ insert\ here)$
+We implemented in CPlan\citep{cPlan:2015} an optimised version of the described algorithm based on the paper An Efficient k-Means Clustering Algorithm: Analysis and Implementation \cite{kmeans:2002} with a runtime of $O(n\ insert\ here)$
 
 \pagebreak
 \subsubsection{Result}
-Our implementation in CPlan\ref{CPlan} has produced the following image\ref{fig:KmeansGenerated}. The edges in a cluster are marked by a colour, the transitions between the found clusters are marked black.
+Our implementation in CPlan\ref{CPlan} has produced the following image\ref{fig:KmeansGenerated}. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\textwidth]{clusteranalysis_kmeans_result.png}
-    \caption{Generated cluster analysis of Weimar\label{fig:KmeansGenerated}}
+    \caption{K-Means cluster analysis of Weimar\label{fig:KmeansGenerated}}
 \end{figure}
 \pagebreak
 \subsubsection{Problems}
-Because the algorithm is point based the edge data is unused and therefore it leads to unexpected transitions between clusters.
+Because the algorithm uses the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. This leads therefore to unexpected transitions between clusters.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.5\textwidth]{clusteranalysis_kmeans_problem.png}
