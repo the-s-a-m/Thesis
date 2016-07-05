@@ -248,7 +248,7 @@ In the following section we compare arguments for and against the usefulness to 
 In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section we analyse the different clustering algorithms and compare the generated results produced by our implementations in CPlan.
 \subsection{K-Means}
 \subsubsection{Description}
-The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach: 
+The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach:
 
 \begin{enumerate}
     \item A number of points are inserted into the graph and used as centroids.
@@ -281,8 +281,11 @@ Because the algorithm uses the euclidean distance between cluster centroids and 
 If a point has only connection connections into another cluster the result are many unexpected transitions. The result can be seen in the figure\ref{fig:KmeansProblem} in the read circle. 
 
 \pagebreak
-\subsection{Single Linkage}
+\subsection{Hierarchical Clustering}
 \subsubsection{Description}
+Hierarchical clustering, also known as connectivity based clustering, was the next used approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
+
+The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create 1 to n clusters, where n is the number of input nodes.
 
 \subsubsection{Result}
 Result Image here
