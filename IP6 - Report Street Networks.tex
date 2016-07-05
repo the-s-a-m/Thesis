@@ -205,7 +205,6 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 This Space Syntax grammar was defined 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{shapeGrammars:1972}. The grammar is a morphic  language and describes methods to analyse and generate urban areas and buildings. 
 The language consists of a surface space and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area pattern like ring spaces and block spaces.
 
-\newline
 %TODO was copied!!
 Space syntax uses a “graph theory” in quantifying axial maps. In space syntax, each
 axial line is treated as a “node” (or space) in a graph and it is connected to its other adjacent axial lines by links. Then, a justified graph in space syntax is “a graph restructured so that a specific space is placed at the bottom, “the root space.” All spaces one syntactic step away from [the] root space [spaces that can be reached with one turn from the root] are put on the first level above, all spaces two steps away on the second level, etc . . . [it] offer[s] a visual picture of the overall depth of a lay-out seen from one of its points” (Klarqvist, 1993, p. 11).
@@ -251,11 +250,12 @@ If a point has only connection connections into another cluster the result are m
 
 \pagebreak
 \subsection{Hierarchical Clustering}
-\subsubsection{Description}
+\subsubsection{Introduction}
 Hierarchical clustering, also known as connectivity based clustering, was the next used approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
 The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create 1 to n clusters, where n is the number of input nodes.
 
+\subsubsection{Strategy}
 There are generally two main strategies for hierarchical clustering:
 
 \begin{itemize}
@@ -263,10 +263,29 @@ There are generally two main strategies for hierarchical clustering:
     \item \textbf{Divisive}: Top down strategy. All nodes are contained in one cluster at the start. This cluster is then divided into sub clusters.
 \end{itemize}
 
-The complexity of the divisive strategy is with $O(2^n)$ too bad for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms".
+The time complexity of the divisive strategy is with $O(2^n)$ too bad for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ time complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms".
 
 %TODO v v v v v v v v v v v
 \textbf{ADD REFERENCES HERE}
+
+\subsubsection{Reduction Formula}
+The reduction formula is used to determine the distance between two clusters. It is called reduction formula, because the problem to obtain this distance is reduced to the problem to get the distance between two nodes.
+
+The following reduction formulae were implemented for this thesis:
+
+\begin{itemize}
+    \item \textbf{Single Linkage}
+    \begin{equation}
+        D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
+    \end{equation}
+    \item \textbf{UPGMA}
+    \begin{equation}
+    D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
+    \end{equation}
+    \item \textbf{WPGMA}
+\end{itemize}
+
+With clusters $C_1$ and $C_2$, which are sets of nodes and the distance function $d(i, j)$, which determines the distance between nodes $i$ and $j$.
 
 \subsubsection{Result}
 Result Image here
