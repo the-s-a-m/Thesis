@@ -38,13 +38,13 @@
 \tableofcontents
 
 
-
 \begin{abstract}
     Text here.
 \end{abstract}
 
 \chapter{Introduction}
-To analyse and generate streets there are many approaches. First of all we learned how streets can be described in a grammar and if it would be possible to describe an existing street network based on a tree or graph. Our customer Then we 
+To analyse and generate streets there are many approaches. First of all we learned how streets can be described in a grammar and if it would be possible to describe an existing street network based on a tree or graph. To separate a given street network into reasonable parts we tested many clustering algorithms. To evaluate the created clusters we used measurement methods provided by the architecture department of the ETH-Zurich. 
+(Insert here how our work is used later!)
 Genetic analysis of street network, separation, recombination.
 \chapter{Theoretical Task}
 \section{Street Network Grammars}
@@ -202,46 +202,15 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 
 \pagebreak
 \subsection{Space Syntax}
-This Space Syntax grammar was defined 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{shapeGrammars:1972}.
+This Space Syntax grammar was defined 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{shapeGrammars:1972}. The grammar is a morphic  language and describes methods to analyse and generate urban areas and buildings. 
+The language consists of a surface space and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area pattern like ring spaces and block spaces.
 
-Description here 
+\newline
+%TODO was copied!!
+Space syntax uses a “graph theory” in quantifying axial maps. In space syntax, each
+axial line is treated as a “node” (or space) in a graph and it is connected to its other adjacent axial lines by links. Then, a justified graph in space syntax is “a graph restructured so that a specific space is placed at the bottom, “the root space.” All spaces one syntactic step away from [the] root space [spaces that can be reached with one turn from the root] are put on the first level above, all spaces two steps away on the second level, etc . . . [it] offer[s] a visual picture of the overall depth of a lay-out seen from one of its points” (Klarqvist, 1993, p. 11).
 
-\subsubsection{Space Syntax Grammar}
-The morphic language space syntax defines these elements:
-\begin{align}
-    c &= elementary\ object:\ continuous\ space  \\
-    d &= elementary\ object:\ discontinuous\ space  \\
-    \supset &= containing\ (left\ contains\ right\ side)  \\
-    \supset\ c &= continouse\ space  \\
-    \supset\ d &= discontinuous\ space\ (solid\ object) \\
-    \rightarrow &= permeability \\
-    \rightarrow\ c &= permeability\ space\ (to\ left\ side) \\
-    \overset{\supset}{object} &= selfcontainment\ and\ containing \\
-    \overset{\rightarrow}{object} &= selfcontainment\ and\ permeabile \\
-    \overset{\rightarrow}{c} &= clear\ path\ into\ space \\
-    \overset{\rightarrow}{d} &= path\ through\ d-space\ not\ empty\ space\ or\ c-object \\
-    (\ ) &= oneness \\
-    \langle\ \rangle &= twoness \\
-    \{\ \} &= manyness
-\end{align}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=\textwidth]{spacesyntax_elementary.png}
-    \caption{Elementary Lexicon\citep{spaceSyntax:1976}}\label{fig:Space Syntax/Elementary Lexicon}
-\end{figure}
 
-\pagebreak
-\subsubsection{Street Generation}
-In the following section we compare arguments for and against the usefulness to generate street networks by Space syntax. 
-\subsubsection{Features}
-\begin{itemize}
-    \item Can describe and generate facedes in high details.
-\end{itemize}
-
-\subsubsection{Problems}
-\begin{itemize}
-    \item Can describe and generate facedes in high details.
-\end{itemize}
 
 \pagebreak
 \section{Clustering Algorithms}
