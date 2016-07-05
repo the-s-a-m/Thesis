@@ -245,7 +245,7 @@ In the following section we compare arguments for and against the usefulness to 
 
 \pagebreak
 \section{Clustering Algorithms}
-In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section we analyse the different clustering algorithms and compare the generated results produced by our implementations in CPlan.
+In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section the different clustering algorithms are analysed and the generated results produced by our implementations in CPlan are compared.
 \subsection{K-Means}
 \subsubsection{Description}
 The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach:
@@ -286,6 +286,18 @@ If a point has only connection connections into another cluster the result are m
 Hierarchical clustering, also known as connectivity based clustering, was the next used approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
 The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create 1 to n clusters, where n is the number of input nodes.
+
+There are generally two main strategies for hierarchical clustering:
+
+\begin{itemize}
+    \item \textbf{Agglomerative}: Bottom up strategy. In the beginning each node is an own cluster. Clusters are combined until only a single cluster remains.
+    \item \textbf{Divisive}: Top down strategy. All nodes are contained in one cluster at the start. This cluster is then divided into sub clusters.
+\end{itemize}
+
+The complexity of the divisive strategy is with $O(2^n)$ too bad for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms".
+
+%TODO v v v v v v v v v v v
+\textbf{ADD REFERENCES HERE}
 
 \subsubsection{Result}
 Result Image here
