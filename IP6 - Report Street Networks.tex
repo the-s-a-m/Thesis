@@ -327,7 +327,7 @@ For every of these reduction formulae the following holds:
 \subsubsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
-The problem is a result of the used reduction formula. Single linkage uses the distance between the closest nodes of the compared clusters. This leads to the creation of clusters, where all connecting roads are long. In a city, where there are multiple connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
+The problem is caused by the used reduction formula. Single linkage uses the distance between the closest nodes of the compared clusters. This leads to the creation of clusters, where all connecting roads are long. In a city, where there are multiple connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
 
 \begin{figure}[!h]
     \centering
@@ -335,7 +335,9 @@ The problem is a result of the used reduction formula. Single linkage uses the d
     \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
 \end{figure}
 
-\subsubsection{Problems}
+\subsubsection{UPGMA and WPGMA Result}
+%TODO: Add figure
+The figures xxx and xxx show the result of hierarchical cluster analysis using the UPGMA, or respectively the WPGMA reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
 
 \pagebreak
 \chapter{Practical Task}
