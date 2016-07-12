@@ -43,7 +43,11 @@
 \end{abstract}
 
 \chapter{Introduction}
-To analyse and generate streets there are many approaches. First of all we learned how streets can be described in a grammar and if it would be possible to describe an existing street network based on a tree or graph. To separate a given street network into reasonable parts we tested many clustering algorithms. To evaluate the created clusters we used measurement methods provided by the architecture department of the ETH-Zurich. 
+To analyse and generate streets there are many approaches. Street networks can be described as grammars. 
+
+The street networks can be separate into reasonable parts by clustering algorithms. 
+
+The cluster can be evaluate by measurement methods provided by the architecture department of the ETH-Zurich. 
 (Insert here how our work is used later!)
 Genetic analysis of street network, separation, recombination.
 \chapter{Theoretical Task}
@@ -202,15 +206,13 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 
 \pagebreak
 \subsection{Space Syntax}
-This Space Syntax grammar was defined 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{shapeGrammars:1972}. The grammar is a morphic  language and describes methods to analyse and generate urban areas and buildings. 
+The grammar Space Syntax was first introduced 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is a morphic language and describes methods to analyse and generate urban areas and buildings.
 The language consists of a surface space and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area pattern like ring spaces and block spaces.
 
-\newline
-%TODO was copied!!
-Space syntax uses a “graph theory” in quantifying axial maps. In space syntax, each
-axial line is treated as a “node” (or space) in a graph and it is connected to its other adjacent axial lines by links. Then, a justified graph in space syntax is “a graph restructured so that a specific space is placed at the bottom, “the root space.” All spaces one syntactic step away from [the] root space [spaces that can be reached with one turn from the root] are put on the first level above, all spaces two steps away on the second level, etc . . . [it] offer[s] a visual picture of the overall depth of a lay-out seen from one of its points” (Klarqvist, 1993, p. 11).
+The grammar was later extended and integrated into Geographic Information System (GIS). This information systems are used to plan and analyse the human interaction with the environment. 
+Bin Jiang and Christope Claramunt \citep{integrationSpaceSyntaxGIS:2002} showed the limitation of axial lined-based space syntax (\citep{integrationSpaceSyntaxGIS:2002} chapter: 2.2). They then created a graph representation (\citep{integrationSpaceSyntaxGIS:2002} chapter: 3) and showed that it was at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976}.
 
-
+Many projects has bean developed based on the space syntax graph representation. 
 
 \pagebreak
 \section{Clustering Algorithms}
@@ -230,6 +232,9 @@ Because the K-Means algorithm can find local minima, this process needs to be ex
 \subsubsection{Implementation}
 We implemented in CPlan\citep{cPlan:2015} an optimised version of the described algorithm based on the paper An Efficient k-Means Clustering Algorithm: Analysis and Implementation \cite{kmeans:2002} with a runtime of $O(n\ insert\ here)$
 
+\subsubsection{Speed Optimization}
+The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement can be achieved by running the K-Means iterations in parallel. Every iteration can be executed side effects free. The measurements and comparisons of the results are provided in the section Practical Task/Measurements \ref{sec:measurements};
+
 \pagebreak
 \subsubsection{Result}
 Our implementation in CPlan\ref{CPlan} has produced the following image\ref{fig:KmeansGenerated}. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
@@ -244,10 +249,23 @@ Because the algorithm uses the euclidean distance between cluster centroids and 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.5\textwidth]{clusteranalysis_kmeans_problem.png}
-    \caption{Problem of k-kmeans clustering\label{fig:KmeansProblem}}
+    \caption{Problem of K-Means clustering\label{fig:KmeansProblem}}
 \end{figure}
 \newline
-If a point has only connection connections into another cluster the result are many unexpected transitions. The result can be seen in the figure\ref{fig:KmeansProblem} in the read circle. 
+If a point has only connections into another cluster, the result are many unexpected transitions. The result can be seen in the figure\ref{fig:KmeansProblem} in the read circle.
+\pagebreak
+\subsubsection{K-Means with Shortest Path}
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a shortest path algorithm (in our example Dijkstra or FloydWarshall). The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within the a cluster.
+\newline
+Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Practical Task/Measurements \ref{sec:measurements};
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{clusteranalysis_kmeansExt_result.png}
+    \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
+\end{figure}
+
+
 
 \pagebreak
 \subsection{Single Linkage}
@@ -274,6 +292,9 @@ CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The
 The ETH-Zurich had already genetic optimizations algorithms based on trees. Unfortunately they had not a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles.
 
 \subsection{Cluster Detection}
+
+\subsubsection{Measurements}
+\label{sec:measurements}
 
 \chapter{Conclusion}
 
