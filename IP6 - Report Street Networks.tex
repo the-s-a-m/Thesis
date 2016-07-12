@@ -324,8 +324,16 @@ For every of these reduction formulae the following holds:
 \end{split}
 \end{equation}
 
-\subsubsection{Result}
-Result Image here
+\subsubsection{Single-Linkage Result}
+The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
+
+The problem is a result of the used reduction formula. Single linkage uses the distance between the closest nodes of the compared clusters. This leads to the creation of clusters, where all connecting roads are long. In a city, where there are multiple connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{clusteranalysis_singlelinkage.png}
+    \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
+\end{figure}
 
 \subsubsection{Problems}
 
@@ -341,7 +349,7 @@ CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The
     \item Geometry2D not correct line intersection!
 \end{itemize}
 
-\subsection{Genetic analysis}
+\subsection{Genetic algorithms}
 The ETH-Zurich had already genetic optimizations algorithms based on trees. Unfortunately they had not a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles.
 
 \subsection{Cluster Detection}
