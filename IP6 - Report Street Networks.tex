@@ -25,6 +25,15 @@
 
 %Rechtangle painting
 \usepackage{tikz}
+\usepackage[framemethod=tikz]{mdframed}
+
+\mdfdefinestyle{mdthight}{
+    linewidth=1pt,
+    innerleftmargin=0bp,
+    innerrightmargin=0bp,
+    innertopmargin=0bp,
+    innerbottommargin=0bp
+}
 
 \begin{document}
 \begin{titlepage}
@@ -354,6 +363,26 @@ CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The
 \subsection{Genetic algorithms}
 The ETH-Zurich had already genetic optimizations algorithms based on trees. Unfortunately they had not a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles.
 
+\subsection{Normalising Street Networks}
+While testing clustering algorithms on the street network of Zurich one rough spot of this network was found: Not all streets, which lead to a junction are connected to it. As shown in figure \ref{fig:zuerich_error} there exist floating streets (highlighted in lime green). Both ends of these highlighted streets are not connected to the rest of the street network.
+
+To handle those floating streets a network normalisation method was developed. The normalisation snaps (unites) all junctions and street end points, which are positioned close together, into one common junction. The result of this normalisation is shown in figure \ref{fig:zuerich_fixed}.
+
+\begin{figure}[!h]
+\begin{mdframed}[style=mdthight]
+    \centering
+    \includegraphics[width=\textwidth]{zuerich_street_error_cropped.png}
+\end{mdframed}
+    \caption{Floating streets in the street network of Zurich\label{fig:zuerich_error}}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{mdframed}[style=mdthight]
+    \centering
+    \includegraphics[width=\textwidth]{zuerich_street_fixed_cropped.png}
+\end{mdframed}
+    \caption{Normalised street network of Zurich\label{fig:zuerich_fixed}}
+\end{figure}
 \subsection{Cluster Detection}
 
 \subsubsection{Measurements}
