@@ -244,28 +244,25 @@ We implemented in CPlan\citep{cPlan:2015} an optimised version of the described 
 \subsubsection{Speed Optimization}
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement can be achieved by running the K-Means iterations in parallel. Every iteration can be executed side effects free. The measurements and comparisons of the results are provided in the section Practical Task/Measurements \ref{sec:measurements};
 
-\pagebreak
 \subsubsection{Result}
-Our implementation in CPlan\ref{CPlan} has produced the following image\ref{fig:KmeansGenerated}. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
+The implementation in CPlan \ref{CPlan} produced the following image \ref{fig:KmeansGenerated} based on the city of Weimar. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\textwidth]{clusteranalysis_kmeans_result.png}
     \caption{K-Means cluster analysis of Weimar\label{fig:KmeansGenerated}}
 \end{figure}
-\pagebreak
-\subsubsection{Problems}
-Because the algorithm uses the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. This leads therefore to unexpected transitions between clusters.
+
+\subsubsection{Problem} \label{kmenasProblem}
+The algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. Therefore it leads to unexpected transitions between clusters. In the image \ref{fig:KmeansProblem} the result can be seen in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.5\textwidth]{clusteranalysis_kmeans_problem.png}
+    \includegraphics[width=0.6\textwidth]{clusteranalysis_kmeans_problem.png}
     \caption{Problem of K-Means clustering\label{fig:KmeansProblem}}
 \end{figure}
-\newline
-If a point has only connections into another cluster, the result are many unexpected transitions. The result can be seen in the figure\ref{fig:KmeansProblem} in the read circle.
-\pagebreak
+
 \subsubsection{K-Means with Shortest Path}
-To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a shortest path algorithm (in our example Dijkstra or FloydWarshall). The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within the a cluster.
-\newline
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a shortest path algorithm (Dijkstra / FloydWarshall). These algorithms are used by hierarchical clustering \ref{hierarchicalClustering}. The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{kmenasProblem} are removed.
+
 Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Practical Task/Measurements \ref{sec:measurements};
 
 \begin{figure}[!h]
@@ -274,10 +271,7 @@ Additional calculation time is needed for the shortest path algorithm. The diffe
     \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
 \end{figure}
 
-
-
-\pagebreak
-\subsection{Hierarchical Clustering}
+\subsection{Hierarchical Clustering} \label{hierarchicalClustering}
 \subsubsection{Introduction}
 Hierarchical clustering, also known as connectivity based clustering, was the next used approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
@@ -352,6 +346,28 @@ The problem is caused by the used reduction formula. Single linkage uses the dis
 %TODO: Add figure
 The figures xxx and xxx show the result of hierarchical cluster analysis using the UPGMA, or respectively the WPGMA reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
 
+\subsection{Cluster Rating}
+To evaluate of the generated cluster different measurement methods are necessary. Dr. Reinhard König from the ETH Zurich provided the following parameters.
+\newline
+Geometry based measurements:
+\begin{itemize}
+    \item Area based on the convex hull of the cluster area.
+    \item Total length of the streets.
+    \item Ratio between the area and total length.
+    \item %TODO Verteilung der längen
+    \item %TODO Verteilung der Winkel (Altstadt!)
+    \item Ratio between street block size and surrounding cycle area (minima, maxima, mean).%TODO Grössenverteilung
+\end{itemize}
+Centrality based measurements normalized by the street count (minima, maxima, mean):
+\begin{itemize}
+    \item In-Centrality
+    \item In-Betweenness-Centrality (Integration / Choice).
+\end{itemize}
+
+The ratings can be calculated and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
+
+%TODO Images with examples with different clusters
+
 \pagebreak
 \chapter{Practical Task}
 \section{CPlan}\label{CPlan}
@@ -389,28 +405,7 @@ To handle those floating streets a network normalisation method was developed. T
 \end{figure}
 \subsection{Cluster Detection}
 
-\subsubsection{Cluster Rating}
-To evaluate of the generated cluster different measurement methods are necessary. Dr. Reinhard König from the ETH Zurich provided the following parameters.
-\newline
-Geometry based measurements:
-\begin{itemize}
-    \item Area based on the convex hull of the cluster area.
-    \item Total length of the streets.
-    \item Ratio between the area and total length.
-    \item %TODO Verteilung der längen
-    \item %TODO Verteilung der Winkel (Altstadt!)
-    \item Ratio between street block size and surrounding cycle area (minima, maxima, mean).%TODO Grössenverteilung
-\end{itemize}
-Centrality based measurements normalized by the street count (minima, maxima, mean):
-\begin{itemize}
-    \item In-Centrality
-    \item In-Betweenness-Centrality (Integration / Choice).
-\end{itemize}
-
-
-The ratings can be calculated and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
-
-\subsubsection{Measurements}
+\subsection{Measurements}
 \label{sec:measurements}
 
 
