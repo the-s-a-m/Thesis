@@ -215,17 +215,17 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 
 \pagebreak
 \subsection{Space Syntax}
-The grammar Space Syntax was first introduced 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is a morphic language and describes methods to analyse and generate urban areas and buildings.
-The language consists of a surface space and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area pattern like ring spaces and block spaces.
+The grammar Space Syntax was first introduced 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
+The language consists of a surface (carrier space) and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area pattern like ring spaces and block spaces.
 
-The grammar was later extended and integrated into Geographic Information System (GIS). This information systems are used to plan and analyse the human interaction with the environment. 
+The grammar was later extended and integrated into Geographic Information System (GIS). This information systems are used to plan and analyse the human interaction with the environment like pedestrian modelling or criminal mapping.
 Bin Jiang and Christope Claramunt \citep{integrationSpaceSyntaxGIS:2002} showed the limitation of axial lined-based space syntax (\citep{integrationSpaceSyntaxGIS:2002} chapter: 2.2). They then created a graph representation (\citep{integrationSpaceSyntaxGIS:2002} chapter: 3) and showed that it was at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976}.
 
 Many projects has bean developed based on the space syntax graph representation. 
 
 \pagebreak
 \section{Clustering Algorithms}
-In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics we tried machine learning clustering algorithms. In this section the different clustering algorithms are analysed and the generated results produced by our implementations in CPlan are compared.
+In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics the networks have been analysed by machine learning clustering algorithms. In this section the different clustering algorithms are analysed and the generated results produced by our implementations in CPlan are compared.
 \subsection{K-Means}
 \subsubsection{Description}
 The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach:
@@ -385,8 +385,31 @@ To handle those floating streets a network normalisation method was developed. T
 \end{figure}
 \subsection{Cluster Detection}
 
+\subsubsection{Cluster Rating}
+To evaluate of the generated cluster different measurement methods are necessary. Dr. Reinhard König from the ETH Zurich provided the following parameters.
+\newline
+Geometry based measurements:
+\begin{itemize}
+    \item Area based on the convex hull of the cluster area.
+    \item Total length of the streets.
+    \item Ratio between the area and total length.
+    \item %TODO Verteilung der längen
+    \item %TODO Verteilung der Winkel (Altstadt!)
+    \item Ratio between street block size and surrounding cycle area (minima, maxima, mean).%TODO Grössenverteilung
+\end{itemize}
+Centrality based measurements normalized by the street count (minima, maxima, mean):
+\begin{itemize}
+    \item In-Centrality
+    \item In-Betweenness-Centrality (Integration / Choice).
+\end{itemize}
+
+
+The ratings can be calculated and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
+
 \subsubsection{Measurements}
 \label{sec:measurements}
+
+
 
 \chapter{Conclusion}
 
