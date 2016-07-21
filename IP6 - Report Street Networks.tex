@@ -303,17 +303,11 @@ The following reduction formulae were implemented for this thesis:
     D_{Single-Linkage}(C_1, (C_2 \cup C_3)) \leftarrow \\
     min \{ D_{Single-Linkage}(C_1, C_2), D_{Single-Linkage}(C_1, C_3) \}
     \end{multline}
-    \begin{equation}
-    D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
-    \end{equation}
     \item \textbf{UPGMA}
     \begin{equation}
     \begin{split}
     D_{UPGMA}(C_1, (C_2 \cup C_3)) \leftarrow &\frac{|C_2|}{|C_2|+|C_3|}D_{UPGMA}(C_1, C_2)\ + \\ &\frac{|C_3|}{|C_2|+|C_3|}D_{UPGMA}(C_1, C_3)
     \end{split}
-    \end{equation}
-    \begin{equation}
-    D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
     \end{equation}
     \item \textbf{WPGMA}
     \begin{equation}
@@ -332,6 +326,16 @@ For every of these reduction formulae the following holds:
 &\textrm{then }D(C_1, C_2) = d(i, j)
 \end{split}
 \end{equation}
+
+For both the single linkage and the UPGMA reduction formula exists a dissimilarity function (\ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the WPGMA reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
+
+\begin{equation} \label{eq:df_single_linkage}
+D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
+\end{equation}
+\begin{equation} \label{eq:df_upgma}
+D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
+\end{equation}
+
 
 \subsubsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
