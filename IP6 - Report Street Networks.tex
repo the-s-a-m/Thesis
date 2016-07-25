@@ -386,6 +386,7 @@ The ETH-Zurich had already genetic optimizations algorithms based on trees. Unfo
 \subsection{Measurements}
 \label{sec:measurements}
 
+\pagebreak
 \section{Normalising Street Networks}
 While testing clustering algorithms on the street network of Zurich one rough spot of this network was found: Not all streets, which lead to a junction are connected to it. As shown in figure \ref{fig:zuerich_error} there exist floating streets (highlighted in purple). No end of any of these highlighted streets is connected to the rest of the street network.
 
@@ -393,7 +394,7 @@ To handle those floating streets a network normalisation method was developed. T
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{\textwidth}
+    \begin{subfigure}[b]{0.8\textwidth}
         \begin{mdframed}[style=mdthight]
             \includegraphics[width=\linewidth]{zuerich_street_error_cropped.png}
         \end{mdframed}
@@ -401,7 +402,7 @@ To handle those floating streets a network normalisation method was developed. T
         \label{fig:zuerich_error}
     \end{subfigure}
     \par\medskip
-    \begin{subfigure}[b]{\textwidth}
+    \begin{subfigure}[b]{0.8\textwidth}
         \begin{mdframed}[style=mdthight]
             \includegraphics[width=\linewidth]{zuerich_street_fixed_cropped.png}
         \end{mdframed}
@@ -423,7 +424,9 @@ The result of each clustering algorithm, which was implemented in this thesis, r
 
 There are papers which discuss how colours can be transformed to a perceptually uniform space, where the computation of $n$ colours with maximal distances (for the human eye) is possible \cite{colors:2006}.
 
-In this thesis a more concise approach was taken: The papers of R. M. Boynton \cite{boynton:1989} and K. L. Kelly \cite{kelly:1965} define 11, respectively 22 colours, which are easy to distinguish by human eye. Those colours are displayed in figure \ref{fig:colours}. Depending on the number of clusters one or the other of those colour sets (without black and white) were used. The colours were already sorted in a way that ensures the extraction of the first $n$ elements returns colours with maximal distance.
+In this thesis a more concise approach was taken: The papers of R. M. Boynton \cite{boynton:1989} and K. L. Kelly \cite{kelly:1965} define 11, respectively 22 colours, which are easy to distinguish by human eye. Those colours are displayed in figure \ref{fig:colours}.
+
+Depending on the number of clusters one or the other of those colour sets (without black and white) were used. The colours were already sorted in a way that ensures the extraction of the first $n$ elements returns colours with maximal distance. If more than 20 clusters have to be coloured, the colours of Kelly were used multiple times.
 
 \begin{figure}
     \centering
