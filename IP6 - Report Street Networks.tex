@@ -20,6 +20,8 @@
 \newcommand\addtag{\refstepcounter{equation}\tag{\theequation}}
 \usepackage{txfonts}
 
+\usepackage{multirow}
+
 \setlength{\parindent}{0ex}
 \setlength{\parskip}{1ex}
 
@@ -36,37 +38,55 @@
 }
 
 \begin{document}
-\begin{titlepage}
-    \title{IP6 - Report Street Networks}
-    \date{\today}
-    \author{J. Peyer, S. Merki}
-    \maketitle
-\end{titlepage}
+
+\title{
+    \includegraphics[width=1.75in]{fhnw_fhnw_logo_en.png} \\
+    \vspace*{1in}
+    \textbf{Report Street Networks}}
+\author{
+    Authors: \\
+    Samuel Merki\\
+    Janis Peyer\\
+    \vspace*{0.4in} \\
+    Coordinator: \\
+    Prof. Dr. Stefan Arisona
+    \vspace*{0.4in} \\
+    Client: \\
+    Chair of Information Architecture,
+    ETH Zürich
+    \vspace*{0.4in} \\
+    Course of Studies: \\ Bachelor of Science in Computer Science
+    \vspace*{0.4in} \\
+    Institute of 4D Technologies \\
+    \textbf{University of Applied Sciences and Arts  }\\
+    Northwestern Switzerland FHNW
+} \date{\today}
+\maketitle
 \setcounter{page}{1}
 
 \tableofcontents
 
-
 \begin{abstract}
-    Text here.
+    TODO: Text Here.
 \end{abstract}
 
 \chapter{Introduction}
 To analyse and generate streets there are many approaches. Street networks can be described as grammars. 
 
-The street networks can be separate into reasonable parts by clustering algorithms. 
+The street networks can be divided into reasonable parts by clustering algorithms. 
 
 The cluster can be evaluate by measurement methods provided by the architecture department of the ETH-Zurich. 
 (Insert here how our work is used later!)
 Genetic analysis of street network, separation, recombination.
-\chapter{Theoretical Task}
-\section{Street Network Grammars}
-\subsection{Shape Grammar}
+
+TODO: Not completed!
+\chapter{Street Network Grammars}
+\section{Shape Grammar}
 The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
-A class of paintings defines the pair (S,M). S represents the Shape specifications and M the material specifications. The Shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
+A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
-\subsubsection{Shape Grammar Definition}
+\subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
 Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes\citep{shapeGrammars:1972}.
 \begin{displayquote} 
@@ -74,14 +94,17 @@ Shape Grammar is defined over an alphabet of shapes and generated n-dimensional 
     \begin{enumerate}
         \item $V_T$ is a finite set of shapes.
         \item $V_M$ is a finite set of shapes such that $V_T $* $\cap$  $V_M = \emptyset$
-        \item R is a finite set of ordered pairs (u.v) such that u is a shape consisting of an element of $V_T $* combined with an element of $V_M$ and v is a shape consisting of (A) the element of $V_T $* contained in u or (B) the element of $V_T $* contained in u combined with an element of $V_M$ or (C) the element of $V_T $* contained in u with an additional element of $V_T$* and an element of $V_M$.
+        \item R is a finite set of ordered pairs (u,v) where:
+        \begin{enumerate}
+         \item u is a shape consisting of an element of $V_T $* combined with an element of $V_M$ \item v is a shape consisting of (A) the element of $V_T $* contained in u or (B) the element of $V_T $* contained in u combined with an element of $V_M$ or (C) the element of $V_T $* contained in u with an additional element of $V_T$* and an element of $V_M$.
+        \end{enumerate}
         \item I is a shape consisting of elements of $V_T $* and $V_M$.
     \end{enumerate}
 \end{displayquote}
 
-\subsubsection{Selection Rules}
+\subsection{Selection Rules}
 \label{sec:Shape_Grammar_Selection_Rules}
-An undefined count of shape rules provide the generation of the painting. Therefore a mechanism to select a correct shape is required. The depth is defined by levels witch is being assigned during generation based on there rules:\citep{shapeGrammars:1972}.
+A painting is generated based on an undefined count of shape rules. This requires a mechanism to select a correct shape. The depth is defined by levels which are being assigned during generation based on their rules: \citep{shapeGrammars:1972}.
 \begin{displayquote}
     \begin{enumerate}
         \item The terminals in the initial shape are assigned level 0.
@@ -95,19 +118,19 @@ An undefined count of shape rules provide the generation of the painting. Theref
     \end{enumerate}
 \end{displayquote}
 
-\subsubsection{Painting Rules}
+\subsection{Painting Rules}
 \label{sec:Shape_Grammar_Painting_Rules}
-Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining this levels the painting colour is described\citep{shapeGrammars:1972}.
+Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}.
 \begin{displayquote}
-    A painting rule has two sides separated by a double arrow ($\Rightarrow$). The left side of a painting rule defines a set using the sets determined by level assignment and the usual set operators, for example, union($\bigcap$), intersection ($\bigcup$), complementation($\sim$), and exclusive or ($\bigotimes$), The sets defined by the left side of the painting rules of M must partition the universal set. The right side of a painting rule is a rectangle painted in the manner the set defined by the left side of the rule is to be painted.
+    A painting rule has two sides separated by a double arrow ($\Rightarrow$). The left side of a painting rule defines a set using the sets determined by level assignment and the usual set operators, for example, union($\bigcap$), intersection ($\bigcup$), complementation($\sim$), and exclusive or ($\bigotimes$). The sets defined by the left side of the painting rules of M must partition the universal set. The right side of a painting rule is a rectangle painted in the manner the set defined by the left side of the rule is to be painted.
 \end{displayquote}
 
-\subsubsection{Limiting Shapes}
+\subsection{Limiting Shapes}
 \label{sec:Shape_Grammar_Limiting_Shapes}
 These Shapes define a limiting area on the canvas, where shape painting is allowed. 
-The area could have any form, but normally it is defined as a rectangle. Like a camera view the Limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape 
+The area could have any form, but normally it is defined as a rectangle. Like a camera view the limiting Shape define the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape.
 
-\subsubsection{Example\citep{shapeGrammars:1972}}
+\subsection{Example\citep{shapeGrammars:1972}}
 \paragraph{Shape Grammar}
 \begin{align}
 \label{eq:Shape_Grammar}
@@ -171,31 +194,31 @@ Level 0: Steps 0 to 2,\newline Level 1: Steps 3 and 4,\newline Level 2: Steps 18
 \end{figure}
 
 \pagebreak
-\subsubsection{Street Generation}
-In the following section we compare arguments for and against the usefulness to generate street networks by Shape Grammar. 
+\subsection{Street Generation}
+In the following section we debate the usefulness to generate street networks by shape Grammar. 
 \paragraph{Features}
     \begin{itemize}
-        \item Can describe and generate facedes in high details.
-        \item With R Shapes windows and hight detail 3D Models can be generated easily.
+        \item Can describe and generate veneer in high details.
+        \item With R-Shapes windows and high detail 3D-Models can be generated easily.
     \end{itemize}
 
 \paragraph{Problems}
     \begin{itemize}
-        \item The generates streets result mostly in monotonous streets. 
-        \item A huge number of R shapes is needed to generate a street network.
+        \item The given methods generate in most cases monotonous streets. 
+        \item A huge number of R-Shapes is needed to generate a useful street network.
         \item Areas with different characteristics (historic district, rectangular raster like New York or radial to center like Paris) are difficult to generate.
-        \item The R rules for the transitions between area characteristics are should not repeat themselves and are therefore difficult to build.
+        \item The R-Rules for the transitions between area characteristics should not repeat themselves and are for that reason difficult to build.
     \end{itemize}
 
 \pagebreak
-\subsection{L-Systems}
-L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant live: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
+\section{L-Systems}
+L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant life: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
 
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
 \begin{equation} \label{eq:lsystem context free}
     pred : \{block1\}\ cond\ \{block2\} \leadsto succ
 \end{equation}
-The symbol \textit{pred} (predecessor) defines the module that will get replaced by the modules defined in \textit{succ} (successor). This replacement is only applied, if the (optional) condition is met. \textit{block1} and \textit{block2} are C statement blocks, of which the first block is executed before and the second after the condition is evaluated. \citep{PrusinkiewiczEtAl:2001} gives the following example.
+The symbol \textit{pred} (predecessor) defines the module that will get replaced by the modules defined in \textit{succ} (successor). This replacement is only applied, if the (optional) condition is met. \textit{block1} and \textit{block2} are C statement blocks, of which the first block is executed before and the second after the condition is evaluated. \citep{PrusinkiewiczEtAl:2001} Gives the following example.
 \begin{equation} \label{eq:lsystem example 1}
     A(x) : \{y = x + 2;\}\ y \geq 5\ \{z = y / 3;\}\ \leadsto B(z)C(z + 1)
 \end{equation}
@@ -214,20 +237,20 @@ If the example of listing \ref{eq:lsystem example 2} was applied to the module c
 A way to generate images with L-Systems is to use a LOGO-style turtle as a graphical model. Certain modules of the L-System are interpreted as commands to this turtle.
 
 \pagebreak
-\subsection{Space Syntax}
-The grammar Space Syntax was first introduced 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
+\section{Space Syntax}
+The grammar Space Syntax was first introduced in 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
 The language consists of a surface (carrier space) and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area pattern like ring spaces and block spaces.
 
 The grammar was later extended and integrated into Geographic Information System (GIS). This information systems are used to plan and analyse the human interaction with the environment like pedestrian modelling or criminal mapping.
 Bin Jiang and Christope Claramunt \citep{integrationSpaceSyntaxGIS:2002} showed the limitation of axial lined-based space syntax (\citep{integrationSpaceSyntaxGIS:2002} chapter: 2.2). They then created a graph representation (\citep{integrationSpaceSyntaxGIS:2002} chapter: 3) and showed that it was at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976}.
 
-Many projects has bean developed based on the space syntax graph representation. 
+Many projects have been developed based on the space syntax graph representation. 
 
 \pagebreak
-\section{Clustering Algorithms}
+\chapter{Clustering Algorithms}
 In the application CPlan as described in \ref{CPlan} the street network is generated as a graph. To separate and select areas with specific characteristics the networks have been analysed by machine learning clustering algorithms. In this section the different clustering algorithms are analysed and the generated results produced by our implementations in CPlan are compared.
-\subsection{K-Means}
-\subsubsection{Description}
+\section{K-Means}
+\subsection{Description}
 The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach:
 
 \begin{enumerate}
@@ -238,13 +261,13 @@ The K-Means algorithm detects the clusters / partitions by measuring the euclide
 \end{enumerate}
 Because the K-Means algorithm can find local minima, this process needs to be executed more than once. The result with the best found solution will be selected.
 
-\subsubsection{Implementation}
+\subsection{Implementation}
 We implemented in CPlan\citep{cPlan:2015} an optimised version of the described algorithm based on the paper An Efficient k-Means Clustering Algorithm: Analysis and Implementation \cite{kmeans:2002} with a runtime of $O(n\ insert\ here)$
 
-\subsubsection{Speed Optimization}
+\subsection{Speed Optimization}
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement can be achieved by running the K-Means iterations in parallel. Every iteration can be executed side effects free. The measurements and comparisons of the results are provided in the section Practical Task/Measurements \ref{sec:measurements};
 
-\subsubsection{Result}
+\subsection{Result}
 The implementation in CPlan \ref{CPlan} produced the following image \ref{fig:KmeansGenerated} based on the city of Weimar. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
 \begin{figure}[!h]
     \centering
@@ -252,15 +275,15 @@ The implementation in CPlan \ref{CPlan} produced the following image \ref{fig:Km
     \caption{K-Means cluster analysis of Weimar\label{fig:KmeansGenerated}}
 \end{figure}
 
-\subsubsection{Problem} \label{kmenasProblem}
-The algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. Therefore it leads to unexpected transitions between clusters. In the image \ref{fig:KmeansProblem} the result can be seen in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
+\subsection{Problem} \label{kmenasProblem}
+The algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters. In the image \ref{fig:KmeansProblem} the result can be seen in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.6\textwidth]{clusteranalysis_kmeans_problem.png}
     \caption{Problem of K-Means clustering\label{fig:KmeansProblem}}
 \end{figure}
 
-\subsubsection{K-Means with Shortest Path}
+\subsection{K-Means with Shortest Path}
 To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a shortest path algorithm (Dijkstra / FloydWarshall). These algorithms are used by hierarchical clustering \ref{hierarchicalClustering}. The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{kmenasProblem} are removed.
 
 Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Practical Task/Measurements \ref{sec:measurements};
@@ -271,13 +294,13 @@ Additional calculation time is needed for the shortest path algorithm. The diffe
     \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
 \end{figure}
 
-\subsection{Hierarchical Clustering} \label{hierarchicalClustering}
-\subsubsection{Introduction}
-Hierarchical clustering, also known as connectivity based clustering, was the next used approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
+\section{Hierarchical Clustering} \label{hierarchicalClustering}
+\subsection{Introduction}
+Hierarchical clustering, also known as connectivity based clustering, was the next applied approach. This area of algorithms cluster nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
 The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create 1 to n clusters, where n is the number of input nodes.
 
-\subsubsection{Strategy}
+\subsection{Strategy}
 There are generally two main strategies for hierarchical clustering:
 
 \begin{itemize}
@@ -287,7 +310,7 @@ There are generally two main strategies for hierarchical clustering:
 
 The time complexity of the divisive strategy is with $O(2^n)$ too bad for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ time complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms" \cite{clustering:2007}.
 
-\subsubsection{Reduction Formula}
+\subsection{Reduction Formula}
 The reduction formula is used to determine the distance between two clusters.
 The following reduction formulae were implemented for this thesis:
 
@@ -331,7 +354,7 @@ D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
 \end{equation}
 
 
-\subsubsection{Single-Linkage Result}
+\subsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
 The problem is caused by the used reduction formula. Single linkage uses the distance between the closest nodes of the compared clusters. This leads to the creation of clusters, where all connecting roads are long. In a city, where there are multiple connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
@@ -342,49 +365,49 @@ The problem is caused by the used reduction formula. Single linkage uses the dis
     \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
 \end{figure}
 
-\subsubsection{UPGMA and WPGMA Result}
+\subsection{UPGMA and WPGMA Result}
+\label{sec:UPGMAandWPGMA}
 %TODO: Add figure
 The figures xxx and xxx show the result of hierarchical cluster analysis using the UPGMA, or respectively the WPGMA reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
 
-\subsection{Cluster Rating}
-To evaluate of the generated cluster different measurement methods are necessary. Dr. Reinhard König from the ETH Zurich provided the following parameters.
+\section{Cluster Rating}
+\label{clusterRating}
+To evaluate of the generated cluster different measurement methods are necessary. Jun. Prof. Dr.  Reinhard König from the ETH Zurich provided the following parameters.
 \newline
 Geometry based measurements:
 \begin{itemize}
-    \item Area based on the convex hull of the cluster area.
-    \item Total length of the streets.
-    \item Ratio between the area and total length.
-    \item %TODO Verteilung der längen
-    \item %TODO Verteilung der Winkel (Altstadt!)
-    \item Ratio between street block size and surrounding cycle area (minima, maxima, mean).%TODO Grössenverteilung
+    \item Area based on the convex hull of the cluster area
+    \item Total length of the streets
+    \item Ratio between the area and total length
+    \item distribution variance of the street length
+    \item distribution variance of the street angles
+    \item Ratio between street block size and surrounding circle area (minima, maxima, mean)
 \end{itemize}
 Centrality based measurements normalized by the street count (minima, maxima, mean):
 \begin{itemize}
-    \item In-Centrality
-    \item In-Betweenness-Centrality (Integration / Choice).
+    \item In-Centrality (Integration)
+    \item In-Betweenness-Centrality (Choice)
 \end{itemize}
 
-The ratings can be calculated and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
+The ratings can be calculated, compared and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
+
+Some initial mesurements and comparisons are made in the cluster analysis chapter 
 
 %TODO Images with examples with different clusters
 
 \pagebreak
-\chapter{Practical Task}
-\section{CPlan}\label{CPlan}
+\chapter{CPlan}\label{CPlan}
 CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The goal of this application is to generate/grow street networks dynamically and extend these networks with buildings. 
-\subsection{Improvements}
+\section{Improvements}
 \begin{itemize}
-    \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This methods creates a new array / list and stores every item of the IEnumerable in this new collection. Therefore the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
+    \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This methods creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
-    \item matrix2D not clockwise?
-    \item Geometry2D not correct line intersection!
+    \item matrix2D not clockwise? (TODO)
+    \item Geometry2D not correct line intersection! (TODO)
 \end{itemize}
 
-\subsection{Genetic algorithms}
+\section{Genetic algorithms}
 The ETH-Zurich had already genetic optimizations algorithms based on trees. Unfortunately they had not a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles.
-
-\subsection{Measurements}
-\label{sec:measurements}
 
 \pagebreak
 \section{Normalising Street Networks}
@@ -449,6 +472,115 @@ Depending on the number of clusters one or the other of those colour sets (witho
     \label{fig:colours}
 \end{figure}
 
+\chapter{Measurements}
+\label{sec:measurements}
+In this following chapter the generated data with CPlan \ref{CPlan} is compared and analysed. 
+\section{Speed Measurements}
+\label{sec:measurements-speed}
+TODO: Description of speed measurements here. 
+
+TODO: Table of speed measurements here.
+
+\section{Cluster Analysis}
+\label{sec:measurements-cluster-analysis}
+In this chapter the provided measurement methods \ref{clusterRating} are used to compare different districts/areas. The following images were generated with the cluster algorithm FastUPGMA \ref{sec:UPGMAandWPGMA} with \textit{Modified Output} and \textit{Number of Clusters} count 16. 
+
+\subsection{Historic District}
+\label{sec:historyDistinct}
+This district is characterized by short streets with many connections. As a result the block areas are small and the block count per area is hight. Additionally mean integration and mean choice values are hight. This can be observed in the image REFTOIMG and the measured data in the table \ref{sec:ClusterAnalysisMeasurements} in the column C1.
+%TODO BILD
+
+\subsection{Business/Manhattan District}
+\label{sec:businessDistinct}
+If the block count and the connection count is hight the given area is probably a business/Manhattan district. The street have a hight mean connection count and the block area to circle area is hight. The image REFTOIMG with the measured data in the table \ref{sec:ClusterAnalysisMeasurements} in the column C2, is an example area of this district/area type.
+
+\subsection{Outskirts Area}
+\label{sec:outskits}
+These areas are characterized by extreme long streets and a low connection count as you can see in the example image REFTOIMG and the mesured data in the table \ref{sec:ClusterAnalysisMeasurements} in the column C3. The block count is compared with a business or historic district exceptional low.
+
+\subsection{Measured Data}
+\label{sec:ClusterAnalysisMeasurements}
+Of every parameter the Minimal(Min), Maximal(Max), Mean(Average) and the Median value can be calculated. The following table contains the parameters with additional descriptions.
+
+\begin{center}
+    \begin{tabular}{ | l | l |} \hline 
+        Parameter & Description \\ 
+        \hline
+        Total Area &  Area of the convex hull \\ \hline
+        Total Length & Sum of the street length \\ \hline
+        Density & Total Area divided to Total Length  \\ \hline
+        
+        Street Length Min/Max/Mean & Shortest/Longet/Average street length  \\ \hline
+        Street Length Median & Middle value of the length dataset \\ \hline
+        Street Length Variance & Sigma of the normal distribution curve if the variance \\ \hline
+
+        Vertex Connections & Mean connected edges per vertex  \\ \hline
+        
+        Street Angle Min/Max/Mean & Smallest angel between two edges \\ \hline
+        Street Angle Variance & Sigma of the normal distribution curve if the angles \\ \hline
+        
+        Block Count & Total number of blocks \\ \hline
+        Block Area Min/Max/Mean & Shortest/Biggest/Average block area \\ \hline
+        Block Area A/Ac Min/Max/Mean & Block area divided to a minimal circle around a block \\ \hline
+        
+        Integration Min/Max/Mean & Normalised In-Centrality \\ \hline
+        Choice Min/Max/Mean & Normalised In-Betweenness-Centrality \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ |l|l|l|l|l|l| }
+    \hline
+    Parmater &  
+    & C1 \ref{sec:historyDistinct} 
+    & C2 \ref{sec:businessDistinct} 
+    & C3 \ref{sec:outskits}
+    & C4  \\ 
+    \hline
+    \multirow{4}{*}{Total} 
+    & Area & 1838.05 & & & \\
+    & Length & 806.92 & & & \\
+    & Density & 2.28 & & & \\ 
+    \hline
+    \multirow{5}{*}{Street Length}
+    & Min & 0.66 & & & \\
+    & Max & 9.13 & & & \\
+    & Mean & 2.72 & & & \\ 
+    & Median & 2.30 & & & \\ 
+    & Variance & 0.0 & & & \\ 
+    \hline
+    \multirow{1}{*}{Vertex} 
+    & Connections & 3.04 & & & \\
+    \hline
+    \multirow{5}{*}{Street Angle} 
+    & Min &  & & & \\
+    & Max & 151.8 & & & \\
+    & Mean & 23.54 & & & \\ 
+    & Variance & 3.30 & & & \\ 
+    \hline
+    \multirow{5}{*}{Block} 
+    & Count & 55 & & & \\
+    & Area Min &  & & & \\
+    & Area Max &  & & & \\
+    & Area Mean &  & & & \\ 
+    & A/Ac Min &  & & & \\
+    & A/Ac Max &  & & & \\
+    & A/Ac Mean &  & & & \\ 
+    \hline
+    \multirow{5}{*}{Integration} 
+    & Min & 0.46 & & & \\
+    & Max & 0.57 & & & \\
+    & Mean & 0.49 & & & \\ 
+    \hline
+    \multirow{5}{*}{Choice}
+    & Min & 0.00 & & & \\
+    & Max & 1.0 & & & \\
+    & Mean & 0.10 & & & \\ 
+    \hline
+\end{tabular}
+\end{center}
+
+\chapter{Possible Extensions}
 
 
 \chapter{Conclusion}
