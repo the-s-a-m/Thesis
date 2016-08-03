@@ -88,7 +88,7 @@ A class of paintings defines the pair (S,M). S represents the shape specificatio
 
 \subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
-Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes\citep{shapeGrammars:1972}.
+Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes \citep{shapeGrammars:1972}.
 \begin{displayquote} 
     Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
     \begin{enumerate}
@@ -450,7 +450,7 @@ There are papers which discuss how colours can be transformed to a perceptually 
 
 In this thesis a more concise approach was taken: The papers of R. M. Boynton \cite{boynton:1989} and K. L. Kelly \cite{kelly:1965} define 11, respectively 22 colours, which are easy to distinguish by human eye. Those colours are displayed in figure \ref{fig:colours}.
 
-Depending on the number of clusters one or the other of those colour sets (without black and white) were used. TODO --> Kommentar: Hier stimmt etwas nicht ganz, aber ich verstehe nicht, was der Satz sagen soll, deswegen kann ich keinen Verbesserungsvorschlag machen (The colours were already sorted in a way that ensures the extraction of the first $n$ elements returns colours with maximal distance.) If more than 20 clusters had to be coloured, the colours of Kelly were used multiple times.
+Depending on the number of clusters one or the other of those colour sets (without black and white) were used. The colours were already sorted in a way that ensures the extraction of the first $n$ elements returns colours with maximal distance. If more than 20 clusters had to be coloured, the colours of Kelly were used multiple times.
 
 \begin{figure}
     \centering
@@ -528,7 +528,16 @@ These areas are characterized by extreme long streets and a low connection count
 
 \subsection{Measured Data}
 \label{sec:ClusterAnalysisMeasurements}
-Of every parameter the Minimal(Min), Maximal(Max), Mean(Average) and the Median value can be calculated. The following table contains the parameters with additional descriptions.
+
+\subsubsection{Block Area}
+In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. 
+They first calculated the block area and divided the result by the circumscribed circle area 
+
+\subsubsection{Integration, Choice}
+The parameters \textit{Integration} and \textit{Choice} describe the centrality measured data based on
+
+\subsubsection{Minimal, Maximal, Mean}
+Of every parameter the Minimal (Min), Maximal (Max), Mean (Average) and the Median value can be calculated. The following table contains the parameters with additional descriptions.
 
 \begin{center}
     \begin{tabular}{ | l | l |} \hline 
@@ -566,44 +575,44 @@ Of every parameter the Minimal(Min), Maximal(Max), Mean(Average) and the Median 
     & C4  \\ 
     \hline
     \multirow{4}{*}{Total} 
-    & Area & 1838.05 & & & \\
-    & Length & 806.92 & & & \\
-    & Density & 2.28 & & & \\ 
+    & Area & 1838.05 & 1956.59 & & \\
+    & Length & 806.92 & 643.50 & & \\
+    & Density & 2.28 & 3.04 & & \\ 
     \hline
     \multirow{5}{*}{Street Length}
-    & Min & 0.66 & & & \\
-    & Max & 9.13 & & & \\
-    & Mean & 2.72 & & & \\ 
-    & Median & 2.30 & & & \\ 
-    & Variance & 0.0 & & & \\ 
+    & Min & 0.66 & 0.69 & & \\
+    & Max & 9.13 & 10.68 & & \\
+    & Mean & 2.72 & 3.85 &  & \\ 
+    & Median & 2.30 & 3.65 & & \\ 
+    & Variance & 1.70 & 2.19 & & \\ 
     \hline
     \multirow{1}{*}{Vertex} 
-    & Connections & 3.04 & & & \\
+    & Connections & 3.04 & 2.84 & & \\
     \hline
     \multirow{5}{*}{Street Angle} 
-    & Min &  & & & \\
-    & Max & 151.8 & & & \\
-    & Mean & 23.54 & & & \\ 
-    & Variance & 3.30 & & & \\ 
+    & Min & 0.00 & 0.00 & & \\
+    & Max & 151.80 & 358.84 & & \\
+    & Mean & 119.03 & 123.75 & & \\ 
+    & Variance & 124.68 & 131.65 & & \\ 
     \hline
     \multirow{5}{*}{Block} 
-    & Count & 55 & & & \\
-    & Area Min &  & & & \\
-    & Area Max &  & & & \\
-    & Area Mean &  & & & \\ 
-    & A/Ac Min &  & & & \\
-    & A/Ac Max &  & & & \\
-    & A/Ac Mean &  & & & \\ 
+    & Count & 55 & 35 & & \\
+    & Area Min & 0.01 & 0.09 & & \\
+    & Area Max & 31.75 & 42.29 & & \\
+    & Area Mean & 6.54 & 13.65 & & \\ 
+    & A/Ac Min & 0.01 & 0.01 & & \\
+    & A/Ac Max & 0.54 & 0.55 & & \\
+    & A/Ac Mean & 0.18 & 0.23 & & \\ 
     \hline
     \multirow{5}{*}{Integration} 
-    & Min & 0.46 & & & \\
-    & Max & 0.57 & & & \\
-    & Mean & 0.49 & & & \\ 
+    & Min & 0.46 & 0.48 & & \\
+    & Max & 0.57 & 0.75 & & \\
+    & Mean & 0.49 & 0.59 & & \\ 
     \hline
     \multirow{5}{*}{Choice}
-    & Min & 0.00 & & & \\
-    & Max & 1.0 & & & \\
-    & Mean & 0.10 & & & \\ 
+    & Min & 0.00 & 0.00 & & \\
+    & Max & 1.00 & 0.67 & & \\
+    & Mean & 0.10 & 0.05 & & \\ 
     \hline
 \end{tabular}
 \end{center}
