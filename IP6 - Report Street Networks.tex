@@ -482,7 +482,7 @@ TODO: Table of speed measurements here.
 
 \section{Cluster Analysis}
 \label{sec:measurements-cluster-analysis}
-In this chapter the provided measurement methods \ref{clusterRating} are used to compare different districts/areas. The following images were generated with the cluster algorithm FastUPGMA \ref{sec:UPGMAandWPGMA} with \textit{Modified Output} and \textit{Number of Clusters} count 16. 
+In this chapter the provided measurement methods \ref{clusterRating} are used to compare different districts/areas. The following images were generated with the cluster algorithm FastUPGMA \ref{sec:UPGMAandWPGMA} on Weimar with \textit{Modified Output} and \textit{Number of Clusters} count 16. 
 
 \subsection{Historic District}
 \label{sec:historyDistinct}
@@ -518,11 +518,11 @@ This district is characterised by short streets with many connections. As a resu
 
 \subsection{Business/Manhattan District}
 \label{sec:businessDistinct}
-If the block count and the connection count is high the given area is probably a business/Manhattan district. The street have a high mean connection count and the block area to circle area is high. The image REFTOIMG with the measured data in table \ref{sec:ClusterAnalysisMeasurements} in column C2, is an example area of this district/area type.
+If the block count and the connection count is high the given area is probably a business/Manhattan district. The street have a high mean connection count and the block area to circle area is high. The image \ref{fig:business_district} with the measured data in table \ref{sec:ClusterAnalysisMeasurements} in column C2, is an example area of this district/area type.
 
 \subsection{Outskirts Area}
 \label{sec:outskits}
-These areas are characterized by extreme long streets and a low connection count as you can see in the example image REFTOIMG and the mesured data in table \ref{sec:ClusterAnalysisMeasurements} in column C3. The block count is compared with a business or historic district exceptional low.
+These areas are characterized by extreme long streets and a low connection count as you can see in the example image \ref{fig:outskirts_district} and the mesured data in table \ref{sec:ClusterAnalysisMeasurements} in column C3. The block count is compared with a business or historic district exceptional low.
 
 
 \subsection{Measured Data}
@@ -544,7 +544,7 @@ The following table \ref{tab:cluterAnalysisDescription} contains the parameters 
         
         Vertex Connections & Mean connected edges per vertex  \\ \hline
         
-        Street Angle Min/Max/Mean & Smallest angle between two edges \\ \hline
+        Street Angle Min/Max/Mean & Smallest/Biggest/Average angle between two edges \\ \hline
         Street Angle Variance & Sigma of the normal distribution curve of the angles \\ \hline
         
         Block Count & Total number of blocks \\ \hline
@@ -555,9 +555,10 @@ The following table \ref{tab:cluterAnalysisDescription} contains the parameters 
         Choice Min/Max/Mean & Normalised In-Betweenness-Centrality \\ \hline
     \end{tabular}
     \caption{Parameter with descriptions for table \ref{tab:measured_cluster_ratings}}
+    \label{tab:cluterAnalysisDescription}
 \end{center}
-\label{tab:cluterAnalysisDescription}
 \end{table}
+
 
 \subsubsection{Block Area}
 In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. First the block area is calculated and then the result is divided by the circumscribed circle area.
@@ -633,8 +634,8 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
     \hline
 \end{tabular}
 \caption{Measured results from Cluster1 \ref{sec:historyDistinct}, Cluster2 \ref{sec:businessDistinct}, Cluster3 \ref{sec:outskits} and Cluster4}
-\end{center}
 \label{tab:measured_cluster_ratings}
+\end{center}
 \end{table}
 
 \chapter{Possible Extensions}
