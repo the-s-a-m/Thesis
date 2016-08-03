@@ -62,7 +62,7 @@
     Institute of 4D Technologies \\
     \textbf{University of Applied Sciences and Arts  }\\
     Northwestern Switzerland FHNW
-} \date{\today}
+} \date{Friday 19, 2016}
 \maketitle
 \setcounter{page}{1}
 
@@ -406,11 +406,9 @@ To evaluate the generated clusters different measurement methods are necessary. 
         \item In-Betweenness-Centrality (Choice)
     \end{itemize}
 \end{itemize}
-The ratings can be calculated, compared and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
+The centrality based ratings and the block area calculation where pre implemented in CPlan \ref{CPlan}. Additional a GUI to compared and stored the results as JSON-File for each generated cluster has been added.
 
-Some initial measurements and comparisons are made in the cluster analysis chapter.
-
-%TODO Images with examples with different clusters
+Some initial measurements and comparisons are made in the cluster analysis chapter \ref{sec:ClusterAnalysisMeasurements}.
 
 \pagebreak
 \chapter{CPlan}\label{CPlan}
@@ -542,19 +540,12 @@ If the block count and the connection count is high the given area is probably a
 \label{sec:outskits}
 These areas are characterized by extreme long streets and a low connection count as you can see in the example image REFTOIMG and the mesured data in table \ref{sec:ClusterAnalysisMeasurements} in column C3. The block count is compared with a business or historic district exceptional low.
 
+
 \subsection{Measured Data}
 \label{sec:ClusterAnalysisMeasurements}
+The following table \ref{tab:cluterAnalysisDescription} contains the parameters with additional descriptions. Extended information can be found below the table. Of every parameter the minimal (min), maximal (max), mean (average) and the median value can be calculated.
 
-\subsubsection{Block Area}
-In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. 
-They first calculated the block area and divided the result by the circumscribed circle area 
-
-\subsubsection{Integration, Choice}
-The parameters \textit{Integration} and \textit{Choice} describe the centrality measured data based on
-
-\subsubsection{Minimal, Maximal, Mean}
-Of every parameter the Minimal (Min), Maximal (Max), Mean (Average) and the Median value can be calculated. The following table contains the parameters with additional descriptions.
-
+\begin{table}[h]
 \begin{center}
     \begin{tabular}{ | l | l |} \hline 
         Parameter & Description \\ 
@@ -566,7 +557,7 @@ Of every parameter the Minimal (Min), Maximal (Max), Mean (Average) and the Medi
         Street Length Min/Max/Mean & Shortest/Longest/Average street length  \\ \hline
         Street Length Median & Middle value of the length dataset \\ \hline
         Street Length Variance & Sigma of the normal distribution curve of the variance \\ \hline
-
+        
         Vertex Connections & Mean connected edges per vertex  \\ \hline
         
         Street Angle Min/Max/Mean & Smallest angle between two edges \\ \hline
@@ -579,8 +570,34 @@ Of every parameter the Minimal (Min), Maximal (Max), Mean (Average) and the Medi
         Integration Min/Max/Mean & Normalised In-Centrality \\ \hline
         Choice Min/Max/Mean & Normalised In-Betweenness-Centrality \\ \hline
     \end{tabular}
+    \caption{Parameter with descriptions for table \ref{tab:measured_cluster_ratings}}
 \end{center}
+\label{tab:cluterAnalysisDescription}
+\end{table}
 
+\subsubsection{Block Area}
+In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. First the block area is calculated and then the result is divided by the circumscribed circle area.
+
+\subsubsection{Centrality}
+The parameter \textit{Integration} describes the closeness centrality. This means the normed sum of the distances from all other vertex based on a shortest path algorithm is calculated. The vertex with the lowest value must be the most central.
+
+With \textit{Choice} the betweenness centrality is described. The approach is to calculate the shortest path between every vertex. Every time a given vertex is visited the betweenness-centrality value of the vertex is raised by one. As a result the highest measured value indicates for a vertex to be in or near the centre of a graph.
+
+\subsubsection{Variance}
+The parameter variance describes the sigma of the normal curve of the distribution function.
+First of all the measured data is round to fit into a distribution function \ref{eq:distribution_function}. Then the expected value \ref{eq:expected_value} and the variance \ref{eq:variance} is calculated. Finally the standard deviation (square root of V(x)) is computed \ref{eq:standard_deviation}.
+\begin{align}
+\label{eq:distribution_function} 
+F(x) &= P(X \leq x) =  \sum_{t\in{X}, t\leq{x}}{f(t)} \\
+\label{eq:expected_value} 
+E(x) &= \int\limits_{-\infty}^\infty x * f(x)dx \\
+\label{eq:variance} 
+V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
+\label{eq:standard_deviation} 
+\sigma(x) &= \sqrt{V(x)}
+\end{align}
+
+\begin{table}[h]
 \begin{center}
 \begin{tabular}{ |l|l|l|l|l|l| }
     \hline
@@ -631,7 +648,10 @@ Of every parameter the Minimal (Min), Maximal (Max), Mean (Average) and the Medi
     & Mean & 0.10 & 0.05 & & \\ 
     \hline
 \end{tabular}
+\caption{Measured results from Cluster1 \ref{sec:historyDistinct}, Cluster2 \ref{sec:businessDistinct}, Cluster3 \ref{sec:outskits} and Cluster4}
 \end{center}
+\label{tab:measured_cluster_ratings}
+\end{table}
 
 \chapter{Possible Extensions}
 
