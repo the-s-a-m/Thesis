@@ -72,16 +72,18 @@
 \input{010_Introduction}
 
 \chapter{Introduction}
-In this thesis the initial task was to learn how street network can be described as grammar for later analysis and regeneration. There exist many different approaches like Shape Grammar \ref{sec:shape_grammar}, L-Systems \ref{sec:L-Systems}, Space Syntax \ref{sec:space_syntax} and many others. 
-To analyse and generate streets there are many approaches. Street networks can be described as grammars. 
+In this thesis the initial task was to learn how street network and buildings can be described as grammar for later analysis and regeneration. There exist many different approaches like Shape Grammar \ref{sec:shape_grammar} (building faces generation), L-Systems \ref{sec:L-Systems} (plants growing), Space Syntax \ref{sec:space_syntax} and many others. 
 
-The street networks can be divided into reasonable parts by clustering algorithms. 
+The \textit{Chair of Information Architecture} provided a street generation and analysing tool named CPlan \ref{CPlan}. To become acquainted with the application and to allow using the existing genetic algorithms a tree generating algorithm was developed by us. 
 
-The cluster can be evaluated by measurement methods provided by the architecture department of the ETH-Zurich. 
-(Insert here how our work is used later!)
-Genetic analysis of street network, separation, recombination.
+Selecting interesting areas from different cities and recombining then into a new one would allow a fast creation of new cities. To reach this aim many steps are needed. First of all the cities must be separate into reasonable parts based on vertex position or edge length. The approach of this thesis is to use clustering algorithms from the area of machine learning. Then the different area should be valued to select useful areas.
 
-TODO: Not completed!
+In this document flat \ref{K-Means} (K-Means) and hierarchical \ref{hierarchicalClustering} (WPGMA, UPGMA) clustering algorithms where compared \ref{sec:measurements-speed} and extended to correct wrong assignments \ref{K-Means_shortest_path}. 
+
+The implemented clusters are measurements \ref{sec:measurements-cluster-analysis} based on the suggestions provided by the ETH-Zurich. For further use the results can now be exported into a JSON-File. %TODO more here
+
+Student at the ETH is working on an regrow algorithm to recombine the clusters to reasonable city.
+%TODO more here
 
 \pagebreak
 \input{015_RelatedWork}
