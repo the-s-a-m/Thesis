@@ -72,6 +72,7 @@
 \end{abstract}
 
 \chapter{Introduction}
+In this thesis the initial task was to learn how street network can be described as grammar for later analysis and regeneration. There exist many different approaches like Shape Grammar \ref{sec:shape_grammar}, L-Systems \ref{sec:L-Systems}, Space Syntax \ref{sec:space_syntax} and many others. 
 To analyse and generate streets there are many approaches. Street networks can be described as grammars. 
 
 The street networks can be divided into reasonable parts by clustering algorithms. 
@@ -82,7 +83,7 @@ Genetic analysis of street network, separation, recombination.
 
 TODO: Not completed!
 \chapter{Street Network Grammars}
-\section{Shape Grammar}
+\section{Shape Grammar} \label{sec:shape_grammar}
 The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
 A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
@@ -212,7 +213,7 @@ In the following section we debate the usefulness of generating street networks 
     \end{itemize}
 
 \pagebreak
-\section{L-Systems}
+\section{L-Systems} \label{sec:L-Systems}
 L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant life: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
 
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
@@ -238,7 +239,7 @@ If the example of listing \ref{eq:lsystem example 2} was applied to the module c
 A way to generate images with L-Systems is to use a LOGO-style turtle as a graphical model. Certain modules of the L-System are interpreted as commands to this turtle.
 
 \pagebreak
-\section{Space Syntax}
+\section{Space Syntax} \label{sec:space_syntax}
 The grammar Space Syntax was first introduced in 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
 The language consists of a surface (carrier space) and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area patterns like ring spaces and block spaces.
 
@@ -409,7 +410,7 @@ TODO: Table of speed measurements here.
 
 \section{Cluster Analysis}
 \label{sec:measurements-cluster-analysis}
-In this chapter the provided measurement methods \ref{clusterRating} are used to compare different districts/areas. The following images were generated with the cluster algorithm FastUPGMA \ref{sec:UPGMAandWPGMA} with \textit{Modified Output} and \textit{Number of Clusters} count 16. 
+In this chapter the provided measurement methods \ref{clusterRating} are used to compare different districts/areas. The following images were generated with the cluster algorithm FastUPGMA \ref{sec:UPGMAandWPGMA} on Weimar with \textit{Modified Output} and \textit{Number of Clusters} count 16. 
 
 \subsection{Historic District}
 \label{sec:historyDistinct}
@@ -445,11 +446,11 @@ This district is characterised by short streets with many connections. As a resu
 
 \subsection{Business/Manhattan District}
 \label{sec:businessDistinct}
-If the block count and the connection count is high the given area is probably a business/Manhattan district. The street have a high mean connection count and the block area to circle area is high. The image REFTOIMG with the measured data in table \ref{sec:ClusterAnalysisMeasurements} in column C2, is an example area of this district/area type.
+If the block count and the connection count is high the given area is probably a business/Manhattan district. The street have a high mean connection count and the block area to circle area is high. The image \ref{fig:business_district} with the measured data in table \ref{sec:ClusterAnalysisMeasurements} in column C2, is an example area of this district/area type.
 
 \subsection{Outskirts Area}
 \label{sec:outskits}
-These areas are characterized by extreme long streets and a low connection count as you can see in the example image REFTOIMG and the mesured data in table \ref{sec:ClusterAnalysisMeasurements} in column C3. The block count is compared with a business or historic district exceptional low.
+These areas are characterized by extreme long streets and a low connection count as you can see in the example image \ref{fig:outskirts_district} and the mesured data in table \ref{sec:ClusterAnalysisMeasurements} in column C3. The block count is compared with a business or historic district exceptional low.
 
 
 \subsection{Measured Data}
@@ -471,7 +472,7 @@ The following table \ref{tab:cluterAnalysisDescription} contains the parameters 
         
         Vertex Connections & Mean connected edges per vertex  \\ \hline
         
-        Street Angle Min/Max/Mean & Smallest angle between two edges \\ \hline
+        Street Angle Min/Max/Mean & Smallest/Biggest/Average angle between two edges \\ \hline
         Street Angle Variance & Sigma of the normal distribution curve of the angles \\ \hline
         
         Block Count & Total number of blocks \\ \hline
@@ -482,9 +483,10 @@ The following table \ref{tab:cluterAnalysisDescription} contains the parameters 
         Choice Min/Max/Mean & Normalised In-Betweenness-Centrality \\ \hline
     \end{tabular}
     \caption{Parameter with descriptions for table \ref{tab:measured_cluster_ratings}}
+    \label{tab:cluterAnalysisDescription}
 \end{center}
-\label{tab:cluterAnalysisDescription}
 \end{table}
+
 
 \subsubsection{Block Area}
 In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. First the block area is calculated and then the result is divided by the circumscribed circle area.
@@ -560,8 +562,8 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
     \hline
 \end{tabular}
 \caption{Measured results from Cluster1 \ref{sec:historyDistinct}, Cluster2 \ref{sec:businessDistinct}, Cluster3 \ref{sec:outskits} and Cluster4}
-\end{center}
 \label{tab:measured_cluster_ratings}
+\end{center}
 \end{table}
 
 \chapter{Possible Extensions}
