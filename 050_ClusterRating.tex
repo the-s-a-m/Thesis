@@ -1,0 +1,23 @@
+\section{Cluster Rating}
+\label{clusterRating}
+To evaluate the generated clusters different measurement methods are necessary. Jun. Prof. Dr.  Reinhard König from the ETH Zurich provided the following parameters.
+\newline
+\begin{itemize}
+    \item Geometry based measurements:
+    \begin{itemize}
+        \item Area based on the convex hull of the cluster area
+        \item Total length of the streets
+        \item Ratio between the area and total length
+        \item Distribution variance of the street length
+        \item Distribution variance of the street angles
+        \item Ratio between street block size and surrounding circle area (minima, maxima, mean)
+    \end{itemize}
+    \item Centrality-based measurements normalized by the street count (minima, maxima, mean):
+    \begin{itemize}
+        \item In-Centrality (Integration)
+        \item In-Betweenness-Centrality (Choice)
+    \end{itemize}
+\end{itemize}
+The centrality based ratings and the block area calculation where pre implemented in CPlan \ref{CPlan}. Additional a GUI to compared and stored the results as JSON-File for each generated cluster has been added.
+
+Some initial measurements and comparisons are made in the cluster analysis chapter \ref{sec:ClusterAnalysisMeasurements}.
