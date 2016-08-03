@@ -60,7 +60,7 @@
     Institute of 4D Technologies \\
     \textbf{University of Applied Sciences and Arts  }\\
     Northwestern Switzerland FHNW
-} \date{\today}
+} \date{Friday 19, 2016}
 \maketitle
 \setcounter{page}{1}
 
@@ -390,11 +390,9 @@ To evaluate the generated clusters different measurement methods are necessary. 
         \item In-Betweenness-Centrality (Choice)
     \end{itemize}
 \end{itemize}
-The ratings can be calculated, compared and stored as JSON-File for each generated cluster in the CPlan \ref{CPlan} implementation.
+The centrality based ratings and the block area calculation where pre implemented in CPlan \ref{CPlan}. Additional a GUI to compared and stored the results as JSON-File for each generated cluster has been added.
 
-Some initial measurements and comparisons are made in the cluster analysis chapter.
-
-%TODO Images with examples with different clusters
+Some initial measurements and comparisons are made in the cluster analysis chapter \ref{sec:ClusterAnalysisMeasurements}.
 
 \pagebreak
 \chapter{CPlan}\label{CPlan}
@@ -529,7 +527,7 @@ These areas are characterized by extreme long streets and a low connection count
 
 \subsection{Measured Data}
 \label{sec:ClusterAnalysisMeasurements}
-The following table contains the parameters with additional descriptions. Extended information can be found below the table. Of every parameter the minimal (min), maximal (max), mean (average) and the median value can be calculated.
+The following table \ref{tab:cluterAnalysisDescription} contains the parameters with additional descriptions. Extended information can be found below the table. Of every parameter the minimal (min), maximal (max), mean (average) and the median value can be calculated.
 
 \begin{table}[h]
 \begin{center}
@@ -556,8 +554,9 @@ The following table contains the parameters with additional descriptions. Extend
         Integration Min/Max/Mean & Normalised In-Centrality \\ \hline
         Choice Min/Max/Mean & Normalised In-Betweenness-Centrality \\ \hline
     \end{tabular}
-    \caption {Parameter with descriptions for table \ref{CPlan}}
+    \caption{Parameter with descriptions for table \ref{tab:measured_cluster_ratings}}
 \end{center}
+\label{tab:cluterAnalysisDescription}
 \end{table}
 
 \subsubsection{Block Area}
@@ -633,8 +632,9 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
     & Mean & 0.10 & 0.05 & & \\ 
     \hline
 \end{tabular}
-\caption {Measured results from Cluster1 \ref{sec:historyDistinct}, Cluster2 \ref{sec:businessDistinct}, Cluster3 \ref{sec:outskits} and Cluster4}
+\caption{Measured results from Cluster1 \ref{sec:historyDistinct}, Cluster2 \ref{sec:businessDistinct}, Cluster3 \ref{sec:outskits} and Cluster4}
 \end{center}
+\label{tab:measured_cluster_ratings}
 \end{table}
 
 \chapter{Possible Extensions}
