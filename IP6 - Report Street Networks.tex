@@ -5,11 +5,6 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
-\usepackage{hyperref}
-\usepackage[xindy]{glossaries}
-\makeglossaries
-\makeindex
-
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 
@@ -29,6 +24,10 @@
 \usepackage{tikz}
 \usepackage[framemethod=tikz]{mdframed}
 
+\usepackage{hyperref}
+\usepackage{glossaries}
+\makenoidxglossaries
+
 \mdfdefinestyle{mdthight}{
     linewidth=1pt,
     innerleftmargin=0bp,
@@ -36,6 +35,8 @@
     innertopmargin=0bp,
     innerbottommargin=0bp
 }
+
+\loadglsentries{Glossary}
 
 \begin{document}
 
@@ -225,7 +226,7 @@ The symbol \textit{pred} (predecessor) defines the module that will get replaced
 \end{equation}
 If this example production was applied to the module $A(4)$, it would result in the modules $B(2)C(3)$.
 
-The cpfg language, described in \citep{PrusinkiewiczEtAl:2001}, also supports context-sensitive productions. The following listing defines the syntax of such a production.
+The modelling language, described in \citep{PrusinkiewiczEtAl:2001}, also supports context-sensitive productions. The following listing defines the syntax of such a production.
 \begin{equation} \label{eq:lsystem context sensitive}
     lcont < pred > rcont : \{block1\}\ cond\ \{block2\} \leadsto succ
 \end{equation}
@@ -354,7 +355,6 @@ D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
 D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
 \end{equation}
 
-
 \subsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
@@ -370,6 +370,21 @@ The problem is caused by the used reduction formula. Single linkage uses the dis
 \label{sec:UPGMAandWPGMA}
 %TODO: Add figure
 The figures xxx and xxx show the result of hierarchical cluster analysis using the UPGMA, or respectively the WPGMA reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
+
+\subsection{All Pairs Shortest Path}
+As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
+%TODO: FW, Dijkstra, FW_GPU?
+
+\subsection{Memory usage}
+Initially the distances 
+- Float
+- Triangle distance matrix
+- Replacing lines in the distance matrix
+
+\subsection{Output Modification}
+- Equalization of cluster sizes
+%TODO: Write subsection & Add images
+
 
 \section{Cluster Rating}
 \label{clusterRating}
@@ -646,6 +661,5 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
 
 \bibliography{quotations}
 \appendix
-\glsaddall
-\printglossaries
+\printnoidxglossaries
 \end{document}
