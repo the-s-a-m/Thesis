@@ -71,6 +71,7 @@
 \end{abstract}
 
 \chapter{Introduction}
+In this thesis the initial task was to learn how street network can be described as grammar for later analysis and regeneration. There exist many different approaches like Shape Grammar \ref{sec:shape_grammar}, L-Systems \ref{sec:L-Systems}, Space Syntax \ref{sec:space_syntax} and many others. 
 To analyse and generate streets there are many approaches. Street networks can be described as grammars. 
 
 The street networks can be divided into reasonable parts by clustering algorithms. 
@@ -81,7 +82,7 @@ Genetic analysis of street network, separation, recombination.
 
 TODO: Not completed!
 \chapter{Street Network Grammars}
-\section{Shape Grammar}
+\section{Shape Grammar} \label{sec:shape_grammar}
 The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}. 
 
 A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
@@ -211,7 +212,7 @@ In the following section we debate the usefulness of generating street networks 
     \end{itemize}
 
 \pagebreak
-\section{L-Systems}
+\section{L-Systems} \label{sec:L-Systems}
 L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant life: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
 
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
@@ -237,7 +238,7 @@ If the example of listing \ref{eq:lsystem example 2} was applied to the module c
 A way to generate images with L-Systems is to use a LOGO-style turtle as a graphical model. Certain modules of the L-System are interpreted as commands to this turtle.
 
 \pagebreak
-\section{Space Syntax}
+\section{Space Syntax} \label{sec:space_syntax}
 The grammar Space Syntax was first introduced in 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper "Space syntax" \citep{spaceSyntax:1976}. The grammar is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
 The language consists of a surface (carrier space) and an ongoing production process of new and different neighbouring parts. Extended Syntax is used to describe special area patterns like ring spaces and block spaces.
 
