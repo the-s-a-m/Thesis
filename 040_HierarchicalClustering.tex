@@ -73,7 +73,7 @@ The problem is caused by the used reduction formula. Single linkage uses the dis
 %TODO: Add figure
 The figures xxx and xxx show the result of hierarchical cluster analysis using the UPGMA, or respectively the WPGMA reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
 
-\subsection{All Pairs Shortest Path}
+\subsection{All Pairs Shortest Path} \label{sec:shortest_path}
 As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
 %TODO: FW, Dijkstra, FW_GPU?
 
