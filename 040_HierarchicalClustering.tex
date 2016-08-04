@@ -1,4 +1,4 @@
-\section{Hierarchical Clustering} \label{hierarchicalClustering}
+\section{Hierarchical Clustering} \label{sec:hierarchicalClustering}
 \subsection{Introduction}
 Hierarchical clustering, also known as connectivity based clustering, was the next applied approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
@@ -77,7 +77,7 @@ The figures xxx and xxx show the result of hierarchical cluster analysis using t
 As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
 %TODO: FW, Dijkstra, FW_GPU?
 
-\subsection{Memory usage}
+\subsection{Memory usage} \label{sec:memory_usage}
 The most trivial solution would be to store the distances as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. For \acrshort{UPGMA} and \acrshort{WPGMA} this matrix has to be extended so it also includes the cached distances between clusters.
 
 This storage strategy would use $(2n-1)^2$ double-precision floating-point numbers, $n$ being the node count (number of junctions). As an example: For the used environment this storage strategy would amount to about 21.7 Gigabyte of used memory for the street network of Zurich.
