@@ -88,6 +88,8 @@ A second optimisation that can be applied is, to remove redundant information. W
 
 The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
 
+When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-precision floating point numbers have to be stored. The memory complexity still lies in $O(n^2)$, but the improvements allow most modern computers to analyse medium to big sized street networks. As an example: For the used environment the memory usage would amount to about 1.36 Gigabyte for the street network of Zurich.
+
 \begin{figure}
     \centering
     \begin{subfigure}[b]{\textwidth}
