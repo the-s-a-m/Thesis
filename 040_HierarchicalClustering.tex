@@ -57,6 +57,8 @@ D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
 D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
 \end{equation}
 
+%TODO Explain hierarchy output and how to create clusters from it
+
 \subsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
@@ -84,10 +86,51 @@ This storage strategy would use $(2n-1)^2$ double-precision floating-point numbe
 
 The easiest optimisation is to convert all distances to a single-precision floating-point format. The loss of precision is not affecting the result, as mostly only the $<$ and $>$ relations of the different distances are important.
 
-A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored.
+A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored. This improvement is visualised in figure \ref{fig:memory_usage_01}.
 
-The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored.
+The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
+
+When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-precision floating point numbers have to be stored. The memory complexity still lies in $O(n^2)$, but the improvements allow most modern computers to analyse medium to big sized street networks. As an example: For the used environment the memory usage would amount to about 1.36 Gigabyte for the street network of Zurich.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\linewidth]{memoryusage01.png}
+        \caption{Optimisation of memory usage by not storing redundant information. On the left hand side is the full distance matrix, on the right hand side is the same matrix without the duplicate entries.}
+        \label{fig:memory_usage_01}
+    \end{subfigure}
+    \par\medskip
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\linewidth]{memoryusage02.png}
+        \caption{Optimisation of memory usage by changing the cluster combination behaviour. On the left hand side the blue distances belonging to the old clusters are combined and stored in a new row (of green distances) belonging to the new formed cluster. The right hand side is similar, but the distances of the old clusters (blue and violet) are combined and stored at the location of one of the old clusters (violet). After the combination, the violet distances belong to the new formed cluster.}
+        \label{fig:memory_usage_02}
+    \end{subfigure}
+    \caption{Visualised memory usage optimisations}
+\end{figure}
 
 \subsection{Output Modification}
-- Equalization of cluster sizes
-%TODO: Write subsection & Add images
+In some cases the hierarchical clustering has an output of clusters with highly varying size. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left are multiple very small clusters.
+
+Depending on the requirements this is the desired result, as this is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are of about the same size, than it is to abide the mathematically optimal solution.
+
+%TODO rephrase to match explanation about hierarchy output
+To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created the order is changed. When always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \begin{mdframed}[style=mdthight, userdefinedwidth=0.9\linewidth]
+            \includegraphics[width=\linewidth]{unmodified_cluster_size.png}
+        \end{mdframed}
+        \caption{Clusters with original size}
+        \label{fig:unmodified_cluster_size}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \begin{mdframed}[style=mdthight, userdefinedwidth=0.9\linewidth]
+            \includegraphics[width=\linewidth]{modified_cluster_size.png}
+        \end{mdframed}
+        \caption{Clusters with modified size}
+        \label{fig:modified_cluster_size}
+    \end{subfigure}
+    \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification. (Cluster count = 18, Reduction Formula = \acrshort{UPGMA})}
+\end{figure}
