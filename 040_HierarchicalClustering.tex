@@ -24,13 +24,13 @@ The following reduction formulae were implemented for this thesis:
     D_{Single-Linkage}(C_1, (C_2 \cup C_3)) \leftarrow \\
     min \{ D_{Single-Linkage}(C_1, C_2), D_{Single-Linkage}(C_1, C_3) \}
     \end{multline}
-    \item \textbf{UPGMA}
+    \item \textbf{\acrshort{UPGMA}} (\acrlong{UPGMA})
     \begin{equation}
     \begin{split}
     D_{UPGMA}(C_1, (C_2 \cup C_3)) \leftarrow &\frac{|C_2|}{|C_2|+|C_3|}D_{UPGMA}(C_1, C_2)\ + \\ &\frac{|C_3|}{|C_2|+|C_3|}D_{UPGMA}(C_1, C_3)
     \end{split}
     \end{equation}
-    \item \textbf{WPGMA}
+    \item \textbf{\acrshort{WPGMA}} (\acrlong{WPGMA})
     \begin{equation}
     D_{WPGMA}(C_1, (C_2 \cup C_3)) \leftarrow \frac{1}{2} (D_{WPGMA}(C_1, C_2) + D_{WPGMA}(C_1, C_3))
     \end{equation}
@@ -48,7 +48,7 @@ For every of these reduction formulae the following holds:
 \end{split}
 \end{equation}
 
-For both the single linkage and the UPGMA reduction formula exists a dissimilarity function (\ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the WPGMA reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
+For both the single linkage and the \acrshort{UPGMA} reduction formula exists a dissimilarity function (\ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the \acrshort{WPGMA} reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
 
 \begin{equation} \label{eq:df_single_linkage}
 D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
@@ -71,17 +71,22 @@ The problem is caused by the used reduction formula. Single linkage uses the dis
 \subsection{UPGMA and WPGMA Result}
 \label{sec:UPGMAandWPGMA}
 %TODO: Add figure
-The figures xxx and xxx show the result of hierarchical cluster analysis using the UPGMA, or respectively the WPGMA reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
+The figures xxx and xxx show the result of hierarchical cluster analysis using the \acrshort{UPGMA}, or respectively the \acrshort{WPGMA} reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
 
 \subsection{All Pairs Shortest Path} \label{sec:shortest_path}
 As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
 %TODO: FW, Dijkstra, FW_GPU?
 
 \subsection{Memory usage}
-Initially the distances 
-- Float
-- Triangle distance matrix
-- Replacing lines in the distance matrix
+The most trivial solution would be to store the distances as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. For \acrshort{UPGMA} and \acrshort{WPGMA} this matrix has to be extended so it also includes the cached distances between clusters.
+
+This storage strategy would use $(2n-1)^2$ double-precision floating-point numbers, $n$ being the node count (number of junctions). As an example: For the used environment this storage strategy would amount to about 21.7 Gigabyte of used memory for the street network of Zurich.
+
+The easiest optimisation is to convert all distances to a single-precision floating-point format. The loss of precision is not affecting the result, as mostly only the $<$ and $>$ relations of the different distances are important.
+
+A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored.
+
+The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored.
 
 \subsection{Output Modification}
 - Equalization of cluster sizes
