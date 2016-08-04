@@ -84,9 +84,25 @@ This storage strategy would use $(2n-1)^2$ double-precision floating-point numbe
 
 The easiest optimisation is to convert all distances to a single-precision floating-point format. The loss of precision is not affecting the result, as mostly only the $<$ and $>$ relations of the different distances are important.
 
-A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored.
+A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored. This improvement is visualised in figure \ref{fig:memory_usage_01}.
 
-The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored.
+The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\linewidth]{memoryusage01.png}
+        \caption{Optimisation of memory usage by not storing redundant information. On the left hand side is the full distance matrix, on the right hand side is the same matrix without the duplicate entries.}
+        \label{fig:memory_usage_01}
+    \end{subfigure}
+    \par\medskip
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\linewidth]{memoryusage02.png}
+        \caption{Optimisation of memory usage by changing the cluster combination behaviour. On the left hand side the blue distances belonging to the old clusters are combined and stored in a new row (of green distances) belonging to the new formed cluster. The right hand side is similar, but the distances of the old clusters (blue and violet) are combined and stored at the location of one of the old clusters (violet). After the combination, the violet distances belong to the new formed cluster.}
+        \label{fig:memory_usage_02}
+    \end{subfigure}
+    \caption{Visualised memory usage optimisations}
+\end{figure}
 
 \subsection{Output Modification}
 - Equalization of cluster sizes
