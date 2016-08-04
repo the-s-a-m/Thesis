@@ -108,4 +108,23 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
 
 \subsection{Output Modification}
 - Equalization of cluster sizes
-%TODO: Write subsection & Add images
+%TODO: Write subsection
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \begin{mdframed}[style=mdthight, userdefinedwidth=0.9\linewidth]
+            \includegraphics[width=\linewidth]{unmodified_cluster_size.png}
+        \end{mdframed}
+        \caption{Clusters with original size}
+        \label{fig:unmodified_cluster_size}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \begin{mdframed}[style=mdthight, userdefinedwidth=0.9\linewidth]
+            \includegraphics[width=\linewidth]{modified_cluster_size.png}
+        \end{mdframed}
+        \caption{Clusters with modified size}
+        \label{fig:modified_cluster_size}
+    \end{subfigure}
+    \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification}
+\end{figure}
