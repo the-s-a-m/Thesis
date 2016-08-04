@@ -57,6 +57,8 @@ D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
 D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
 \end{equation}
 
+%TODO Explain hierarchy output and how to create clusters from it
+
 \subsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
@@ -107,8 +109,12 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
 \end{figure}
 
 \subsection{Output Modification}
-- Equalization of cluster sizes
-%TODO: Write subsection
+In some cases the hierarchical clustering has an output of clusters with highly varying size. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left are multiple very small clusters.
+
+Depending on the requirements this is the desired result, as this is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are of about the same size, than it is to abide the mathematically optimal solution.
+
+%TODO rephrase to match explanation about hierarchy output
+To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created the order is changed. When always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
 
 \begin{figure}
     \centering
@@ -126,5 +132,5 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
         \caption{Clusters with modified size}
         \label{fig:modified_cluster_size}
     \end{subfigure}
-    \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification}
+    \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification. (Cluster count = 18, Reduction Formula = \acrshort{UPGMA})}
 \end{figure}
