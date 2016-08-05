@@ -1,15 +1,12 @@
 \chapter{Future Work}
 \label{sec:future_work}
-More detailed clustering
-Detect cluster with other algorithms.
-Insert additional measurement methods.
 
-CPlan
-Change all libs to 64 versions
+Despite many cluster analysis approaches where tests in this thesis, many other methods like distribution-based or density-based clustering exist. In future works the approaches could be tested and compared. 
 
-ETH: 
-Student remove one cluster and regrow from edges.
-Recombine different clusters.
-Use the exported mesurements to select the correct districts/areas.
+To ensure more detailed measurements some additional measurement methods could be added and compared.
 
-TODO Not completed!
+At the ETH there are other running projects to extend CPlan with more functionality. One project is to allow removing a cluster within a city and regrow a cluster into the gap from the edges. Another project is to recombine the created clusters by the measured results provided by this thesis.
+
+The provided application CPlan was recently ported to 64 bit architecture. Unfortunately some libraries are still only 32 bit versions and this leads therefore to problems. For this thesis unit tests where added to the CPlan application to ensure the proper working of the new classes and functions. Additionally many tests should be added to test the core functionality of the given application. A rework of the application would allow a more efficient and faster development.
+
+%TODO Not completed!
