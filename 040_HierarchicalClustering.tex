@@ -12,7 +12,7 @@ There are generally two main strategies for hierarchical clustering:
     \item \textbf{Divisive}: Top down strategy. All nodes are contained in one cluster at the start. This cluster is then divided into sub clusters.
 \end{itemize}
 
-The time complexity of the divisive strategy with $O(2^n)$ is too bad for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ time complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms" \cite{clustering:2007}.
+The time complexity of the divisive strategy with $O(2^n)$ is not performing well enough for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ time complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms" \cite{clustering:2007}.
 
 \subsection{Reduction Formula}
 The reduction formula is used to determine the distance between two clusters.
@@ -36,7 +36,7 @@ The following reduction formulae were implemented for this thesis:
     \end{equation}
 \end{itemize}
 
-With clusters $C_1$, $C_2$ and $C_3$, which are sets of nodes and the distance function $d(i, j)$, which determines the distance between nodes $i$ and $j$.
+$C_1$, $C_2$ and $C_3$ are clusters, each being a set of nodes. The distance function $d(i, j)$ determines the distance between nodes $i$ and $j$.
 
 For every of these reduction formulae the following holds:
 
@@ -48,25 +48,27 @@ For every of these reduction formulae the following holds:
 \end{split}
 \end{equation}
 
-For both the single linkage and the \acrshort{UPGMA} reduction formula exists a dissimilarity function (\ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the \acrshort{WPGMA} reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
+For both the single linkage and the \acrshort{UPGMA} reduction formula exists a dissimilarity function (\ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the cluster distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the \acrshort{WPGMA} reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
 
-\begin{equation} \label{eq:df_single_linkage}
-D_{Single-Linkage}(C_1, C_2) = \min_{i\in{C1}, j\in{C2}}\{d(i, j)\}
-\end{equation}
-\begin{equation} \label{eq:df_upgma}
-D_{UPGMA}(C_1, C_2) = \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
-\end{equation}
+\begin{align}
+    \label{eq:df_single_linkage}
+    D_{Single-Linkage}(C_1, C_2) &= \min_{i\in{C1}, j\in{C2}}\{d(i, j)\} \\
+    \label{eq:df_upgma}
+    D_{UPGMA}(C_1, C_2) &= \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
+\end{align}
 
 %TODO Explain hierarchy output and how to create clusters from it
 
 \subsection{Single-Linkage Result}
-The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
+The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis of Weimar using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
-The problem is caused by the used reduction formula. Single linkage uses the distance between the closest nodes of the compared clusters. This leads to the creation of clusters, where all connecting roads are long. In a city, where there are multiple connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
+The problem is caused by the used reduction formula. Single linkage uses the minimal distance between all nodes of the compared clusters. This leads to the creation of clusters, where all roads which connect two clusters are long. In a city, where there are multiple (direct and indirect) connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{clusteranalysis_singlelinkage.png}
+    \begin{mdframed}[style=mdthight]
+        \includegraphics[width=\textwidth]{clusteranalysis_singlelinkage.png}
+    \end{mdframed}
     \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
 \end{figure}
 
@@ -109,7 +111,7 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
 \end{figure}
 
 \subsection{Output Modification}
-In some cases the hierarchical clustering has an output of clusters with highly varying size. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left are multiple very small clusters.
+In some cases the hierarchical clustering has an output of clusters with highly varying size. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
 
 Depending on the requirements this is the desired result, as this is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are of about the same size, than it is to abide the mathematically optimal solution.
 
@@ -133,4 +135,24 @@ To create relatively equally sized clusters from the resulted hierarchy of a hie
         \label{fig:modified_cluster_size}
     \end{subfigure}
     \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification. (Cluster count = 18, Reduction Formula = \acrshort{UPGMA})}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \begin{mdframed}[style=border]
+            \includegraphics[width=\linewidth]{hierarchy.png}
+        \end{mdframed}
+        \caption{aaa}
+        \label{fig:hierarchy}
+    \end{subfigure}
+    \par\medskip
+    \begin{subfigure}[b]{\textwidth}
+        \begin{mdframed}[style=border]
+            \includegraphics[width=\linewidth]{hierarchy_with_clusters.png}
+        \end{mdframed}
+        \caption{bbb}
+        \label{fig:hierarchy_with_clusters}
+    \end{subfigure}
+    \caption{xxx}
 \end{figure}
