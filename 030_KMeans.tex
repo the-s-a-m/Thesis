@@ -44,9 +44,11 @@ The implementation in CPlan \ref{CPlan} produced the following image \ref{fig:Km
 The algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters. In the image \ref{fig:KmeansProblem} the result can be seen in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
 
 \subsection{K-Means with Shortest Path} \label{sec:K-Means_shortest_path}
-To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a shortest path algorithm (Dijkstra / FloydWarshall). These algorithms are used by hierarchical clustering \ref{sec:shortest_path}. The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{kmenasProblem} are removed.
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \gls{APSP} algorithm (Dijkstra / Floyd-Warshall). These algorithms are used for the hierarchical clustering algorithms \ref{sec:shortest_path}.
 
-Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Practical Task/Measurements \ref{sec:measurements};
+The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:kmenasProblem} are removed.
+
+Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Practical Task / Measurements \ref{sec:measurements};
 
 \begin{figure}
     \centering

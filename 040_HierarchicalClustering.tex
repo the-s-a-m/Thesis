@@ -72,7 +72,7 @@ To create a clustering from this output the procedure from above is reversed. In
 
 Using this method it is possible to create 1 to $n$ clusters from any hierarchy, where $n$ is the number of nodes. Figure \ref{fig:hierarchy_with_clusters} shows an example of this process. From the same hierarchy with five nodes which was used before two clusters were created. A later section (\ref{sec:outout_modification}) shows, that the order in which the hierarchies are split, can be modified.
 
-\begin{figure}
+\begin{figure}[!hb]
     \centering
     \begin{subfigure}[b]{\textwidth}
         \begin{mdframed}[style=border]
@@ -97,7 +97,7 @@ The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster an
 
 The problem is caused by the used reduction formula. Single linkage uses the minimal distance between all nodes of the compared clusters. This leads to the creation of clusters, where all roads which connect two clusters are long. In a city, where there are multiple (direct and indirect) connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
 
-\begin{figure}[!ht]
+\begin{figure}
     \centering
     \begin{mdframed}[style=mdthight]
         \includegraphics[width=\textwidth]{clusteranalysis_singlelinkage.png}
