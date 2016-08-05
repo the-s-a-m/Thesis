@@ -57,7 +57,39 @@ For both the single linkage and the \acrshort{UPGMA} reduction formula exists a 
     D_{UPGMA}(C_1, C_2) &= \dfrac{1}{|C_1||C_2|} \sum_{i\in{C1}, j\in{C2}}{d(i, j)}
 \end{align}
 
-%TODO Explain hierarchy output and how to create clusters from it
+\subsection{Hierarchy}
+The output of the hierarchical clustering algorithm is as the name suggests a hierarchy. Figure \ref{fig:hierarchy} shows such an output. For simplicity only five input nodes were used. If this hierarchy was created using an agglomerative strategy the result could have been built as follows:
+
+\begin{enumerate}
+    \item Combine the two leftmost nodes
+    \item Combine the two rightmost nodes
+    \item Combine the cluster formed in step 1 with the middle node
+    \item Combine the cluster formed in step 3 with the one combined in step 2
+\end{enumerate}
+
+To create a clustering from this output the procedure from above is reversed. In the order, in which the combinations were made, the clusters are split. The hierarchy can be looked at as a single cluster. With each split one hierarchy is divided into two new hierarchies.
+
+Using this method it is possible to create 1 to $n$ clusters from any hierarchy, where $n$ is the number of nodes. Figure \ref{fig:hierarchy_with_clusters} shows an example of this process. From the same hierarchy with five nodes which was used before two clusters were created. A later section (\ref{sec:outout_modification}) shows, that the order in which the hierarchies are split, can be modified.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \begin{mdframed}[style=border]
+            \includegraphics[width=\linewidth]{hierarchy.png}
+        \end{mdframed}
+        \caption{Hierarchy, which is the output of a hierarchical clustering algorithm}
+        \label{fig:hierarchy}
+    \end{subfigure}
+    \par\medskip
+    \begin{subfigure}[b]{\textwidth}
+        \begin{mdframed}[style=border]
+            \includegraphics[width=\linewidth]{hierarchy_with_clusters.png}
+        \end{mdframed}
+    \caption{Example of two clusters created from the hierarchy}
+    \label{fig:hierarchy_with_clusters}
+    \end{subfigure}
+    \caption{Visualisation of the output of hierarchical clustering algorithms}
+\end{figure}
 
 \subsection{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis of Weimar using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
@@ -110,13 +142,12 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
     \caption{Visualised memory usage optimisations}
 \end{figure}
 
-\subsection{Output Modification}
-In some cases the hierarchical clustering has an output of clusters with highly varying size. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
+\subsection{Output Modification} \label{sec:outout_modification}
+In some cases the hierarchical clustering has an output of clusters with highly varying size if standard splitting order is used. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
 
 Depending on the requirements this is the desired result, as this is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are of about the same size, than it is to abide the mathematically optimal solution.
 
-%TODO rephrase to match explanation about hierarchy output
-To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created the order is changed. When always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
+To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created, the order is changed. When always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
 
 \begin{figure}
     \centering
@@ -135,24 +166,4 @@ To create relatively equally sized clusters from the resulted hierarchy of a hie
         \label{fig:modified_cluster_size}
     \end{subfigure}
     \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification. (Cluster count = 18, Reduction Formula = \acrshort{UPGMA})}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{\textwidth}
-        \begin{mdframed}[style=border]
-            \includegraphics[width=\linewidth]{hierarchy.png}
-        \end{mdframed}
-        \caption{aaa}
-        \label{fig:hierarchy}
-    \end{subfigure}
-    \par\medskip
-    \begin{subfigure}[b]{\textwidth}
-        \begin{mdframed}[style=border]
-            \includegraphics[width=\linewidth]{hierarchy_with_clusters.png}
-        \end{mdframed}
-        \caption{bbb}
-        \label{fig:hierarchy_with_clusters}
-    \end{subfigure}
-    \caption{xxx}
 \end{figure}
