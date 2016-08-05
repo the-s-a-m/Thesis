@@ -21,27 +21,37 @@ The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges)
 
 \subsection{Result}
 The implementation in CPlan \ref{CPlan} produced the following image \ref{fig:KmeansGenerated} based on the city of Weimar. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
-\begin{figure}[!h]
+
+\begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{clusteranalysis_kmeans_result.png}
-    \caption{K-Means cluster analysis of Weimar\label{fig:KmeansGenerated}}
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.55\textwidth, align=center]
+        \includegraphics[width=\textwidth]{clusteranalysis_kmeans_problem.png}
+    \end{mdframed}
+    \caption{Problem of K-Means clustering
+        \label{fig:KmeansProblem}}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{mdframed}[style=mdthight]
+        \includegraphics[width=\textwidth]{clusteranalysis_kmeans_result.png}
+    \end{mdframed}
+    \caption{K-Means cluster analysis of Weimar
+    \label{fig:KmeansGenerated}}
 \end{figure}
 
 \subsection{Problem} \label{sec:kmenasProblem}
 The algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters. In the image \ref{fig:KmeansProblem} the result can be seen in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{clusteranalysis_kmeans_problem.png}
-    \caption{Problem of K-Means clustering\label{fig:KmeansProblem}}
-\end{figure}
 
 \subsection{K-Means with Shortest Path} \label{sec:K-Means_shortest_path}
 To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a shortest path algorithm (Dijkstra / FloydWarshall). These algorithms are used by hierarchical clustering \ref{sec:shortest_path}. The edges are assigned by the edge data (e.g. street length) to the nearest cluster. Therefore the result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{kmenasProblem} are removed.
 
 Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Practical Task/Measurements \ref{sec:measurements};
 
-\begin{figure}[!h]
+\begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{clusteranalysis_kmeansExt_result.png}
+    \begin{mdframed}[style=mdthight]
+        \includegraphics[width=\textwidth]{clusteranalysis_kmeansExt_result.png}
+    \end{mdframed}
     \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
 \end{figure}
