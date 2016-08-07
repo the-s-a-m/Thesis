@@ -162,11 +162,11 @@ The axial line-based space syntax was first introduced in 1976 by B. Hiller, A. 
 The grammar was later extended and integrated into \textit{Geographic Information System} (GIS) as point-based space syntax (graph). This systems are used to plan and analyse the human interaction with the environment.
 
 \subsection{Axial line-based space syntax and limitations}
-In space syntax streets are represented by axial lines. \textit{Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces\citep{integrationSpaceSyntaxGIS:2002}.} This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can by broken into segments at the intersections \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn till the hole space is covered.
+In space syntax streets are represented by axial lines. \textit{Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces} \citep{integrationSpaceSyntaxGIS:2002}. This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can by broken into segments at the intersections \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn till the hole space is covered.
 
 Axial maps have many limitations. First the complexity to create an axial map is hight because of the generating procedure. If an additional area is added the hole process of detection should be repeated because a longer start line could exist. The process is non-deterministic because a curve could be separated into a unknown count of lines.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{The-figure-ground-plan-of-Barnsbury-Axial-map.jpg}
@@ -184,8 +184,8 @@ Axial maps have many limitations. First the complexity to create an axial map is
 \end{figure}
 
 \subsection{Point-based space syntax}
-A point based space syntax is a decision based approach. Every time a point in a street network is visited the visitor can decide witch direction he will travel next. The distances between two point can directly be measured and described. 
+A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited the visitor can decide witch direction he will travel next. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates. This approach is at least equivalent to the predefined syntax created by B. Hiller et al. \citep{spaceSyntax:1976}. The point-based space syntax therefore is a graph based approach. 
 
-Bin Jiang and Christope Claramunt \citep{integrationSpaceSyntaxGIS:2002} created a graph representation (\citep{integrationSpaceSyntaxGIS:2002} chapter: 3) and showed that it was at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976}.
+\subsubsection{Comparison with CPlan}
 
 CPlan also point based!
