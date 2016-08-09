@@ -1,17 +1,17 @@
 \begin{abstract}
-    In this thesis different cluster analysis algorithms where compared and extended on a graph representation of a street networks.
+    In this thesis different cluster analysis algorithms were compared and extended on a graph representation of a street networks.
     
-    The centroid based K-Means algorithm produced reasonable clusters unfortunately with wrong assignments. Because the assignments where vertex based not every cluster was connected. To correct this error a shortest path algorithm was used to get connected clusters.
+    The centroid based K-Means algorithm produced reasonable clusters, unfortunately with wrong assignments. Because the assignments were vertex based not every cluster was connected. To correct this error a shortest path algorithm was used to get connected clusters.
     
     For hierarchical algorithms there are many different reduction formula algorithms. First the Single Linkage algorithm produced one huge cluster in the middle and many at the border. This algorithm used the minimal distances of all nodes of the compared clusters and therefore in a city with multiple connections one big cluster in the middle was created.
     
-    Then the reduction algorithms WPGMA (Weighted Pair Group Method with Arithmetic mean) calculates the average distances between two clusters. The result was many clusters with different sizes. To resolve this issue the UPGMA (Unweighted PGMA) algorithm was tested where all distances are equal. Unfortunately the UPGMA approach resulted in better results the cluster size differences where still too big.
+    Then the reduction algorithms WPGMA (Weighted Pair Group Method with Arithmetic mean) calculates the average distances between two clusters. The result was many clusters with different sizes. To resolve this issue the UPGMA (Unweighted PGMA) algorithm was tested were all distances are equal. The result was better but the cluster size differences were still too big.
     
     To produce cluster with equal sizes the output was then modified. This means instead of splitting the hierarchy as it was created always the biggest cluster (with the most notes) was split. The modification leads to better balanced clusters as preferred in city clustering.
     
-    During tests with big street networks high memory usage was a problems. As a result three optimisations where made. First, float precision was used. Second, a data structure witch does not store value twice was developed. Third the resulting cluster distances where saved at the position of the resource positions. 
+    During tests with big street networks high memory usage was a problems. As a result three optimisations were made. First, float precision was used. Second, a data structure which does not store value twice was developed. Third the resulting cluster distances were saved at the position of the resource positions. 
     
-    To rate the created clusters many graph analysis parameters where implemented. The values can be compared and exported into a JSON-file for later use.
+    To rate the created clusters many graph analysis parameters were implemented. The values can be compared and exported into a JSON-file for later use.
     
     %TODO UPGMA/WPGMA entweder Arithmetic Mean oder Arithmetic-mean aber nicht beides!
 \end{abstract}
