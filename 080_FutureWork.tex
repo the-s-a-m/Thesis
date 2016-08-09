@@ -1,10 +1,11 @@
 \chapter{Future Work}
 \label{sec:future_work}
 
-Despite many cluster analysis approaches were tested in this thesis, other methods like distribution-based or density-based clustering exist. In future works the approaches could be tested and compared. %TODO Janis please more here
+Despite many cluster analysis approaches were tested in this thesis, other methods like distribution-based or density-based clustering exist. They could be tested and compared against the implemented versions for this thesis.
 
-To ensure more detailed measurements some additional measurement methods could be added and compared.
-%TODO more here!
+To generate faster results some optimisations are possible. For the K-Means algorithm a K-D tree could be used. The current Single-Linkage algorithm $O(n^2)$ could be optimised with an data structure called quadtree with $O(n)$.
+
+More detailed analysis of the measured clusters could be created based on urban planing data. Additional more detailed measurements methods could be added and the create results compared.
 
 At the ETH there are other running projects to extend CPlan with more functionality. One project is to allow removing a cluster within a city and regrow a cluster into the gap from the edges. Another project is to recombine the created clusters by the measured results provided by this thesis.
 
