@@ -1,7 +1,7 @@
 \begin{abstract}
-    In this document different grammars to describe buildings, streets or plants were discussed and checked for their usefulness.
-    
-    Then centroid-based (K-Means) and hierarchical (WPGMA, UPGMA) clustering algorithms were compared and extended to correct wrong assignments and to reduce the memory footprint. 
+    In this document different grammars to describe buildings, streets or plants were discussed, analysed and evaluated for their usefulness.
 
-    Finally the created clusters were measured and compared.
+    To separate street networks into reasonable parts different clustering algorithms were implemented and tested. First the centroid-based (K-Means) algorithm produced reasonable regions but not every cluster was a connected subgraph. For more precise results hierarchical clustering algorithms (Single-Linkage, WPGMA and UPGMA) were realised and compared. To reduce the memory footprint specialised data structures were used.
+
+    An analysing method to select useful areas like the city centre or a business area was then created. It allows to select different clusters and compare measurements like the block area or the density (total area divided by total street length).
 \end{abstract}
