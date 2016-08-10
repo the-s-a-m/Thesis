@@ -8,31 +8,33 @@ A class of paintings defines the pair (S,M). S represents the shape specificatio
 
 \subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
-Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes \citep{shapeGrammars:1972}.
-\begin{displayquote} 
+A Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes according to \citep{shapeGrammars:1972}.
+\begin{quote} 
     Definition. A shape grammar (SG) is a 4-tuple: $SG = (V_T, V_M, R, I)$ where
     \begin{enumerate}
         \item $V_T$ is a finite set of shapes.
         \item $V_M$ is a finite set of shapes such that $V_T $* $\cap$  $V_M = \emptyset$
-        \item R is a finite set of ordered pairs (u,v) where:
-        \begin{enumerate}
-         \item u is a shape consisting of an element of $V_T $* combined with an element of $V_M$ \item v is a shape consisting of (A) the element of $V_T $* contained in u or (B) the element of $V_T $* contained in u combined with an element of $V_M$ or (C) the element of $V_T $* contained in u with an additional element of $V_T$* and an element of $V_M$.
-        \end{enumerate}
+        \item R is a finite set of ordered pairs (u,v) such that
+
+         u is a shape consisting of an element of $V_T $* combined with an element of $V_M$ and
+         
+         v is a shape consisting of (A) the element of $V_T $* contained in u or (B) the element of $V_T $* contained in u combined with an element of $V_M$ or (C) the element of $V_T $* contained in u with an additional element of $V_T$* and an element of $V_M$.
+
         \item I is a shape consisting of elements of $V_T $* and $V_M$.
     \end{enumerate}
-\end{displayquote}
+\end{quote}
 
 \subsection{Selection Rules}
 \label{sec:Shape_Grammar_Selection_Rules}
-A painting is generated based on an undefined count of shape rules. This requires a mechanism to select a correct shape. The depth is defined by levels which are being assigned during generation based on their rules: \citep{shapeGrammars:1972}.
+A painting is generated based on an undefined count of shape rules. This requires a mechanism to select a correct shape. The depth is defined by levels which are being assigned during generation based on their rules: According to \citep{shapeGrammars:1972}.
 \begin{displayquote}
     \begin{enumerate}
         \item The terminals in the initial shape are assigned to level 0.
         \item If a shape rule is applied, and the highest level assigned to any part ot the terminal corresponding to the level side of the rule is N, then
         \begin{enumerate}
-            \item if the rule is of type A, any part of the terminal enclosed by the marker in the left side of the rule is assigned to N.
-            \item if the rule is of type B, any part of the terminal enclosed by the marker in the left side of the rule is assigned to N and any part of the terminal enclosed by the marker is assigned to N+1.
-            \item if the rule is of type C, the terminal added is assigned to N+1.
+            \item If the rule is of type A, any part of the terminal enclosed by the marker in the left side of the rule is assigned to N.
+            \item If the rule is of type B, any part of the terminal enclosed by the marker in the left side of the rule is assigned to N and any part of the terminal enclosed by the marker is assigned to N+1.
+            \item If the rule is of type C, the terminal added is assigned to N+1.
         \end{enumerate}
         \item No other level assignments are made.
     \end{enumerate}
@@ -40,74 +42,28 @@ A painting is generated based on an undefined count of shape rules. This require
 
 \subsection{Painting Rules}
 \label{sec:Shape_Grammar_Painting_Rules}
-Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by operators union($\bigcap$), intersection ($\bigcup$), complementation($\sim$) and exclusive or ($\bigotimes$). An example can be viewed in the example \ref{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
+Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by the common operators. An example can be viewed in figure \ref{fig:shape_grammar_gen_specifications}
 
 \subsection{Limiting Shapes}
 \label{sec:Shape_Grammar_Limiting_Shapes}
 These shapes define a limiting area on the canvas, where shape painting is allowed. 
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the limiting shape defines the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape.
 
-\subsection{Example \citep{shapeGrammars:1972}}
-\subsubsection{Shape Grammar}
-\begin{align}
-\label{eq:Shape_Grammar}
-SG1 &= <V_T, V_M, R, I>  \\
-\label{eq:Shape_Grammar_VT}
-V_T &= \{-\}  \\
-\label{eq:Shape_Grammar_VM}
-V_M &= \{\includegraphics{sg_specification_VM.jpg} \}\ \\
-\label{eq:Shape_Grammar_R}
-R &= Rules\ [R]\ \ \ \ 
-R1=\includegraphics[width=2cm]{sg_specification_rule1.jpg}
-R2=\includegraphics[width=2cm]{sg_specification_rule2.jpg}
-R3=\includegraphics[width=2cm]{sg_specification_rule3.jpg}
-\\
-\label{eq:Shape_Grammar_I}
-I &= Initial\ shape\ I\ \ \includegraphics[width=1.5cm]{sg_specification_I.jpg}
-\end{align}
-\subsubsection{Selection Rule}
-\begin{equation}
-<0,2>
-\end{equation}
-
-\subsubsection{Painting Rules}
-\begin{align}
-    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_1}
-    L0\cap L1\cap L2 \Longrightarrow  
-    \begin{tikzpicture}
-        \filldraw[fill=black!00!white, draw=black] (0,0) rectangle (1,0.25);
-    \end{tikzpicture} \\
-    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_2}
-    (L0\cap L1\cap \sim L2)\cup (L0\cap \sim L1\cap L2)\cup (\sim L0\cap L1 \cap L2) \Longrightarrow  
-    \begin{tikzpicture}
-        \filldraw[fill=black!25!white, draw=black] (0,0) rectangle (1,0.25);
-    \end{tikzpicture} \\
-    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_3}
-    (L0\cap \sim L1\cap \sim L2)\cup (\sim L0\cap L1\cap \sim l2)\cup (\sim L0\cap \sim L1 \cap L2) \Longrightarrow  
-    \begin{tikzpicture}
-        \filldraw[fill=black!50!white, draw=black] (0,0) rectangle (1,0.25);
-    \end{tikzpicture} \\
-    \label{fig:Shape Grammars/Shape Specification/Painting_Rule_4}
-    \sim (L0\cup L1\cup L2)  \Longrightarrow  
-    \begin{tikzpicture}
-        \filldraw[fill=black!100!white, draw=black] (0,0) rectangle (1,0.25);
-    \end{tikzpicture}
-\end{align}
-\subsubsection{Limiting Shape}
+\subsection{Example}
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=2cm]{sg_specification_Limiting_shape.jpg}
-    \caption{ Limiting shape I - \textit{Source: Shape Grammar} \citep{shapeGrammars:1972}}
-    \label{fig:Shape Grammars/Shape Specification/Limiting_Shape}
+    \includegraphics{shape_grammar_generativ_spec.jpg}
+    \caption{Generative Specifications - \textit{Source: Shape Grammar} \citep{shapeGrammars:1972}}
+    \label{fig:shape_grammar_gen_specifications}
 \end{figure}
-
+\pagebreak
 \subsubsection{Generated}
 The following image \ref{fig:Shape Grammars/Example} shows the generated painting with the relevant steps. The levels are generated as described in the section \textit{selection rule} \ref{sec:Shape_Grammar_Selection_Rules} 
 \newline
-Level 0: Steps 0 to 2, Level 1: Steps 3 and 4, Level 2: Steps 18 and 19
+Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally steps 18 and 19 are on Level 2.
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\textwidth]{sg_example.jpg}
+    \includegraphics[width=\textwidth]{sg_example.jpg}
     \caption{ Generated Painting - \textit{Source: Shape Grammar} \citep{shapeGrammars:1972}}
     \label{fig:Shape Grammars/Example}
 \end{figure}
@@ -162,7 +118,9 @@ The axial line-based space syntax was first introduced in 1976 by B. Hiller, A. 
 The grammar was later extended and integrated into \textit{Geographic Information System} (GIS) as point-based space syntax (graph). This systems are used to plan and analyse the human interaction with the environment.
 
 \subsection{Axial line-based space syntax and limitations}
-In space syntax streets are represented by axial lines. \textit{Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces} \citep{integrationSpaceSyntaxGIS:2002}. This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can by broken into segments at the intersections \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn till the hole space is covered.
+In space syntax streets are represented by axial lines. 
+\textit{"Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces."} \citep{integrationSpaceSyntaxGIS:2002}
+This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can by broken into segments at the intersections \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn till the hole space is covered.
 
 Axial maps have many limitations. First the complexity to create an axial map is hight because of the generating procedure. If an additional area is added the hole process of detection should be repeated because a longer start line could exist. The process is non-deterministic because a curve could be separated into a unknown count of lines.
 
@@ -185,7 +143,6 @@ Axial maps have many limitations. First the complexity to create an axial map is
 
 \subsection{Point-based space syntax}
 A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited the visitor can decide witch direction he will travel next. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph based approach.
-%TODO last sentence!
 
 \begin{figure}[h]
     \centering

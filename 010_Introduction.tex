@@ -7,16 +7,25 @@ Selecting interesting areas from different cities and recombining them into a ne
 
 For this thesis the centroid-based \ref{sec:K-Means} clustering algorithm K-Means was implemented and tested. To correct wrong assignment a shortest path algorithm was used \ref{sec:K-Means_shortest_path} to create connected clusters.
 
-Another approach are the hierarchical clustering algorithms \ref{sec:hierarchicalClustering} were different reduction formula exist. First the Single-Linkage formula was implemented. Unfortunately only one cluster in the centre and with many small clusters at the surrounding was created.
+Another approach are the hierarchical clustering algorithms \ref{sec:hierarchicalClustering} were different reduction formula exist. First the Single-Linkage formula was implemented. Unfortunately only one cluster in the center and with many small clusters at the surrounding was created.
 
 Then the reduction formula \acrshort{WPGMA} (\acrlong{WPGMA}) was implemented and tested. The city areas where separated but they vary widely in the size.
 
 To correct this issue the \acrshort{UPGMA} (\acrlong{UPGMA}) reduction formula was used and implemented because every edge counts equal. This approach created better clusters but the cluster sizes were still too different.
 
-Equal clusters sizes then where achieved by modifying the output \ref{sec:outout_modification}. This means instead of splitting the hierarchy as it was created, always the cluster with the most notes was split. As a result the areas where equal sized as preferred in city clustering.
+Equal clusters sizes then where achieved by modifying the output \ref{sec:outout_modification}. This means instead of splitting the hierarchy as it was created, always the cluster with the most notes was split. As a result the areas where equal sized as preferred in city clustering. The result can be viewed in Figure  \ref{fig:cluster_with_mod_sizes}.
 
-During tests with big cities the hierarchical clustering methods had a hight memory usage. To reduce the memory footprint \ref{sec:memory_usage} optimisations were made and specialized data structures where used.
+\begin{figure}[ht]
+    \centering
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.4\linewidth, align=center]
+        \includegraphics[width=\linewidth]{modified_cluster_size.png}
+    \end{mdframed}
+    \caption{Clusters with modified size}
+    \label{fig:cluster_with_mod_sizes}
+\end{figure}
 
-The implemented clusters where then measured \ref{sec:measurements} based on the suggestions \ref{sec:clusterRating} provided by the ETH-Zurich and compared \ref{sec:measurements-cluster-analysis}. Additionally the results can now be exported into a JSON-File for further use.
+During tests with big cities the hierarchical clustering methods had a hight memory usage. To reduce the memory footprint \ref{sec:memory_usage} optimisations were made and specialized data structures were used.
+
+The created clusters were then measured \ref{sec:measurements} based on the suggestions \ref{sec:clusterRating} provided by the ETH-Zurich and compared \ref{sec:measurements-cluster-analysis}. Additionally the results can now be exported into a JSON-File for further use.
 
 To recombine the separated areas/districts to a new city another project at ETH-Zurich is currently working on a regrow algorithm \ref{sec:future_work}. 
