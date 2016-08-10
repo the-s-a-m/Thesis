@@ -1,4 +1,5 @@
 \chapter{Clustering Algorithms}
+\label{sec:clustering_algorithms}
 In the application CPlan the street network is generated as a graph as described in \ref{CPlan}. To separate and select areas with specific characteristics the networks have been analysed by machine learning clustering algorithms. In this section the different clustering algorithms are analysed and the generated results produced by our implementations in CPlan are compared.
 
 \section{K-Means}  \label{sec:K-Means}
@@ -14,7 +15,7 @@ The K-Means algorithm detects the clusters / partitions by measuring the euclide
 Because the K-Means algorithm can find local minima, this process needs to be executed more than once. The result with the best found solution will be selected.
 
 \subsection{Implementation}
-The added implementation in CPlan\citep{cPlan:2015} is an optimised K-Means version based on the paper \textit{An Efficient k-Means Clustering Algorithm: Analysis and Implementation} \cite{kmeans:2002} with a runtime of $O(n\ insert\ here)$
+The added implementation in CPlan \citep{cPlan:2015} is an optimised K-Means version named K-Means++. The idea of this algorithm is to select reasonable start centres to avoid many iterations.
 
 \subsection{Speed Optimization}
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement can be achieved by running the K-Means iterations in parallel. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the section Practical Task/Measurements \ref{sec:measurements};
