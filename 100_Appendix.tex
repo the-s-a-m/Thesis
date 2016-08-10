@@ -1,14 +1,59 @@
 \appendix
 \chapter{Applied in CPlan}
 \section{K-Means Clustering Applied}
-
-
+To apply centroid based clustering to a street network a specialized gui dialog was created where all parameters can be set. As you can see in figure \ref{fig:applied_k-means_GUI}.
+\begin{itemize}
+    \item If 'Show Visualisation' is activated the clustering process will be visualized.
+    \item The counter 'Number of Tries' represents the count how often the clustering algorithm will be executed to extract the best result.
+    \item 'Iterations per Try' describe how many iterations are maximal made per try. 
+    \item If 'Shortest Path' is selected a shortest path algorithm will be applied after the centroid were set.
+\end{itemize}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.47\linewidth]{k-means_clustering_applied.png}
+    \caption{This gui dialog represents the parameters which could be applied to the K-Mean clustering algorithm.}
+    \label{fig:applied_k-means_GUI}
+\end{figure}
 
 \section{Hierarchical Clustering Applied}
+A specialized gui was created to set parameters for the hierarchical clustering analysis. The reduction formula can be selected at the top \ref{fig:applied_HC_clustering_GUI}.
+\begin{itemize}
+    \item If the option 'Show Slider Dialog' is selected the cluster count can be changed in an additional dialog \ref{fig:applied_HC_clustering_slider_GUI}.
+    \item The field 'Number of Clusters' represents the number of clusters which will be generated.
+    \item If 'Modify Output' is selected always the biggest cluster will be split instead as the hierarchy was created.
+\end{itemize}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.47\linewidth]{HC_clustering_applied.png}
+    \caption{This gui dialog represents the parameters which could be applied to the hierarchical clustering algorithm.}
+    \label{fig:applied_HC_clustering_GUI}
+\end{figure}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.47\linewidth]{HC_clustering_applied_slider.png}
+    \caption{This gui dialog represents the optional 'Slide Dialog' which allows direct changes of the cluster count.}
+    \label{fig:applied_HC_clustering_slider_GUI}
+\end{figure}
 
+\pagebreak
 \section{Cluster Measurements}
+To compare clusters the process was visualized for this thesis. A dialog allows to select two clusters and compare the measured results \ref{fig:applied_clustering_analysis_GUI}. The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\linewidth]{cluster_applied_compare.png}
+    \caption{This gui dialog allows to select two clusters and to compare the measured values.}
+    \label{fig:applied_clustering_analysis_GUI}
+\end{figure}
 
+\begin{figure}[ht]
+    \centering
+    \begin{mdframed}[style=border]
+        \includegraphics[width=\linewidth]{cluster_applied_compare_visualized.png}
+    \end{mdframed}
+    \caption{Main view with marked from the 'Cluster Analysis' dialog}
+    \label{fig:applied_clustering_analysis_visualized_GUI}
+\end{figure}
 
