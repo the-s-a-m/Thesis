@@ -1,0 +1,17 @@
+\section{Clustering Algorithms}
+\label{sec:clustering_algorithms}
+In the application CPlan the street network is generated as a graph as described in \ref{CPlan}. To separate and select areas with specific characteristics the networks have been analysed by machine learning clustering algorithms. In this section the different clustering algorithms are discussed and the generated results produced by the implementation for this thesis in CPlan are compared.
+
+\subsection{K-Means}
+\label{sec:K-Means}
+\subsubsection{Description}
+The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach:
+
+\begin{enumerate}
+    \item A number of points are inserted into the graph and used as centroids.
+    \item All graph points are assigned to their nearest centroids.
+    \item The centroids are moved to the center of their assigned graph points.
+    \item Until the maximum number of iterations is reached this process is repeated starting by loop item 2.
+\end{enumerate}
+
+Because the K-Means algorithm can find local minima, this process needs to be executed more than once. The result with the best found solution will be selected.

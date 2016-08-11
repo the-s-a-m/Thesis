@@ -1,0 +1,20 @@
+\chapter{Method}
+
+\section{Concept}
+
+\subsection{K-Means}
+Points are assigned to different clusters by using the minimal distances. The following approach is used:
+
+\begin{enumerate}
+    \item First, random centroids are created.
+    \item Then every point is assigned to the nearest centroid by calculating the euclidean distance.
+    \item Then centroids are moved to the center of their assigned graph points.
+    \item Till no point is moved or the maximum iterations is reached the process is repeated from item 2.
+\end{enumerate}
+
+\subsubsection{Connected Cluster Problem} \label{sec:kmenasProblem}
+The K-Mean algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters.
+
+\subsubsection{Connected Cluster Approach} \label{sec:connected_cluster_approach}
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall). These algorithms are used for the hierarchical clustering algorithms \ref{sec:shortest_path}. 
+
