@@ -15,3 +15,50 @@ The K-Means algorithm detects the clusters/partitions by measuring the euclidean
 \end{enumerate}
 
 Because the K-Means algorithm can find local minima, this process needs to be executed more than once. The result with the best found solution will be selected.
+
+
+\section{Cluster Analysis}
+\label{sec:clusterRating}
+To evaluate the generated clusters different measurement methods are necessary. Jun. Prof. Dr.  Reinhard König from the ETH Zurich provided the following parameters.
+\newline
+\begin{itemize}
+    \item Geometry based measurements:
+    \begin{itemize}
+        \item Area based on the convex hull of the cluster area
+        \item Total length of the streets
+        \item Ratio between the area and total length
+        \item Distribution variance of the street length
+        \item Distribution variance of the street angles
+        \item Ratio between street block size and surrounding circle area (minima, maxima, mean)
+    \end{itemize}
+    \item Centrality-based measurements normalized by the street count (minima, maxima, mean):
+    \begin{itemize}
+        \item In-Centrality (Integration)
+        \item In-Betweenness-Centrality (Choice)
+    \end{itemize}
+\end{itemize}
+The centrality based ratings and the block area calculation were pre implemented in CPlan \ref{CPlan}. Additional a GUI to compared and stored the results as JSON-File for each generated cluster has been added.
+
+Some initial measurements and comparisons are made in the cluster analysis chapter \ref{sec:measurements-cluster-analysis}.
+
+\subsubsection{Block Area}
+In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. First the block area is calculated and then the result is divided by the circumscribed circle area.
+
+\subsubsection{Centrality}
+The parameter \textit{Integration} describes the closeness centrality. This means the normed sum of the distances from all other vertex based on te shortest path algorithm is calculated. The vertex with the lowest value must be the most central.
+
+With \textit{Choice} the betweenness centrality is described. The approach is to calculate the shortest path between every vertex. Every time a given vertex is visited the betweenness-centrality value of the vertex is raised by one. As a result the highest measured value indicates for a vertex to be in or near the centre of a graph.
+
+\subsubsection{Variance}
+The parameter variance describes the sigma of the normal curve of the distribution function.
+First of all the measured data is round to fit into a distribution function \ref{eq:distribution_function}. Then the expected value \ref{eq:expected_value} and the variance \ref{eq:variance} is calculated. Finally the standard deviation (square root of V(x)) is computed \ref{eq:standard_deviation}.
+\begin{align}
+\label{eq:distribution_function} 
+F(x) &= P(X \leq x) =  \sum_{t\in{X}, t\leq{x}}{f(t)} \\
+\label{eq:expected_value} 
+E(x) &= \int\limits_{-\infty}^\infty x * f(x)dx \\
+\label{eq:variance} 
+V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
+\label{eq:standard_deviation} 
+\sigma(x) &= \sqrt{V(x)}
+\end{align}

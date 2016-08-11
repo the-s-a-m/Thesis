@@ -1,14 +1,12 @@
 \chapter{Background}
-
-\section{Street Network Grammars}
 To analyse or generate street networks grammars can be used. In this chapter \textit{Shape Grammar}, \textit{L-Systems} and \textit{Space Syntax} are described and analysed. Because the application CPlan \ref{CPlan} did not provide the ability to use grammars and our customer preferred a graph based approach all later described algorithms are based on an unidirectional graph.
 
-\subsection{Shape Grammar} \label{sec:shape_grammar}
+\section{Shape Grammar} \label{sec:shape_grammar}
 The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}.
 
 A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
-\subsubsection{Shape Grammar Definition}
+\subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
 A Shape Grammar is defined over an alphabet of shapes and generated n-dimensional shapes according to \citep{shapeGrammars:1972}.
 \begin{quote} 
@@ -26,7 +24,7 @@ A Shape Grammar is defined over an alphabet of shapes and generated n-dimensiona
     \end{enumerate}
 \end{quote}
 
-\subsubsection{Selection Rules}
+\subsection{Selection Rules}
 \label{sec:Shape_Grammar_Selection_Rules}
 A painting is generated based on an undefined count of shape rules. This requires a mechanism to select a correct shape. The depth is defined by levels which are being assigned during generation based on their rules: According to \citep{shapeGrammars:1972}.
 \begin{displayquote}
@@ -42,16 +40,16 @@ A painting is generated based on an undefined count of shape rules. This require
     \end{enumerate}
 \end{displayquote}
 
-\subsubsection{Painting Rules}
+\subsection{Painting Rules}
 \label{sec:Shape_Grammar_Painting_Rules}
 Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by the common operators. An example can be viewed in figure \ref{fig:shape_grammar_gen_specifications}
 
-\subsubsection{Limiting Shapes}
+\subsection{Limiting Shapes}
 \label{sec:Shape_Grammar_Limiting_Shapes}
 These shapes define a limiting area on the canvas, where shape painting is allowed. 
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the limiting shape defines the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape.
 
-\subsubsection{Example}
+\subsection{Example}
 \begin{figure}[!h]
     \centering
     \includegraphics{shape_grammar_generativ_spec.jpg}
@@ -71,7 +69,7 @@ Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally
 \end{figure}
 
 \newpage
-\subsubsection{Street Generation}
+\subsection{Street Generation}
 In the following section we debate the usefulness of generating street networks by shape grammar. 
 \paragraph{Features}
 \begin{itemize}
@@ -79,7 +77,7 @@ In the following section we debate the usefulness of generating street networks 
     \item With R-Shapes windows and high detail 3D-Models can be generated easily.
 \end{itemize}
 
-\paragraph{Problems}
+\subsection{Problems}
 \begin{itemize}
     \item The given methods generate monotonous streets in most cases. 
     \item A huge number of R-Shapes is required to generate a useful street network.
@@ -88,7 +86,7 @@ In the following section we debate the usefulness of generating street networks 
 \end{itemize}
 
 \pagebreak
-\subsection{L-Systems} \label{sec:L-Systems}
+\section{L-Systems} \label{sec:L-Systems}
 L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant life: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
 
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
@@ -114,12 +112,12 @@ If the example of listing \ref{eq:lsystem example 2} was applied to the module c
 A way to generate images with L-Systems is to use a LOGO-style turtle as a graphical model. Certain modules of the L-System are interpreted as commands to this turtle.
 
 \pagebreak
-\subsection{Space Syntax} \label{sec:space_syntax}
+\section{Space Syntax} \label{sec:space_syntax}
 The axial line-based space syntax was first introduced in 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper \textit{Space syntax} \citep{spaceSyntax:1976}. The grammar is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
 
 The grammar was later extended and integrated into \textit{Geographic Information System} (GIS) as point-based space syntax (graph). This systems are used to plan and analyse the human interaction with the environment.
 
-\subsubsection{Axial line-based space syntax and limitations}
+\subsection{Axial line-based space syntax and limitations}
 In space syntax streets are represented by axial lines. 
 \textit{"Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces."} \citep{integrationSpaceSyntaxGIS:2002}
 This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can by broken into segments at the intersections \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn till the hole space is covered.
@@ -143,7 +141,7 @@ Axial maps have many limitations. First the complexity to create an axial map is
     \label{fig:SpaceSyntaxAxialMap}
 \end{figure}
 
-\subsubsection{Point-based space syntax}
+\subsection{Point-based space syntax}
 A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited the visitor can decide which direction he will travel next. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph based approach.
 
 \begin{figure}[h]
@@ -163,5 +161,5 @@ A point-based space syntax is a decision based approach as described by Bin Jian
     \label{fig:space_syntax_gis}
 \end{figure}
 
-\paragraph{Comparison with CPlan}
+\subsection{Comparison with CPlan}
 The application CPlan \ref{CPlan} does handle the street networks as graphs. As a result the same measurements methods can be applied as described for the point-based space syntax. The clustering algorithms later discussed \ref{sec:clustering_algorithms} are based on vertex/points and unidirectional edges between the points.
