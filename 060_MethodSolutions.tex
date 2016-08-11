@@ -1,6 +1,5 @@
 \pagebreak
 \section{Solutions}
-
 \subsection{Tree Creation}
 
 
@@ -15,6 +14,7 @@ Additional calculation time is needed for the shortest path algorithm. The diffe
 \subsubsection{Speed Optimization}
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement was  achieved by running the K-Means iterations in parallel. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements};
 
+\pagebreak
 \subsection{WPGMA / UPGMA}
 \subsubsection{Memory usage} \label{sec:memory_usage}
 The most trivial solution would be to store the distances as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. For \acrshort{UPGMA} and \acrshort{WPGMA} this matrix has to be extended so it also includes the cached distances between clusters.
@@ -71,6 +71,7 @@ To create relatively equally sized clusters from the resulted hierarchy of a hie
     \caption{Clustered street network of Weimar without \ref{fig:unmodified_cluster_size} or with \ref{fig:modified_cluster_size} cluster size modification. (Cluster count = 18, Reduction Formula = \acrshort{UPGMA})}
 \end{figure}
 
+\pagebreak
 \subsection{CPlan Improvements}
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This method creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
