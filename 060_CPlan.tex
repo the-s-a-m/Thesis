@@ -1,6 +1,6 @@
-\chapter{CPlan}\label{CPlan}
+\section{CPlan}\label{CPlan}
 CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The goal of this application is to generate/grow street networks dynamically and extend these networks with buildings. 
-\section{Improvements}
+\subsection{Improvements}
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This method creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
@@ -8,11 +8,11 @@ CPlan is a tool written by the Department of Architecture of the ETH-Zurich. The
     \item Line intersections of the class Geometry2D was not correct detected an therefore corrected. 
 \end{itemize}
 
-\section{Genetic algorithms}
+\subsection{Genetic algorithms}
 The ETH-Zurich already has genetic optimizations algorithms based on trees. Unfortunately they don't have a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles. This allowed an easier and faster work process with tree based structures.
 
 \pagebreak
-\section{Normalising Street Networks}
+\subsection{Normalising Street Networks}
 While testing clustering algorithms on the street network of Zurich one rough spot of this network was found: Not all streets, which lead to a junction are connected to it. As shown in figure \ref{fig:zuerich_error} floating streets exist (highlighted in purple). No end of any of these highlighted streets is connected to the rest of the street network.
 
 To handle those floating streets a network normalisation method was developed. The normalisation snaps (unites) all junctions and street end points, which are positioned close together, into one common junction. The result of this normalisation is shown in figure \ref{fig:zuerich_fixed}.
@@ -37,7 +37,7 @@ To handle those floating streets a network normalisation method was developed. T
     \caption{Street network of Zurich without (\ref{fig:zuerich_error}) and with (\ref{fig:zuerich_fixed}) normalisation}
 \end{figure}
 
-\section{Cluster colouring}
+\subsection{Cluster colouring}
 To visualize the clustering of a street network in this thesis, clusters are marked with different colours. This section describes the details of this cluster colouring.
 
 The result of each clustering algorithm, which was implemented in this thesis, represents a cluster as set of vertices. Each of these vertices is a junction in the street network. The visualisation only draws streets but not the junctions, as the intersection of streets are intuitively seen as junctions. To colour the different clusters the following approach was taken:
