@@ -1,5 +1,11 @@
 \chapter{Method}
 \section{Concept}
+\subsection{Tree Creation}
+To create a tree from an existing graph the angle and distance should be enough data to fully represent a graph. The angle can be described as range from 0 to 360 degrees or 0 to 2$\Pi$
+
+Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
+
+\pagebreak
 \subsection{K-Means}
 Points are assigned to different clusters by using the minimal distances. The following approach is used:
 
@@ -14,10 +20,24 @@ Points are assigned to different clusters by using the minimal distances. The fo
 The K-Mean algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters.
 
 \subsubsection{Connected Cluster Approach} \label{sec:connected_cluster_approach}
-To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall). These algorithms are used for the hierarchical clustering algorithms \ref{sec:shortest_path}. 
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall). These algorithms are used for the hierarchical clustering algorithms \ref{sec:shortest_path}.
 
+\pagebreak
+\subsection{Hierarchical Clustering}
+%TODO Short version what PGMA does
+
+\subsubsection{Hight Memory Usage}
+Because WPGMA / UPGMA needs to store all data the memory footprint would be very high. %TODO Describe why exacter.
+
+\subsubsection{Output Modification}
+Idea of output modification
+%TODO Describe Idea of output modification!
+
+\pagebreak
 \subsection{Cluster Analysis}
+To measure and compare the different areas they should be characterized. Therefore some districts with noticeable characteristics haven been selected an compared to each other.
 
+%TODO compare corretly only between images not measurements!
 
 \subsubsection{Historic District}
 \label{sec:historyDistinct}

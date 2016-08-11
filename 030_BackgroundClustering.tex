@@ -1,13 +1,20 @@
 \section{All Pairs Shortest Path} \label{sec:shortest_path}
+%TODO Describe here what an all pair shortest path algorithm is dooing?! not where it is used!
 As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
 %TODO: FW, Dijkstra, FW_GPU?
 
+\subsection{Dijkstra}
+%TODO Describe dijkstra
+
+\subsection{Floyd–Warshall}
+%TODO Describe floyd warshall --> Decision of implementation erst in Concept
+
 \section{K-Means Clustering}
 \label{sec:K-Means}
-The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions. The algorithm uses the following approach:
+The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions \cite{k-means++:2007}. The algorithm uses the following approach:
 
 \begin{enumerate}
-    \item A number of points are inserted into the graph and used as centroids.
+    \item A number of points are inserted randomly into the graph and used as centroids.
     \item All graph points are assigned to their nearest centroids.
     \item The centroids are moved to the center of their assigned graph points.
     \item Until the maximum number of iterations is reached this process is repeated starting by loop item 2.
@@ -16,12 +23,15 @@ The K-Means algorithm detects the clusters/partitions by measuring the euclidean
 \subsection{Local minima problem}
 Because the K-Means algorithm can find local minima, this process needs to be executed more than once. The result with the best found solution will be selected.
 
+\subsection{K-Means++}
+The K-Means algorithm was later extended to set reasonable start centroids. This extensions allows to run a K-Means run with $O(log\ k)$ \cite{k-means++:2007}.
+
 \pagebreak
 \FloatBarrier
 \section{Hierarchical Clustering} 
 \label{sec:hierarchicalClustering}
 \subsection{Introduction}
-Hierarchical clustering, also known as connectivity based clustering, was the next applied approach. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
+Hierarchical clustering is also known as connectivity based clustering. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
 The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create 1 to n clusters, where n is the number of input nodes.
 
@@ -137,7 +147,7 @@ The centrality based ratings and the block area calculation were pre implemented
 
 Some initial measurements and comparisons are made in the cluster analysis chapter \ref{sec:measurements-cluster-analysis}.
 
-\subsection{Block Area}
+\subsection{Block Area Ratio}
 In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. First the block area is calculated and then the result is divided by the circumscribed circle area.
 
 \subsection{Centrality}
