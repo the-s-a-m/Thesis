@@ -7,7 +7,7 @@
 To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is an optimised K-Means version named K-Means++. The idea of this algorithm is to select reasonable start centres to avoid many iterations.
 
 \subsection{Connected Cluster Implementation} \label{sec:K-Means_shortest_path}
-As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \acrlong{APSP} (\acrshort{APSP}) algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:kmenasProblem} are removed.
+As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:kmenasProblem} are removed.
 
 Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Measurements \ref{sec:measurements}.
 
