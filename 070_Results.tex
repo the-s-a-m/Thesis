@@ -1,14 +1,14 @@
 \pagebreak
-\section{Results}
-\subsection{Tree Creation}
+\chapter{Results}
+\section{Tree Creation}
 
 
-\subsection{K-Means}
+\section{K-Means}
 The K-Means algorithm assigns points by using random centroids and assign all nearest points to them. Then the centroids are moved into the centre of their assigned points. This process is repeated till no point is moved.
 
 The implementation in CPlan \ref{CPlan} produced the following image \ref{fig:KmeansGenerated} based on the city of Weimar. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
 
-\subsubsection{Connected Cluster Problem}
+\subsection{Connected Cluster Problem}
 As presumed the resulting subgraph had unexpected transitions between clusters. This means some clusters were not connected. In the image \ref{fig:KmeansProblem} the result can be observed in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
 
 \begin{figure}[!ht]
@@ -20,7 +20,7 @@ As presumed the resulting subgraph had unexpected transitions between clusters. 
         \label{fig:KmeansProblem}}
 \end{figure}
 
-\subsubsection{Connected Cluster Results} \label{sec:K-Means_shortest_path}
+\subsection{Connected Cluster Results} \label{sec:K-Means_shortest_path}
 To problem was then solved by using a \gls{APSP} algorithm like Dijkstra or Floyd-Warshall. In the following figure \ref{fig:Kmeansshortestp} every cluster is connected.
 
 \begin{figure}
@@ -39,7 +39,7 @@ To problem was then solved by using a \gls{APSP} algorithm like Dijkstra or Floy
     \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
 \end{figure}
 
-\subsection{Single-Linkage Result}
+\section{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis of Weimar using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
 The problem is caused by the used reduction formula. Single linkage uses the minimal distance between all nodes of the compared clusters. This leads to the creation of clusters, where all roads which connect two clusters are long. In a city, where there are multiple (direct and indirect) connections from one junction to another most of the time, this tends to create one-node clusters for nodes, which are connected to the city by a single long road.
@@ -52,7 +52,7 @@ The problem is caused by the used reduction formula. Single linkage uses the min
     \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
 \end{figure}
 
-\subsection{UPGMA and WPGMA Result}
+\section{UPGMA and WPGMA Result}
 \label{sec:UPGMAandWPGMA}
 %TODO: Add figure
 The figures xxx and xxx show the result of hierarchical cluster analysis using the \acrshort{UPGMA}, or respectively the \acrshort{WPGMA} reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
