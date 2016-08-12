@@ -1,14 +1,15 @@
 \chapter{Conclusion}
-In this thesis different cluster analysis algorithms were compared and extended on a graph representation of a street networks.
+In this thesis different cluster analysis algorithms were compared and implemented for graph representations of street networks.
 
-The centroid based K-Means algorithm \ref{sec:K-Means} produced reasonable clusters, unfortunately with wrong assignments. Because the assignments were vertex based not every cluster was connected. To correct this error a shortest path algorithm was used \ref{sec:K-Means_shortest_path} to get connected clusters.
+The centroid based K-Means algorithm \ref{sec:K-Means} produced reasonable clusters. Because the used distances were vertex based (euclidean distance, not graph distance) not every cluster was a connected subgraph. To correct this error a shortest path algorithm was used \ref{sec:K-Means_shortest_path} to generate connected clusters using the centroids found by the K-Means algorithm.
 
-For hierarchical algorithms \ref{sec:hierarchicalClustering} there are many different reduction formula algorithms. First the Single Linkage algorithm produced one huge cluster in the middle and many at the border. This algorithm used the minimal distances of all nodes of the compared clusters and therefore in a city with multiple connections one big cluster in the middle was created.
+Hierarchical clustering \ref{sec:hierarchicalClustering} was implemented to make up for this deficit, as it can create clusters using graph distances. Hierarchical clustering was implemented with three different reduction formulae. Firstly the Single Linkage reduction formula produced one huge cluster in the middle and many small ones at the border. This formula uses the minimal distances of all nodes of the compared clusters and because in a city most nodes are connected with multiple paths this result was created.
 
-Then the reduction algorithms WPGMA (Weighted Pair Group Method with Arithmetic mean) calculates the average distances between two clusters. The result was many clusters with different sizes. To resolve this issue the UPGMA (Unweighted PGMA) algorithm was tested where all distances are equal. The result was better but the cluster size differences were still too big.
+%TODO: Reword
+Secondly the reduction formula \gls{UPGMA} calculates the average distances between two clusters. The result was many clusters with different sizes. Lastly to resolve this issue the \gls{WPGMA} algorithm was tested where all distances are equal. The result was better but the cluster size differences were still too big.
 
-To produce cluster with equal sizes the output was then modified. This means instead of splitting the hierarchy as it was created always the biggest cluster (with the most notes) was split. The modification leads to better balanced clusters as preferred in city clustering.
+To produce clusters of equal size the output was then modified. This means instead of splitting the hierarchy in the same order as it was created, always the biggest cluster (with the most notes) was split. The modification leads to better balanced cluster sizes as preferred in city clustering.
 
-During tests with big street networks high memory usage was a problems. As a result three optimisations were made \ref{sec:memory_usage}. First, float precision was used. Second, a data structure which does not store value twice was developed. Third the resulting cluster distances were saved at the position of the resource positions.
+During tests with big street networks high memory usage was a problem. As a result three optimisations were made \ref{sec:memory_usage}. Firstly single-precision floating-point numbers were used. Secondly a data structure which does not store redundant values was introduced. Lastly the cached cluster distances were saved at no longer used positions of node distance matrix.
 
-To rate the created clusters many graph analysis parameters were implemented \ref{sec:measurements}. The values can be compared and exported into a JSON-file for later use.
+To rate the created clusters many graph analysis parameters were implemented \ref{sec:measurements}. The clusters and values can be compared and exported into a JSON-file for later use.

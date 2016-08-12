@@ -1,17 +1,6 @@
-\section{All Pairs Shortest Path} \label{sec:shortest_path}
-%TODO Describe here what an all pair shortest path algorithm is dooing?! not where it is used!
-As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
-%TODO: FW, Dijkstra, FW_GPU?
-
-\subsection{Dijkstra}
-%TODO Describe dijkstra
-
-\subsection{Floyd–Warshall}
-%TODO Describe floyd warshall --> Decision of implementation erst in Concept
-
 \section{K-Means Clustering}
 \label{sec:K-Means}
-The K-Means algorithm detects the clusters/partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions \cite{k-means++:2007}. The algorithm uses the following approach:
+The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions \cite{k-means++:2007}. The algorithm uses the following approach:
 
 \begin{enumerate}
     \item A number of points are inserted randomly into the graph and used as centroids.
@@ -125,7 +114,7 @@ Using this method it is possible to create 1 to $n$ clusters from any hierarchy,
 
 \section{Cluster Analysis}
 \label{sec:clusterRating}
-To evaluate the generated clusters different measurement methods are necessary. Jun. Prof. Dr.  Reinhard König from the ETH Zurich provided the following parameters.
+To evaluate the generated clusters different measurement methods are necessary. Jun. Prof. Dr.  Reinhard König from the ETH Zurich proposed the following parameters.
 \newline
 \begin{itemize}
     \item Geometry based measurements:
@@ -168,3 +157,7 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
 \label{eq:standard_deviation} 
 \sigma(x) &= \sqrt{V(x)}
 \end{align}
+
+\section{All Pairs Shortest Path} \label{sec:shortest_path}
+%TODO rewrite
+As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
