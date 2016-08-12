@@ -1,12 +1,12 @@
 \section{K-Means Clustering}
 \label{sec:K-Means}
-The K-Means algorithm detects the clusters / partitions by measuring the euclidean distance between the cluster centroids and the position of the street junctions \cite{k-means++:2007}. The algorithm uses the following approach:
+The K-Means algorithm detects clusters / partitions by measuring the euclidean distance between the cluster centroids and the features derived from the input data \cite{k-means++:2007}. The algorithm uses the following approach:
 
 \begin{enumerate}
-    \item A number of points are inserted randomly into the graph and used as centroids.
-    \item All graph points are assigned to their nearest centroids.
-    \item The centroids are moved to the center of their assigned graph points.
-    \item Until the maximum number of iterations is reached this process is repeated starting by loop item 2.
+    \item $k$ data features are used as initial centroids ($k$ is the number of created clusters)
+    \item Each data entry is assigned to its nearest centroid
+    \item The centroids are moved to the mean (center) of the features of all assigned data entries
+    \item Until the maximum number of iterations is reached this process is repeated starting with item 2
 \end{enumerate}
 
 \subsection{Local minima problem}
@@ -19,13 +19,12 @@ The K-Means algorithm was later extended to set reasonable start centroids. This
 \FloatBarrier
 \section{Hierarchical Clustering} 
 \label{sec:hierarchicalClustering}
-\subsection{Introduction}
 Hierarchical clustering is also known as connectivity based clustering. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
-The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create 1 to n clusters, where n is the number of input nodes.
+The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create $1$ to $n$ clusters, where $n$ is the number of input nodes.
 
 \subsection{Strategy}
-There are generally two main strategies for hierarchical clustering:
+As described in \cite{clustering:2005}, there are generally two main strategies for hierarchical clustering:
 
 \begin{itemize}
     \item \textbf{Agglomerative}: Bottom up strategy. In the beginning each node is an own cluster. Clusters are combined until only a single cluster remains.
