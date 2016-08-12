@@ -6,7 +6,7 @@ Two approaches exist to define angles. One is to separate the circle range into 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\textwidth]{tree-generation-decision.png}
-    \caption{Degree separation \label{fig:tree-generation-decision}}
+    \caption{Degree separation method \label{fig:tree-generation-decision}}
 \end{figure}
 
 Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
@@ -50,37 +50,39 @@ To measure and compare the different areas they should be characterized. Therefo
 \label{sec:historyDistinct}
 This district is characterised by a hight count of short streets with many connections. As a result the block areas are small and the block count per area is high. Additionally the mean angles are hight and the density (convex hull area divided by total street length) is low. This characteristics can be observed in the image \ref{fig:historic_district}.
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
-    \begin{subfigure}[b]{0.6\textwidth}
-        \begin{mdframed}[style=mdthight]
-            \includegraphics[width=\linewidth]{historic_district.png}
-        \end{mdframed}
-        \caption{Historic District of Weimar}
-        \label{fig:historic_district}
-    \end{subfigure}
-    \par\medskip
-    \begin{subfigure}[b]{0.6\textwidth}
-        \begin{mdframed}[style=mdthight]
-            \includegraphics[width=\linewidth]{business_district.png}
-        \end{mdframed}
-        \caption{Business District of Weimar}
-        \label{fig:business_district}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.6\textwidth}
-        \begin{mdframed}[style=mdthight]
-            \includegraphics[width=\linewidth]{outskirts_district.png}
-        \end{mdframed}
-        \caption{Outskirts Area of Weimar}
-        \label{fig:outskirts_district}
-    \end{subfigure}
-    \caption{Different areas of Weimar. Historic District (\ref{fig:historic_district}), Business District (\ref{fig:business_district}) and Outskirts Area (\ref{fig:outskirts_district})}
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.4\textwidth, align=center]
+        \includegraphics[width=\linewidth]{district_historic.png}
+    \end{mdframed}
+    \caption{Historic District of Weimar}
+    \label{fig:historic_district}
 \end{figure}
 
-\subsection{Business/Manhattan District}
+\FloatBarrier
+\subsection{Business/Manhattan District} 
 \label{sec:businessDistinct}
-If the relative block area (block area divided by surrounding circle) is high the given area is probably a business/Manhattan district. Most of the parameters are in the midrange. The image \ref{fig:business_district} with the measured data in table \ref{sec:ClusterAnalysisMeasurements} in column C2, is an example area of this district/area type.
+If the relative block area (block area divided by surrounding circle area) is high the given subgraph is probably a business/Manhattan district. The mean connection count and the density compared with a historic district \ref{sec:historyDistinct} should be much higher. An example business district can be found on the map of Weimar \ref{fig:business_district}.
 
+\begin{figure}[!ht]
+    \centering
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.4\textwidth, align=center]
+        \includegraphics[width=\linewidth]{district_business.png}
+    \end{mdframed}
+    \caption{Business District of Weimar}
+    \label{fig:business_district}
+\end{figure}
+
+\FloatBarrier
 \subsection{Outskirts Area}
 \label{sec:outskits}
-These areas are characterized by extreme long streets and a low connection count. As a result the density is extremely high as you can see in the example \ref{fig:outskirts_district} and the measured data in table \ref{sec:ClusterAnalysisMeasurements} in column C3. The block count is compared with a business or historic district exceptional low.
+These areas are characterized by extreme long streets and a low connection count. As a result the density is very high. The block count is compared with a business or historic district exceptional low. In the image \ref{fig:outskirts_district} these characteristics can be found.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.4\textwidth, align=center]
+        \includegraphics[width=\linewidth]{district_outskirts.png}
+    \end{mdframed}
+    \caption{Outskirts Area of Weimar}
+    \label{fig:outskirts_district}
+\end{figure}
