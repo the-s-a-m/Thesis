@@ -1,6 +1,6 @@
 \section{K-Means Clustering}
 \label{sec:K-Means}
-The K-Means algorithm detects clusters / partitions by measuring the euclidean distance between the cluster centroids and the features derived from the input data \cite{k-means++:2007}. The algorithm uses the following approach:
+The K-Means clustering algorithm detects clusters / partitions by measuring the euclidean distance between the cluster centroids and the features derived from the input data \cite{k-means++:2007}. The algorithm uses the following approach:
 
 \begin{enumerate}
     \item $k$ data features are used as initial centroids ($k$ is the number of created clusters)
@@ -23,9 +23,9 @@ TODO
 \FloatBarrier
 \section{Hierarchical Clustering} 
 \label{sec:hierarchicalClustering}
-Hierarchical clustering is also known as connectivity based clustering. This area of algorithms clusters nodes together, which are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
+Hierarchical clustering also known as connectivity based clustering is an area of algorithms, which clusters nodes together that are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
-The result of a hierarchical clustering algorithm is a tree (or hierarchy), hence the name. This result can be used to create $1$ to $n$ clusters, where $n$ is the number of input nodes.
+The result of a hierarchical clustering algorithm is a tree also called hierarchy, hence the name. This result can be used to create $1$ to $n$ clusters, where $n$ is the number of data entries. Those data entries are in some cases also called nodes in this document.
 
 \subsection{Strategy}
 As described in \cite{clustering:2005}, there are generally two main strategies for hierarchical clustering:
@@ -162,5 +162,8 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 * f(x)dx \\
 \end{align}
 
 \section{All Pairs Shortest Path} \label{sec:shortest_path}
-%TODO rewrite
-As already stated, the implementations of hierarchical clustering algorithms developed during this thesis use graph distances. The calculation of the shortest path between two nodes every time it is needed would not be viable, because these distances have to be accessed multiple times. So it is necessary to calculate and store them in advance using an \gls{APSP} algorithm.
+\Gls{APSP} algorithms calculate the shortest path between any two vertices in a graph. A common \acrshort{APSP} algorithm is the algorithm from Floyd and Warshall. It is very simple and directly yields the distance matrix between any two vertices in $O(|V|^3)$ time complexity even if the graph has edges of negative weight.
+
+The \gls{SSSP} algorithm from Dijkstra can also be used as an \acrshort{APSP} when starting a separate run of it from each vertex. A single execution of the Dijkstra algorithm has a worst case performance of $O(|E|+|V|log|V|)$. So the described strategy for \acrshort{APSP} runs in $O(|V||E| + |V|^2 log|V|)$ time complexity. This shows that for graphs with low density this is more performant than Floyd-Warshall. Furthermore the different instances of the algorithm can be executed in parallel. The Dijkstra algorithm does in general only work for graphs with exclusively non-negative edge weights.
+
+%TODO reference?
