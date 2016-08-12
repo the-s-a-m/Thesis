@@ -1,9 +1,17 @@
 \chapter{Concept}
 \section{Tree Creation}
-To create a tree from an existing graph the angle and distance should be enough data to fully represent a graph. The angle can be described as range from 0 to 360 degrees or 0 to 2$\Pi$
+To create a tree from an existing graph the angle and distance should be enough data to fully represent a graph.
+Two approaches exist to define angles. One is to separate the circle range into minus and plus 180 degrees. This would allow to step straight forward with the angle 0 degree (Figure \ref{fig:tree-generation-decision} left). Another approach is to use the range from 0 to 360 degrees. In this case straight forward would be 180 degrees (Figure \ref{fig:tree-generation-decision} right).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{tree-generation-decision.png}
+    \caption{Degree separation \label{fig:tree-generation-decision}}
+\end{figure}
 
 Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
 
+\FloatBarrier
 \pagebreak
 \section{K-Means}
 Points are assigned to different clusters by using the minimal distances. The following approach is used:
