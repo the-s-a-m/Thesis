@@ -1,5 +1,6 @@
 \chapter{Concept}
 \section{Tree Creation}
+\label{sec:tree_creation_angle}
 The ETH-Zurich already has genetic optimizations algorithms based on trees. Unfortunately they don't have a working solution to produce a tree from the existing graph. The new created tree generation algorithm produces a relative tree with absolute angles. This allowed an easier and faster work process with tree based structures.
 
 To create a tree from an existing graph the angle and distance should be enough data to fully represent a graph.
@@ -11,7 +12,7 @@ Two approaches exist to define angles. One is to separate the circle range into 
     \caption{Degree separation method \label{fig:tree-generation-decision}}
 \end{figure}
 
-Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
+Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. During recreation of a graph this could be considered.
 
 \FloatBarrier
 \pagebreak

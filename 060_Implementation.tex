@@ -1,7 +1,9 @@
 \pagebreak
 \chapter{Implementation}
 \section{Tree Creation}
+To create a tree from a graph there are different approaches to describe the angles as mentioned in section \ref{sec:tree_creation_angle}. For the implementation in CPlan the used approach was the method two where straight forward is described with +180 degrees. If only positive angles exist the absolute value of a given graph would also generate a correct result.
 
+Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
 
 \section{K-Means}
 To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is an optimised K-Means version named K-Means++. The idea of this algorithm is to select reasonable start centres to avoid many iterations.

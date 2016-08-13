@@ -1,8 +1,27 @@
 \pagebreak
 \chapter{Results}
 \section{Tree Creation}
+A tree is generated from a certain area. To display and compare the differences a graph recreation algorithm was written. Therefore the printed result is also a nearly equal graph. Figure \ref{fig:tree_example} is a selected cluster before the tree creation. Figure \ref{fig:tree_example_after} is the recreated graph from the tree. The grid behind the recreated subgraph is rotated. This rotation depends on the angle of the start edge.
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.55\textwidth}
+        \includegraphics[width=\textwidth]{tree_before.png}
+        \caption{Subgraph of Weimar}
+        \label{fig:tree_example}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}[b]{0.55\textwidth}
+        \includegraphics[width=\textwidth]{tree_after.png}
+        \caption{Recreated Subgraph from tree of Weimar}
+        \label{fig:tree_example_after}
+    \end{subfigure}
+    \caption{Subgraph before \ref{fig:tree_example} and after \ref{fig:tree_example_after} tree creation}
+\end{figure}
 
 
+
+\FloatBarrier
 \section{K-Means}
 The K-Means algorithm assigns points by using random centroids and assign all nearest points to them. Then the centroids are moved into the centre of their assigned points. This process is repeated till no point is moved.
 
