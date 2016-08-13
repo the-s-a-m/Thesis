@@ -29,7 +29,11 @@ Points are assigned to different clusters by using the minimal distances. The fo
 The K-Mean algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters.
 
 \subsection{Connected Cluster Approach} \label{sec:connected_cluster_approach}
-To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall). These algorithms are used for the hierarchical clustering algorithms \ref{sec:shortest_path}.
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall). These algorithms are described with more detail in the background chapter \ref{sec:shortest_path}.
+
+\subsection{Additional Features}
+%TODO Explain
+TODO
 
 \pagebreak
 \section{Hierarchical Clustering}

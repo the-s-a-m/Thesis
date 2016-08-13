@@ -21,7 +21,7 @@ As presumed the resulting subgraph had unexpected transitions between clusters. 
 \end{figure}
 
 \subsection{Connected Cluster Results} \label{sec:K-Means_shortest_path}
-To problem was then solved by using a \gls{APSP} algorithm like Dijkstra or Floyd-Warshall. In the following figure \ref{fig:Kmeansshortestp} every cluster is connected.
+To problem was then solved by using a \gls{APSP} algorithm like Dijkstra or Floyd-Warshall. In the following figure \ref{fig:Kmeansshortestp} every cluster is a connected subgraph.
 
 \begin{figure}
     \centering
@@ -54,5 +54,23 @@ The problem is caused by the used reduction formula. Single linkage uses the min
 
 \section{UPGMA and WPGMA Result}
 \label{sec:UPGMAandWPGMA}
-%TODO: Add figure
-The figures xxx and xxx show the result of hierarchical cluster analysis using the \acrshort{UPGMA}, or respectively the \acrshort{WPGMA} reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
+The figures \ref{fig:hierarchical_clustering_upgma} and \ref{fig:hierarchical_clustering_wpgma} show the result of hierarchical cluster analysis using the \acrshort{UPGMA}, or respectively the \acrshort{WPGMA} reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
+
+%TODO: Compare, conclusions?
+
+\begin{figure}
+    \centering
+    \begin{mdframed}[style=mdthight]
+        \includegraphics[width=\textwidth]{hierarchical_clustering_upgma.png}
+    \end{mdframed}
+    \caption{UPGMA hierarchical cluster analysis of Weimar\label{fig:hierarchical_clustering_upgma}}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \begin{mdframed}[style=mdthight]
+        \includegraphics[width=\textwidth]{hierarchical_clustering_wpgma.png}
+    \end{mdframed}
+    \caption{WPGMA hierarchical cluster analysis of Weimar\label{fig:hierarchical_clustering_wpgma}}
+\end{figure}
