@@ -5,16 +5,21 @@ To create a tree from a graph there are different approaches to describe the ang
 
 Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
 
+This forward an backward transformation between a graph and a tree allows to run a genetic algorithm like mutation or crossover on a tree and display the result as graph. These genetic algorithm were already implemented by the \textit{Chair of Information Architecture (ETH)}.
+
+\pagebreak
 \section{K-Means}
-To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is an optimised K-Means version named K-Means++. The idea of this algorithm is to select reasonable start centres to avoid many iterations.
+To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is based on the approach described in section \ref{sec:K-Means}. Some libraries used by CPlan provide the K-Means clustering already but this approach would not allow a visualisation of the progress and a speed up by parallelization.
 
-\subsection{Connected Cluster Implementation} \label{sec:K-Means_shortest_path}
-As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:kmenasProblem} are removed.
+\subsection{Connected Cluster Implementation} \label{sec:K-Means_shortest_path_impl}
+As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:K-Means_shortest_path} are removed.
 
-Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Measurements \ref{sec:measurements}.
+Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Measurements \ref{sec:measurements-speed}.
 
 \subsection{Speed Optimization}
-The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement was  achieved by running the K-Means iterations in parallel. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements};
+The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement was achieved by running the K-Means iterations in parallel. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements-speed}.
+
+Additional acceleration would be possible by using K-Means++ or a K-D tree.
 
 \pagebreak
 \section{WPGMA / UPGMA}
@@ -152,15 +157,15 @@ Depending on the number of clusters one or the other of those colour sets (witho
 In CPlan an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort. The following parameters and descriptions characterise all implemented parameter to measure street networks. Additional conceptual information can be found in section \ref{sec:clusterRating}.
 
 \begin{align}
-    total\ area &= convex\ hull\ area \\
-    total\ length &= street\ length\ sum \\
-    density &=\ 'total\ area'\ divided\ by\ 'total\ length' \\
-    street\ length\ median &= Middle\ of\ the\ street\ length\ dataset \\
+    total\ area &= area(convex\ hull)  \\
+    total\ length &= \sum_{n=0}^{count(edges)} length(edge(n))\  \\
+    density &=\ \frac{total\ area}{total\ length} \\
+    street\ length\ median &=  Middle\ of\ the\ street\ length\ dataset \\
     street\ length\ variance &= \sigma\ of\ the\ normal\ distribution\ curve\ of\ the\ variance \\
     vertex\ connections &= mean\ connected\ edges\ per\ vertex \\
     street\ angle &= angles\ between\ all\ edges\ at\ a\ vertex \\
     street\ angle\ variance &= \sigma\ of\ the\ normal\ distribution\ curve\ of\ the\ angles \\
-    block\ count &= total\ block\ count \\
+    block\ count &= count(blocks) \\
     block\ area\ A/Ac &= block\ area\ divided\ to\ a\ minimal\ circle\ around\ a\ block \\
     integration &= normalised\ in-centrality \\
     choice &= normalised\ in-betweenness-centrality 
