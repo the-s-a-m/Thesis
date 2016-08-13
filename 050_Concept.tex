@@ -17,24 +17,15 @@ Because a tree can not fully represent a graph, many points exist multiple times
 \FloatBarrier
 \pagebreak
 \section{K-Means}
-Points are assigned to different clusters by using the minimal distances. The following approach is used:
+Clustering is an approach to group input data. These groups are called clusters. To separate a street network in CPlan into reasonable parts this approach could be used. As described in section \ref{sec:K-Means}, the K-Means algorithm assigns data points to different clusters by using the minimal distances to centroids. For this thesis the position feature (x and y coordinates of the road junctions) are used.
 
-\begin{enumerate}
-    \item First, random centroids are created.
-    \item Then every point is assigned to the nearest centroid by calculating the euclidean distance.
-    \item Then centroids are moved to the center of their assigned graph points.
-    \item Till no point is moved or the maximum iterations is reached the process is repeated from item 2.
-\end{enumerate}
-
-\subsection{Connected Cluster Problem} \label{sec:kmenasProblem}
-The K-Mean algorithm is based on the euclidean distance between cluster centroids and street junctions, the edge data (e.g. street length) is not used. As a result it leads to unexpected transitions between clusters.
+The used feature does ignore the edge data. As a result a cluster is not always connected. This means it could lead to unexpected transitions between clusters.
 
 \subsection{Connected Cluster Approach} \label{sec:connected_cluster_approach}
-To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall). These algorithms are described with more detail in the background chapter \ref{sec:shortest_path}.
+To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm tries can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall) to assign the edges to a cluster. These algorithms are described in more details in the background chapter \ref{sec:shortest_path}.
 
 \subsection{Additional Features}
-%TODO Explain
-TODO
+Different measurement methods were implemented to rate a created cluster \ref{sec:cluster_analysis_impl}. These features described in section \ref{sec:clusterRating} like the block size or the median street length could be used to cluster the street networks.
 
 \pagebreak
 \section{Hierarchical Clustering}
