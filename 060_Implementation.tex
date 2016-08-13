@@ -80,9 +80,6 @@ To create relatively equally sized clusters from the resulted hierarchy of a hie
     \item Line intersections of the class Geometry2D was not correct detected an therefore corrected. 
 \end{itemize}
 
-\section{Genetic algorithms}
-The ETH-Zurich already has genetic optimizations algorithms based on trees. Unfortunately they don't have a working solution to produce a tree from the existing graph. The new created tree generation produces a relative tree with absolute angles. This allowed an easier and faster work process with tree based structures.
-
 \pagebreak
 \section{Normalising Street Networks}
 While testing clustering algorithms on the street network of Zurich one rough spot of this network was found: Not all streets, which lead to a junction are connected to it. As shown in figure \ref{fig:zuerich_error} floating streets exist (highlighted in purple). No end of any of these highlighted streets is connected to the rest of the street network.
@@ -149,7 +146,7 @@ Depending on the number of clusters one or the other of those colour sets (witho
 \FloatBarrier
 \pagebreak
 \section{Cluster Analysis}
-In CPlan an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort. The following parameters and descriptions characterise all implemented parameter to measure street networks. Additional theoretical information can be found in section \ref{sec:clusterRating}.
+In CPlan an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort. The following parameters and descriptions characterise all implemented parameter to measure street networks. Additional conceptual information can be found in section \ref{sec:clusterRating}.
 
 \begin{align}
     total\ area &= convex\ hull\ area \\

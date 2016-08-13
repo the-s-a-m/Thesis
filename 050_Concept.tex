@@ -1,5 +1,7 @@
 \chapter{Concept}
 \section{Tree Creation}
+The ETH-Zurich already has genetic optimizations algorithms based on trees. Unfortunately they don't have a working solution to produce a tree from the existing graph. The new created tree generation algorithm produces a relative tree with absolute angles. This allowed an easier and faster work process with tree based structures.
+
 To create a tree from an existing graph the angle and distance should be enough data to fully represent a graph.
 Two approaches exist to define angles. One is to separate the circle range into minus and plus 180 degrees. This would allow to step straight forward with the angle 0 degree (Figure \ref{fig:tree-generation-decision} left). Another approach is to use the range from 0 to 360 degrees. In this case straight forward would be 180 degrees (Figure \ref{fig:tree-generation-decision} right).
 
@@ -42,9 +44,9 @@ Idea of output modification
 
 \pagebreak
 \section{Cluster Analysis}
+\label{sec:concept_cluster_analysis}
 To measure and compare the different areas they should be characterized. Therefore some districts with noticeable characteristics haven been selected an compared to each other. The found characteristics could help to separate a given city on a feature based approach.
-
-%TODO compare corretly only between images not measurements! 
+These areas have been selected with the aide of Prof. Dr. Reinhard König from the ETH Zurich.
 
 \subsection{Historic District}
 \label{sec:historyDistinct}
