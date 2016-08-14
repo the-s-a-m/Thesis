@@ -9,7 +9,7 @@ This forward an backward transformation between a graph and a tree allows to run
 
 \pagebreak
 \section{K-Means}
-To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is based on the approach described in section \ref{sec:K-Means}. Some libraries used by CPlan provide the K-Means clustering already but this approach would not allow a visualisation of the progress and a speed up by parallelization.
+To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is based on the approach described in section \ref{sec:K-Means}. Some libraries used by CPlan provide the K-Means clustering already but this approach would not allow a visualisation of the progress and a speed up by parallelisation.
 
 \subsection{Connected Cluster Implementation} \label{sec:K-Means_shortest_path_impl}
 As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:K-Means_shortest_path} are removed.
@@ -19,7 +19,7 @@ Additional calculation time is needed for the shortest path algorithm. The diffe
 \subsection{Speed Optimization}
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement was achieved by running the K-Means iterations in parallel. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements-speed}.
 
-Additional acceleration would be possible by using K-Means++ or a K-D tree.
+Additional acceleration would be possible by using K-Means++ \ref{sec:k-means++} or a K-D tree \ref{sec:k-means_KD-tree}.
 
 \pagebreak
 \section{WPGMA / UPGMA}
@@ -154,19 +154,21 @@ Depending on the number of clusters one or the other of those colour sets (witho
 \pagebreak
 \section{Cluster Analysis}
 \label{sec:cluster_analysis_impl}
-In CPlan an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort. The following parameters and descriptions characterise all implemented parameter to measure street networks. Additional conceptual information can be found in section \ref{sec:clusterRating}.
+The following parameters and descriptions characterise all implemented parameter to measure street networks. Additional conceptual information can be found in section \ref{sec:clusterRating}.
 
 \begin{align}
     total\ area &= area(convex\ hull)  \\
     total\ length &= \sum_{n=0}^{count(edges)} length(edge(n))\  \\
     density &=\ \frac{total\ area}{total\ length} \\
-    street\ length\ median &=  Middle\ of\ the\ street\ length\ dataset \\
-    street\ length\ variance &= \sigma\ of\ the\ normal\ distribution\ curve\ of\ the\ variance \\
-    vertex\ connections &= mean\ connected\ edges\ per\ vertex \\
-    street\ angle &= angles\ between\ all\ edges\ at\ a\ vertex \\
-    street\ angle\ variance &= \sigma\ of\ the\ normal\ distribution\ curve\ of\ the\ angles \\
+    street\ length\ median &=  middle\ of\ the\ street\ length\ dataset \\
+    street\ length\ variance &= \sigma\ of \sim\mathcal{N}(m,\sigma^2)\ where\ m\ =\ 'street\ length\ median' \\
+    vertex\ connections\ mean &= \frac{\sum_{n=0}^{count(vertices)} connectionCount(vertex(n))}{count(vertices)} \\
+    street\ angle\ mean &= \frac{\sum_{n=0}^{count(vertices)} angle(vertex(n))}{count(vertices)} \\
+    street\ angle\ variance &= \sigma\ of \sim\mathcal{N}(m,\sigma^2)\ where\ m\ =\ median\ of\ all\ angles \\
     block\ count &= count(blocks) \\
-    block\ area\ A/Ac &= block\ area\ divided\ to\ a\ minimal\ circle\ around\ a\ block \\
+    block\ area\ A/Ac &= \frac{area(block)}{circumscribed\ circle(block)} \\
     integration &= normalised\ in-centrality \\
     choice &= normalised\ in-betweenness-centrality 
 \end{align}
+
+In CPlan an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort. 
