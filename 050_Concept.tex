@@ -19,7 +19,7 @@ Because a tree can not fully represent a graph, many points exist multiple times
 \section{K-Means}
 Clustering is an approach to group input data. These groups are called clusters. To separate a street network in CPlan into reasonable parts this approach could be used. As described in section \ref{sec:K-Means}, the K-Means algorithm assigns data points to different clusters by using the minimal distances to centroids. For this thesis the position feature (x and y coordinates of the road junctions) are used.
 
-The used feature does ignore the edge data. As a result a cluster is not always connected. This means it could lead to unexpected transitions between clusters.
+The used features ignore the graph structure of the street network. As a result clusters are not always connected subgraphs. This means it could lead to unexpected transitions between clusters.
 
 \subsection{Connected Cluster Approach} \label{sec:connected_cluster_approach}
 To solve the problem of unexpected transitions between clusters the best result of the K-Means algorithm tries can be combined with the distance measurement of a \acrlong{APSP} (\acrshort{APSP}) algorithm (Dijkstra / Floyd-Warshall) to assign the edges to a cluster. These algorithms are described in more details in the background chapter \ref{sec:shortest_path}.
@@ -29,7 +29,9 @@ Different measurement methods were implemented to rate a created cluster \ref{se
 
 \pagebreak
 \section{Hierarchical Clustering}
-%TODO Short version what singe linkage & PGMA does
+Hierarchical clustering is another area of clustering algorithms. As already mentioned in the background chapter \ref{sec:hierarchicalClustering} this clustering algorithm can use other distances than the euclidean distance. In this thesis this advantage was used to cluster the street network using the shortest path between vertices in the graph as a distance. This method is referred to as graph distance in this document.
+
+The improvement of using graph distances over the usage of euclidean distances when applying hierarchical clustering is, that the resulting clusters will always be connected subgraphs. Furthermore, the hierarchy that results from this clustering approach can be used to create any number of clusters from $1$ to $n$. Where $n$ is the number of vertices.
 
 \subsection{Hight Memory Usage}
 Because WPGMA / UPGMA needs to store all data the memory footprint would be very high. %TODO Describe why exacter.
