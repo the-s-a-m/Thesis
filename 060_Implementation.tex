@@ -23,10 +23,8 @@ Additional acceleration would be possible by using K-Means++ \ref{sec:k-means++}
 
 \pagebreak
 \section{WPGMA / UPGMA}
-\subsection{Memory usage} \label{sec:memory_usage}
-The most trivial solution would be to store the distances as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. For \acrshort{UPGMA} and \acrshort{WPGMA} this matrix has to be extended so it also includes the cached distances between clusters.
-
-This storage strategy would use $(2n-1)^2$ double-precision floating-point numbers, $n$ being the node count (number of junctions). As an example: For the used environment this storage strategy would amount to about 21.7 Gigabyte of used memory for the street network of Zurich.
+\subsection{Memory Usage Optimisations} \label{sec:memory_usage}
+In section \ref{sec:concept_memory_usage} of the concept chapter, the problem of high memory usage is discussed. In this section three applied optimisations are explained in more detail.
 
 The easiest optimisation is to convert all distances to a single-precision floating-point format. The loss of precision is not affecting the result, as mostly only the $<$ and $>$ relations of the different distances are important.
 
@@ -149,15 +147,15 @@ The following parameters and descriptions characterise all implemented parameter
 
 \begin{align}
     total\ area &= area(convex\ hull)  \\
-    total\ length &= \sum_{n=0}^{count(edges)} length(edges(n))\  \\
+    total\ length &= \sum_{edge\ \in\ edges}{} length(edge)\  \\
     density &=\ \frac{total\ area}{total\ length} \\
     street\ length\ median &=  middle\ of\ the\ street\ length\ dataset \\
     street\ length\ variance &= \sigma\,\ where\ \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ 'street\ length\ median' \\
-    vertex\ connections\ mean &= \frac{\sum_{n=0}^{count(vertices)} connectionCount(vertex(n))}{count(vertices)} \\
-    street\ angle\ mean &= \frac{\sum_{n=0}^{count(vertices)} angle(vertex(n))}{count(vertices)} \\
+    vertex\ connections\ mean &= \frac{1}{count(vertices)} \sum_{v\ \in\ vertices}{} connection\_count(v) \\
+    street\ angle\ mean &= \frac{1}{count(vertices)} \sum_{v\ \in\ vertices}{} angle(v) \\
     street\ angle\ variance &= \sigma\ where \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ median\ of\ all\ angles \\
     block\ count &= count(blocks) \\
-    block\ area\ A/Ac &= \frac{area(block)}{circumscribed\ circle(block)} \\
+    block\ area\ A/Ac &= \frac{area(block)}{circumscribed\_circle(block)} \\
     integration &= normalised\ in-centrality \\
     choice &= normalised\ in-betweenness-centrality 
 \end{align}
