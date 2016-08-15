@@ -42,16 +42,26 @@ The following approach provided itself as reasonable to create the described clu
 \end{enumerate}
 
 \subsection{Distance caching}
-To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- this would inflict bad performance.
+To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- this would inflict bad performance. The speed up of this improvement is further discussed in section \ref{sec:measurements-speed}.
 
 \subsection{Hight Memory Usage} \label{sec:concept_memory_usage}
 The most trivial solution to store those discussed distances (\acrshort{APSP} and cached cluster distances) would be as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. The \acrshort{APSP} and cached distances can be stored in the same matrix, because when using agglomerative hierarchical clustering, each vertex is also one of the initial clusters.
 
 This storage strategy would use $(2n-1)^2$ double-precision floating-point numbers, $n$ being the node count (number of junctions). As an example: For the used environment this storage strategy would amount to about 21.7 Gigabyte of used memory for the street network of Zurich. In section \ref{sec:memory_usage} of the implementation chapter three implemented optimisations are described.
 
-\subsection{Output Modification}
-Idea of output modification
-%TODO Describe Idea of output modification!
+\subsection{Clusters of Highly Varying Sizes} \label{sec:concept_cluster_sizes}
+Hierarchical clustering can sometimes, result in clusters with high differences of the vertex count. In figure \ref{fig:problem_unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
+
+Depending on the desired further use of the clusters, more equally sized clusters are favoured. Section \ref{sec:outout_modification} describes, how these modified cluster sizes were achieved.
+
+\begin{figure}
+    \centering
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.5\linewidth, align=center]
+        \includegraphics[width=\linewidth]{unmodified_cluster_size.png}
+    \end{mdframed}
+    \caption{Clustering with highly varying cluster sizes}
+    \label{fig:problem_unmodified_cluster_size}
+\end{figure}
 
 \pagebreak
 \section{Cluster Analysis}
