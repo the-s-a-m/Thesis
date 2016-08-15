@@ -2,7 +2,7 @@
 In this thesis the initial task was to learn how street networks and buildings can be described as grammar for later analysis and regeneration. There exist many different approaches like Shape Grammar \ref{sec:shape_grammar} (building faces generation), L-Systems \ref{sec:L-Systems} (plants growing), Space Syntax \ref{sec:space_syntax} and many others. 
 Because the application CPlan \ref{CPlan} did not provide the ability to use grammars and our customer preferred a graph based approach all later described algorithms are based on an unidirectional graph.
 
-The \textit{Chair of Information Architecture (ETH)} provided a street generation and analysing tool named CPlan \ref{CPlan}. To become acquainted with the application and to allow using the existing genetic algorithms a tree generating algorithm was developed. 
+The \gls{iA} provided a street generation and analysing tool named CPlan \ref{CPlan}. To become acquainted with the application and to allow using the existing genetic algorithms a tree generating algorithm was developed. 
 
 Selecting interesting areas from different cities and recombining them into a new one would allow a fast creation of new cities. To reach this aim many steps are necessary. First of all the cities must be separated into reasonable parts based on vertex position or edge length. The approach of this thesis is to use clustering algorithms from the field of machine learning. Useful cluster areas can then be selected by comparing different measured values like the variance of the street length or the median block length.
 
@@ -25,6 +25,6 @@ Equal clusters sizes then where achieved by modifying the output \ref{sec:outout
 
 During tests with big cities the hierarchical clustering methods had a hight memory usage. To reduce the memory footprint \ref{sec:memory_usage} optimisations were made and specialized data structures were used.
 
-The created clusters were then measured \ref{sec:measurements} based on the suggestions \ref{sec:clusterRating} provided by the ETH-Zurich and compared \ref{sec:measurements-cluster-analysis}. Additionally the results can now be exported into a JSON-File for further use.
+The created clusters were then measured based on the suggestions \ref{sec:clusterRating} provided by the ETH-Zurich and compared \ref{sec:measurements-cluster-analysis}. Additionally the results can now be exported into a JSON-File for further use.
 
 To recombine the separated areas/districts to a new city another project at ETH-Zurich is currently working on a regrow algorithm \ref{sec:future_work}. 
