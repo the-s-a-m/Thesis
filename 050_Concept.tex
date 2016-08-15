@@ -36,7 +36,7 @@ The improvement of using graph distances over the usage of euclidean distances w
 The following approach provided itself as reasonable to create the described clustering:
 
 \begin{enumerate}
-    \item Compute all pairs shortest path for the given street network graph
+    \item Compute \acrshort{APSP} algorithm for the given street network graph
     \item Generate hierarchy by running hierarchical clustering with chosen reduction formula (This uses the distances calculated in step 1)
     \item Create wished number of clusters from this resulting hierarchy
 \end{enumerate}
@@ -44,8 +44,10 @@ The following approach provided itself as reasonable to create the described clu
 \subsection{Distance caching}
 To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- this would inflict bad performance.
 
-\subsection{Hight Memory Usage}
-Because WPGMA / UPGMA needs to store all data the memory footprint would be very high. %TODO Describe why exacter.
+\subsection{Hight Memory Usage} \label{sec:concept_memory_usage}
+The most trivial solution to store those discussed distances (\acrshort{APSP} and cached cluster distances) would be as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. The \acrshort{APSP} and cached distances can be stored in the same matrix, because when using agglomerative hierarchical clustering, each vertex is also one of the initial clusters.
+
+This storage strategy would use $(2n-1)^2$ double-precision floating-point numbers, $n$ being the node count (number of junctions). As an example: For the used environment this storage strategy would amount to about 21.7 Gigabyte of used memory for the street network of Zurich. In section \ref{sec:memory_usage} of the implementation chapter three implemented optimisations are described.
 
 \subsection{Output Modification}
 Idea of output modification
