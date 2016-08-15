@@ -1,6 +1,48 @@
 \appendix
 \chapter{Applied in CPlan}
-\section{K-Means Clustering Options}
+\section{Guideline Source Code}
+This section provides a guideline through the important parts of the C\# source code, which was developed during this thesis. It's meant as an entry point which can be used to navigate more easily through the code, which implements the discussed concepts.
+
+The main solution should be opened from: 
+\path{GIT_REPO\cpg_all\BasicSystems\SynthesisWPF\SynthesisWPF\SynthesisWPF.sln}
+
+Graphical user interface (GUI) components were inserted into the sub-project Synthesis\_WPF\_MVVM. These dialogs were created in the sub folder \textit{Dialogs}:
+
+\begin{itemize}
+    \item K-Means Clustering Options \ref{sec:k-means_clustering_options}.
+    \item Hierarchical Clustering Options \ref{sec:hierarchical_clustering_options}.
+    \item Cluster Measurement Options \ref{sec:cluster_measurement_options}.
+    \item Measured Clusters \ref{sec:measurements_full_table}
+\end{itemize}
+
+Algorithms were inserted into the sub-project Optimization. These classes have been created for this thesis:
+\begin{itemize}
+    \item Tree representation of a graph (model) \newline
+    \path{.\Chromosomes\InstructionTreePisaAbs.cs}
+    \item Tree creating class from graph \newline
+    \path{.\Chromosomes\TreeGenerator.cs}
+    \item Class to recreate a graph a tree \newline
+    \path{.\Generators\StreetPatternAbsoluteAngle.cs}
+    \item Helper class to extract blocks from a graph \newline
+    \path{.\ClusterAnalysis\BlockAnalysis.cs}
+    \item This class allows to get and export cluster analysis data \newline 
+    \path{.\ClusterAnalysis\ClusterAnalysisExporter.cs}
+    \item  Class to create feature based clusters \newline 
+    \path{.\ClusterAnalysis\FratureClustering.cs}
+    \item Hierarchical clustering class \newline 
+    \path{.\ClusterAnalysis\HierarchicalCluster.cs}
+    \item Generic interface for cluster algorithms\newline
+    \path{.\ClusterAnalysis\IClusterAnglorithm.cs}
+    \item Generic cluster output interface \newline 
+    \path{.\ClusterAnalysis\IHierarchicalClusterOutput.cs}
+    \item K-Means clustering class \newline
+    \path{.\ClusterAnalysis\KMeansCluster.cs}
+    \item Single Linkage clustering class \newline
+    \path{.\ClusterAnalysis\SingleLinkageCluster.cs}
+\end{itemize}
+
+\pagebreak
+\section{K-Means Clustering Options} \label{sec:k-means_clustering_options}
 To apply centroid based clustering to a street network a specialized gui dialog was created where all parameters can be set. As you can see in figure \ref{fig:applied_k-means_GUI}.
 \begin{itemize}
     \item If 'Show Visualisation' is activated the clustering process will be visualized.
@@ -15,7 +57,7 @@ To apply centroid based clustering to a street network a specialized gui dialog 
     \label{fig:applied_k-means_GUI}
 \end{figure}
 
-\section{Hierarchical Clustering Options}
+\section{Hierarchical Clustering Options} \label{sec:hierarchical_clustering_options}
 A specialized gui was created to set parameters for the hierarchical clustering analysis. The reduction formula can be selected at the top \ref{fig:applied_HC_clustering_GUI}.
 \begin{itemize}
     \item If the option 'Show Slider Dialog' is selected the cluster count can be changed in an additional dialog \ref{fig:applied_HC_clustering_slider_GUI}.
@@ -38,7 +80,7 @@ A specialized gui was created to set parameters for the hierarchical clustering 
 \end{figure}
 
 \pagebreak
-\section{Cluster Measurement Options}
+\section{Cluster Measurement Options} \label{sec:cluster_measurement_options}
 To compare clusters the process was visualized for this thesis. A dialog allows to select two clusters and compare the measured results \ref{fig:applied_clustering_analysis_GUI}. The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
 
 \begin{figure}[ht]
@@ -58,8 +100,7 @@ To compare clusters the process was visualized for this thesis. A dialog allows 
 \end{figure}
 
 \FloatBarrier
-\section{Measured Clusters}
-\label{sec:measurements_full_table}
+\section{Measured Clusters} \label{sec:measurements_full_table}
 This table represent the full measured data with the cluster analysis method.
 
 \begin{table}[h]
@@ -116,6 +157,12 @@ This table represent the full measured data with the cluster analysis method.
     \end{center}
 \end{table}
 
-\section{Guideline Source Code}
-This section provides a guideline through the important parts of the C\# source code, which was developed during this thesis. It's meant as an entry point which can be used to navigate more easily through the code, which implements the discussed concepts.
-%TODO
+\pagebreak
+\section{Application Improvements}
+This chapter was created to inform the reader about certain improvements and observations made in the application CPlan \ref{CPlan}.
+\begin{itemize}
+    \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This method creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
+    \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
+    \item The vector represented by the class Matrix2d is clockwise despite the norm is counter clockwise.
+    \item Line intersections of the class Geometry2D was not correct detected an therefore corrected.
+\end{itemize}
