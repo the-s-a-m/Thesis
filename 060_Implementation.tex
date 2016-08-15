@@ -50,8 +50,9 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
     \caption{Visualised memory usage optimisations}
 \end{figure}
 
+\pagebreak
 \subsection{Output Modification} \label{sec:outout_modification}
-In some cases the hierarchical clustering has an output of clusters with highly varying size if standard splitting order is used. (Size meaning the node / street junction count in this context.) In figure \ref{fig:unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
+As shown in section \ref{sec:concept_cluster_sizes} there exist some cases, where hierarchical clustering has an output of clusters with highly varying size if standard splitting order is used. (Size meaning the vertex / street junction count in this context.)
 
 Depending on the requirements this is the desired result, as this is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are of about the same size, than it is to abide the mathematically optimal solution.
 
