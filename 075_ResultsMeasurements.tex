@@ -6,6 +6,7 @@ The measuring was done by inserting profiling code. The .Net Framework provides 
 %TODO: Used environment
 %TODO: Add table of results (and link it here)
 %TODO: Add glossary entry for '.Net Framework', 'CPlan', 'K-Means'
+%TODO: K-Means with features!
 
 \subsection{K-Means}
 Figure \ref{fig:kmeans_speed} shows speed measurements of the K-Means algorithm applied to Weimar in different settings.
@@ -47,7 +48,7 @@ The used parameters were for all measurements the following (Those parameters ca
 \begin{itemize}
     \item Show slider dialog (figure \ref{fig:applied_HC_clustering_slider_GUI}): no
     \item Number of clusters: 10
-    \item Modify Output \ref{sec:outout_modification}: no
+    \item Modify Output \ref{sec:outout_modification}: yes
 \end{itemize}
 
 The different bars show the speed measurements of the implemented variations of hierarchical clustering algorithms. Each algorithm was measured in conjunction with different \acrshort{APSP} algorithms. The following hierarchical clustering implementations were measured:
@@ -63,7 +64,7 @@ The following \acrshort{APSP} algorithms were measured:
 \begin{itemize}
     \item \textbf{Floyd-Warshall:} Regular Floyd-Warshall algorithm.
     \item \textbf{Dijkstra:} Regular \acrshort{SSSP} Dijkstra algorithm started from each vertex separately to create an \acrshort{APSP} algorithm. See \ref{sec:shortest_path} for more details.
-    \item \textbf{Dijkstra Parallel:} The same as the previous but the Dijkstra algorithm runs are executed parallelised.
+    \item \textbf{Dijkstra Parallel:} The same as the previous with the difference that all Dijkstra algorithm runs are executed parallelised.
 \end{itemize}
 
 \begin{figure}[!ht]

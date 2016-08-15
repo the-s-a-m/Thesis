@@ -73,11 +73,23 @@ The problem is caused by the used reduction formula. Single linkage uses the min
     \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
 \end{figure}
 
+\pagebreak
 \section{UPGMA and WPGMA Result}
 \label{sec:UPGMAandWPGMA}
 The figures \ref{fig:hierarchical_clustering_upgma} and \ref{fig:hierarchical_clustering_wpgma} show the result of hierarchical cluster analysis using the \acrshort{UPGMA}, or respectively the \acrshort{WPGMA} reduction formula. The same distance function $d(i, j)$ as in the single linkage solution was used (shortest distance from $i$ to $j$ in the street graph).
 
-%TODO: Compare, conclusions?
+Both clusters were created using the following parameters (Those parameters can be manually set as shown in the appendix in figure \ref{fig:applied_HC_clustering_GUI}.):
+
+\begin{itemize}
+    \item Number of clusters: 10
+    \item Modify Output \ref{sec:outout_modification}: yes
+\end{itemize}
+
+Other than the single linkage variations, the hierarchical clustering with \acrshort{UPGMA} and \acrshort{WPGMA} reduction formulae result in useful clusters. Given the same parameters and street network this clustering is also deterministic.
+
+When comparing the two reduction formulae, \acrshort{UPGMA} generally creates better clusters. When looking at the two example images, there is for instance a blue cluster in the centre in both of them. When using the \acrshort{UPGMA} reduction formula, the historic city centre and a living district named 'Nordvorstadt' was found. While the image created using the \acrshort{WPGMA} reduction formula creates at this location a cluster that is longish and combines parts of multiple districts.
+
+%TODO: Reference https://www.weimar.de/leben/wohnen-und-verkehr/wohnen/stadtteile/ ?
 
 \begin{figure}
     \centering
