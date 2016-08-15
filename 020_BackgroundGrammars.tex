@@ -1,7 +1,7 @@
 \chapter{Background}
 This chapter describes state of the art concepts and algorithms, which were studied and used during this thesis. The background is divided into three sections.
 
-Firstly grammars, which can be used to analyse or generate street networks are discussed. In that section \textit{Shape Grammar}, \textit{L-Systems} and \textit{Space Syntax} are described and analysed.
+Firstly grammars, which can be used to analyse or generate street networks are discussed. In that section \textit{Shape Grammars}, \textit{L-Systems} and the theory \textit{Space Syntax} are described and analysed.
 
 Secondly the application CPlan is used to create and analyse cities. For this thesis it was extended with many algorithms.
 
@@ -9,8 +9,8 @@ Thirdly clustering algorithms are explained. Those unsupervised machine learning
 
 Lastly street networks measurement methods, that allow to analyse and compare street subgraphs are described.
 
-\section{Shape Grammar} \label{sec:shape_grammar}
-The main key of shape grammar is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. Shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}.
+\section{Shape Grammars} \label{sec:shape_grammar}
+The main key of a shape grammars is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. A shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}.
 
 A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
@@ -66,7 +66,7 @@ The area could have any form, but normally it is defined as a rectangle. Like a 
 \end{figure}
 \pagebreak
 \subsubsection{Generated}
-The following image \ref{fig:Shape Grammars/Example} shows the generated painting with the relevant steps. The levels are generated as described in the section \textit{selection rule} \ref{sec:Shape_Grammar_Selection_Rules} 
+The following image \ref{fig:Shape Grammars/Example} shows the generated painting with the relevant steps. The levels are generated as described in the section \textit{selection rule} \ref{sec:Shape_Grammar_Selection_Rules}
 \newline
 Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally steps 18 and 19 are on Level 2.
 \begin{figure}[!h]
@@ -78,7 +78,7 @@ Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally
 
 \newpage
 \subsection{Street Generation}
-In the following section we debate the usefulness of generating street networks by shape grammar. 
+In the following section we debate the usefulness of generating street networks by shape grammars.
 \subsubsection{Features}
 \begin{itemize}
     \item Can describe and generate veneer in high details.
@@ -121,9 +121,9 @@ A way to generate images with L-Systems is to use a LOGO-style turtle as a graph
 
 \pagebreak
 \section{Space Syntax} \label{sec:space_syntax}
-The axial line-based space syntax was first introduced in 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper \textit{Space syntax} \citep{spaceSyntax:1976}. This syntax is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
+The axial line-based space syntax was first introduced in 1976 by B. Hiller, A. Leaman, P. Stansall and M. Bedford in the paper \textit{Space syntax} \citep{spaceSyntax:1976}. This theory is based on a morphic language and describes methods to analyse and generate urban areas and buildings.
 
-The syntax was later extended and integrated into \textit{Geographic Information System} (GIS) as point-based space syntax (graph). This systems are used to plan and analyse the human interaction with the environment.
+The theory was later extended and integrated into \textit{Geographic Information System} (GIS) as point-based space syntax (graph). This systems are used to plan and analyse the human interaction with the environment.
 
 \subsection{Axial line-based space syntax and limitations}
 In space syntax streets are represented by axial lines. 
