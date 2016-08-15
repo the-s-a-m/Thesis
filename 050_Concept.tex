@@ -41,8 +41,8 @@ The following approach provided itself as reasonable to create the described clu
     \item Create wished number of clusters from this resulting hierarchy
 \end{enumerate}
 
-\subsection{Distance caching}
-To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- this would inflict bad performance. The speed up of this improvement is further discussed in section \ref{sec:measurements-speed}.
+\subsection{Distance caching} \label{sec:concept_distance_caching}
+To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- this would inflict bad performance. The speedup of this improvement is further discussed in section \ref{sec:measurements-speed}.
 
 \subsection{Hight Memory Usage} \label{sec:concept_memory_usage}
 The most trivial solution to store those discussed distances (\acrshort{APSP} and cached cluster distances) would be as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. The \acrshort{APSP} and cached distances can be stored in the same matrix, because when using agglomerative hierarchical clustering, each vertex is also one of the initial clusters.

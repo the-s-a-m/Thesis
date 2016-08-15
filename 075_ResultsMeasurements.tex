@@ -5,12 +5,12 @@ The measuring was done by inserting profiling code. The .Net Framework provides 
 
 %TODO: Used environment
 %TODO: Add table of results (and link it here)
-%TODO: Add glossary entry for '.Net Framework' and 'CPlan'
+%TODO: Add glossary entry for '.Net Framework', 'CPlan', 'K-Means'
 
 \subsection{K-Means}
-The first figure \ref{fig:kmeans_speed} shows speed measurements of the K-Means algorithm applied to Weimar in different settings.
+Figure \ref{fig:kmeans_speed} shows speed measurements of the K-Means algorithm applied to Weimar in different settings.
 
-The used parameters were for all four measurements the following (Those parameters can be manually set as shown in the appendix in figure \ref{fig:applied_k-means_GUI}.):
+The used parameters were for all four measurement categories the following (Those parameters can be manually set as shown in the appendix in figure \ref{fig:applied_k-means_GUI}.):
 
 \begin{itemize}
     \item No live visualisation
@@ -34,20 +34,47 @@ The different bars of the diagram have the following meaning:
     \begin{mdframed}[style=mdthight]
         \includegraphics[width=\textwidth]{kmeans_speed.png}
     \end{mdframed}
-    \caption{Speed measurements of the K-Means clustering algorithm applied to Weimar\label{fig:kmeans_speed}}
+    \caption{Speed measurements of the K-Means clustering algorithm applied to Weimar \label{fig:kmeans_speed}}
 \end{figure}
 
 As it is clearly visible, parallelisation almost doubles the performance of K-Means. Adding an \acrshort{APSP} does only inflict a minor slowdown in both the parallel and the original implementation.
 
 \subsection{Hierarchical Clustering}
+Figure \ref{fig:hierarchical_clustering_speed} shows speed measurements of hierarchical clustering algorithms applied to Weimar.
+
+The used parameters were for all measurements the following (Those parameters can be manually set as shown in the appendix in figure \ref{fig:applied_HC_clustering_GUI}.):
+
+\begin{itemize}
+    \item Show slider dialog (figure \ref{fig:applied_HC_clustering_slider_GUI}): no
+    \item Number of clusters: 10
+    \item Modify Output \ref{sec:outout_modification}: no
+\end{itemize}
+
+The different bars show the speed measurements of the implemented variations of hierarchical clustering algorithms. Each algorithm was measured in conjunction with different \acrshort{APSP} algorithms. The following hierarchical clustering implementations were measured:
+
+\begin{itemize}
+    \item \textbf{UPGMA (without distance caching):} Hierarchical clustering using the \acrshort{UPGMA} reduction formula, without using cluster distance caching. Distances between clusters were calculated every time they were needed.
+    \item \textbf{UPGMA (fast / cached distances):} Hierarchical clustering using the \acrshort{UPGMA} reduction formula. Different than the previous, here distance caching \ref{sec:concept_distance_caching} was applied.
+    \item \textbf{WPGMA (fast / cached distances):} Same clustering as the previous, but using the \acrshort{WPGMA} reduction formula.
+\end{itemize}
+
+The following \acrshort{APSP} algorithms were measured:
+
+\begin{itemize}
+    \item \textbf{Floyd-Warshall:} Regular Floyd-Warshall algorithm.
+    \item \textbf{Dijkstra:} Regular \acrshort{SSSP} Dijkstra algorithm started from each vertex separately to create an \acrshort{APSP} algorithm. See \ref{sec:shortest_path} for more details.
+    \item \textbf{Dijkstra Parallel:} The same as the previous but the Dijkstra algorithm runs are executed parallelised.
+\end{itemize}
 
 \begin{figure}[!ht]
     \centering
     \begin{mdframed}[style=mdthight]
         \includegraphics[width=\textwidth]{hierarchical_clustering_speed.png}
     \end{mdframed}
-    \caption{Speed measurements of hierarchical clustering applied to Weimar\label{fig:hierarchical_clustering_speed}}
+    \caption{Speed measurements of hierarchical clustering applied to Weimar \label{fig:hierarchical_clustering_speed}}
 \end{figure}
+
+The caching of cluster distances resulted in a significant speed improvement over the non-cached variation as it was expected. When comparing the speed of the applied \acrshort{APSP} algorithms, the parallelised Dijkstra solution performed the best. The parallelisation lead to more than double the speed of clustering with WPGMA over the non-parallel version. Both versions of the Dijkstra algorithm far outperformed the Floyd-Warshall algorithm in any of the measured hierarchical clustering variations.
 
 \pagebreak
 \section{Cluster Analysis}
