@@ -1,7 +1,7 @@
 \chapter{Concept}
 \section{Tree Creation}
 \label{sec:tree_creation_angle}
-The ETH-Zurich already has genetic optimizations algorithms based on trees. Unfortunately they don't have a working solution to produce a tree from the existing graph. The new created tree generation algorithm produces a relative tree with absolute angles. This allowed an easier and faster work process with tree based structures.
+The ETH-Zurich already implemented genetic optimisation algorithms based on trees as chromosomes. They had no solution to produce trees from existing graphs. The new created tree generation algorithm produces a relative tree with absolute angles. This allowed an easier and faster work process with tree based structures.
 
 To create a tree from an existing graph the angle and distance should be enough data to fully represent a graph.
 Two approaches exist to define angles. One is to separate the circle range into minus and plus 180 degrees. This would allow to step straight forward with the angle 0 degree (Figure \ref{fig:tree-generation-decision} left). Another approach is to use the range from 0 to 360 degrees. In this case straight forward would be 180 degrees (Figure \ref{fig:tree-generation-decision} right).
@@ -29,9 +29,9 @@ Different measurement methods were implemented to rate a created cluster \ref{se
 
 \pagebreak
 \section{Hierarchical Clustering}
-Hierarchical clustering is another area of clustering algorithms. As already mentioned in the background chapter \ref{sec:hierarchicalClustering} this clustering algorithm can use other distances than the euclidean distance. In this thesis this advantage was used to cluster the street network using the shortest path between vertices in the graph as a distance instead of using the positions (x and y coordinates) as features. This method is referred to as graph distance in this document.
+Hierarchical clustering is another area of clustering algorithms. As already mentioned in the background chapter \ref{sec:hierarchicalClustering} this clustering algorithm can use other distances than the euclidean distance. This advantage was utilised to cluster the street network with the shortest path between vertices in the graph as a distance instead of using the positions (x and y coordinates) as features. This method is referred to as graph distance in this document.
 
-The improvement of using graph distances over the usage of euclidean distances when applying hierarchical clustering is, that the resulting clusters will always be connected subgraphs. Furthermore, the hierarchy that results from this clustering approach can be used to create any number of clusters from $1$ to $n$. Where $n$ is the number of vertices.
+The improvement of utilizing graph distances over the usage of euclidean distances when applying hierarchical clustering is, that the resulting clusters will always be connected subgraphs. Furthermore, the hierarchy that results from this clustering approach can be used to create any number of clusters from $1$ to $n$, where $n$ is the number of vertices.
 
 The following approach provided itself as reasonable to create the described clustering:
 
@@ -42,15 +42,15 @@ The following approach provided itself as reasonable to create the described clu
 \end{enumerate}
 
 \subsection{Distance caching} \label{sec:concept_distance_caching}
-To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- this would inflict bad performance. The speedup of this improvement is further discussed in section \ref{sec:measurements-speed}.
+To reach an appropriate time complexity when computing hierarchical clustering using \acrshort{UPGMA} or \acrshort{WPGMA} reduction formulae, distances between clusters have to be cached. If those distances were calculated every time --- by iterating over all nodes contained by two clusters --- it would inflict bad performance. The speedup of this improvement is further discussed in section \ref{sec:measurements-speed}.
 
 \subsection{Hight Memory Usage} \label{sec:concept_memory_usage}
-The most trivial solution to store those discussed distances (\acrshort{APSP} and cached cluster distances) would be as a matrix of double-precision floating-point numbers. This is because the given numeric data was already in this number format and a matrix is easily accessible. The \acrshort{APSP} and cached distances can be stored in the same matrix, because when using agglomerative hierarchical clustering, each vertex is also one of the initial clusters.
+The most trivial solution to store those discussed distances (\acrshort{APSP} and cached cluster distances) would be as a matrix of double-precision floating-point numbers. It is the most trivial solution, because the positions were already stored in this number format and matrix data structures are easily accessible. The \acrshort{APSP} and cached distances can be stored in the same matrix, because when using agglomerative hierarchical clustering, each vertex is also one of the initial clusters.
 
 This storage strategy would use $(2n-1)^2$ double-precision floating-point numbers, $n$ being the node count (number of junctions). As an example: For the used environment this storage strategy would amount to about 21.7 Gigabyte of used memory for the street network of Zurich. In section \ref{sec:memory_usage} of the implementation chapter three implemented optimisations are described.
 
 \subsection{Clusters of Highly Varying Sizes} \label{sec:concept_cluster_sizes}
-Hierarchical clustering can sometimes, result in clusters with high differences of the vertex count. In figure \ref{fig:problem_unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
+Hierarchical clustering can sometimes result in clusters with high differences of the vertex count. In figure \ref{fig:problem_unmodified_cluster_size} a clustering of Weimar with such a case is shown. In this figure there is a relatively big cluster in the centre of the city and at the bottom left corner are multiple very small clusters.
 
 Depending on the desired further use of the clusters, more equally sized clusters are favoured. Section \ref{sec:outout_modification} describes, how these modified cluster sizes were achieved.
 
@@ -66,7 +66,7 @@ Depending on the desired further use of the clusters, more equally sized cluster
 \pagebreak
 \section{Cluster Analysis}
 \label{sec:concept_cluster_analysis}
-To measure and compare the different areas they should be characterized. Therefore some districts with noticeable characteristics haven been selected an compared to each other. The found characteristics could help to separate a given city on a feature based approach.
+To measure and compare the different areas they should be characterized. Therefore some districts with noticeable characteristics haven been selected and compared to each other. The found characteristics could help to separate a given city on a feature based approach.
 These areas have been selected with the aide of Jun.-Prof Dr Reinhard König from the ETH Zurich.
 
 \subsection{Historic District}

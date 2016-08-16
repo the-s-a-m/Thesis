@@ -17,7 +17,7 @@ As described in section \ref{sec:connected_cluster_approach} the edge based dist
 Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Measurements \ref{sec:measurements-speed}.
 
 \subsection{Speed Optimization}
-The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The network Zurich with factor 13 more edges than Weimar resulted in long processing time. A speed improvement was achieved by running the K-Means iterations in parallel. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements-speed}.
+The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The street network of Zurich has 13 times more edges than Weimar, which resulted in long processing times. A speed improvement was achieved by running the K-Means iterations paralllised. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements-speed}.
 
 Additional acceleration would be possible by using K-Means++ \ref{sec:k-means++} or a K-D tree \ref{sec:k-means_KD-tree}.
 
@@ -30,7 +30,7 @@ The easiest optimisation is to convert all distances to a single-precision float
 
 A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored. This improvement is visualised in figure \ref{fig:memory_usage_01}.
 
-The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored, at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
+The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
 
 When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-precision floating point numbers have to be stored. The memory complexity still lies in $O(n^2)$, but the improvements allow most modern computers to analyse medium to big sized street networks. As an example: For the used environment the memory usage would amount to about 1.36 Gigabyte for the street network of Zurich.
 
@@ -54,9 +54,9 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
 \subsection{Output Modification} \label{sec:outout_modification}
 As shown in section \ref{sec:concept_cluster_sizes} there exist some cases, where hierarchical clustering has an output of clusters with highly varying size if standard splitting order is used. (Size meaning the vertex / street junction count in this context.)
 
-Depending on the requirements this is the desired result, as this is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are of about the same size, than it is to abide the mathematically optimal solution.
+Depending on the requirements this is the desired result, as it is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are roughly the same size, than it is to abide the mathematically optimal solution.
 
-To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created, the order is changed. When always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
+To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created, the order is changed. By always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
 
 \begin{figure}
     \centering

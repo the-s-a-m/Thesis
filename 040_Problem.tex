@@ -1,8 +1,12 @@
 \chapter{Problem}
-The idea of \gls{FCL} is to create, analyse and understand sustainable cities. All tools created for this purpose are provided as open source. The application CPlan \ref{CPlan} is one approach of the  \acrlong{iA}.
+The idea of \gls{FCL} is to create, analyse and understand sustainable cities. All tools created for this purpose are provided as open source. The \acrlong{iA} has made many contributions to the \gls{FCL} in recent years. In the course of which CPlan \ref{CPlan} was often used and further developed.
 
-With CPlan cities can be imported and block areas can be created. Many growing algorithms with random parameter exist and are fully working. To apply modification on the created cities a tree should be created from the existing street network. This would allow genetic modifications on existing networks.
+One of the tasks that are being solved in CPlan is the growth of completely new districts and cities. This is being done with genetic algorithms, which generate a street network using chromosomes and then improve it over numerous generations to fit the desired optimisation parameters. The initial chromosomes of the genetic algorithm are fractions of existing street networks.
 
-Random parameters to generate new cities are a good approach but it is not possible to use existing map data. To work with predefined subnetworks of a city map these parts have to be separated based on the given data.
+In this bachelor thesis, the following contributions were sought:
 
-The extracted parts should then be measured for their usefulness to reuse and recombine them at a new position in a new generated city.
+Firstly a procedure that creates chromosomes from given graphs has to be implemented. These chromosomes use a tree representation of the street network. To fulfil this requirement a procedure, that converts general street graphs to trees has to be implemented.
+
+Secondly an automated approach to divide street networks into useful fractions has to be created. These fractions --- which are also called clusters in this document --- can then be converted to chromosomes and used in the genetic algorithms. With this automation many chromosomes can easily be generated.
+
+Lastly in the extracted clusters different properties should be measured. The properties allow the clusters to be compared with each other, to be evaluated for their quality and to be specifically selected for the genetic algorithms depending on the kind of district or city that is grown.
