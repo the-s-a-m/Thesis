@@ -6,6 +6,7 @@ The centroid based K-Means algorithm \ref{sec:K-Means} produced reasonable clust
 Hierarchical clustering \ref{sec:hierarchicalClustering} was implemented to make up for this deficit, as it can create clusters using graph distances. Hierarchical clustering was implemented with three different reduction formulae. Firstly the Single Linkage reduction formula produced one huge cluster in the middle and many small ones at the border. This formula uses the minimal distances of all nodes of the compared clusters and because in a city most nodes are connected with multiple paths this result was created.
 
 %TODO: Reword
+%TODO: Compare K-Means and HC?
 Secondly the reduction formula \gls{UPGMA} calculates the average distances between two clusters. The result was many clusters with different sizes. Lastly to resolve this issue the \gls{WPGMA} algorithm was tested where all distances are equal. The result was better but the cluster size differences were still too big.
 
 To produce clusters of equal size the output was then modified. This means instead of splitting the hierarchy in the same order as it was created, always the biggest cluster (with the most notes) was split. The modification leads to better balanced cluster sizes as preferred in city clustering.
