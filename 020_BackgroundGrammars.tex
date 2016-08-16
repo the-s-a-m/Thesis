@@ -1,13 +1,15 @@
 \chapter{Background}
-This chapter describes state of the art concepts and algorithms, which were studied and used during this thesis. The background is divided into three sections.
+This chapter describes state of the art concepts and algorithms, which were studied and used during this thesis. The background is divided into five sections.
 
-Firstly grammars, which can be used to analyse or generate street networks are discussed. In that section \textit{Shape Grammars}, \textit{L-Systems} and the theory \textit{Space Syntax} are described and analysed.
+Firstly grammars, which can be used to analyse or generate street networks are discussed. In that section \textit{Shape Grammars}, \textit{L-Systems} and the theory \textit{Space Syntax} are explained and analysed.
 
-Secondly the application CPlan is used to create and analyse cities. For this thesis it was extended with many algorithms.
+Secondly the application CPlan is described. This software is a computational analysis and synthesis tool for cities. During this thesis it was extended with many algorithms.
 
 Thirdly clustering algorithms are explained. Those unsupervised machine learning algorithms have the purpose to separate data with specific characteristics into meaningful groups. In this section the clustering algorithms K-Means and hierarchical clustering (Single-Linkage, WPGMA, UPGMA) are discussed. In later chapters the usage and implementation of those algorithms will be explained.
 
-Lastly street networks measurement methods, that allow to analyse and compare street subgraphs are described.
+Fourthly street networks measurement methods, that allow to analyse and compare street subgraphs are described.
+
+Lastly the idea of all pairs shortest path algorithms are explained and compared against a single-source shortest path algorithm.
 
 \section{Shape Grammars} \label{sec:shape_grammar}
 The main key of a shape grammars is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. A shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}.
