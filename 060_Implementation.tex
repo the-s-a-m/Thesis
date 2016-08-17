@@ -148,12 +148,12 @@ The following parameters and descriptions characterise all implemented parameter
 
 \begin{align}
     total\ area &= area(convex\ hull)  \\
-    total\ length &= \sum_{edge\ \in\ edges}{} length(edge)\  \\
+    total\ length &= \sum_{e\ \in\ E}{} length(e)\  \\
     density &=\ \frac{total\ area}{total\ length} \\
     street\ length\ median &=  middle\ of\ the\ street\ length\ dataset \\
     street\ length\ variance &= \sigma\,\ where\ \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ 'street\ length\ median' \\
-    vertex\ connections\ mean &= \frac{1}{count(vertices)} \sum_{v\ \in\ vertices}{} connection\_count(v) \\
-    street\ angle\ mean &= \frac{1}{count(vertices)} \sum_{v\ \in\ vertices}{} angle(v) \\
+    vertex\ connections\ mean &= \frac{1}{|V|} \sum_{v\ \in\ V}{} connection\_count(v) \\
+    street\ angle\ mean &= \frac{1}{|V|} \sum_{v\ \in\ V}{} angle(v) \\
     street\ angle\ variance &= \sigma\ where \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ median\ of\ all\ angles \\
     block\ count &= count(blocks) \\
     block\ area\ A/Ac &= \frac{area(block)}{circumscribed\_circle(block)} \\
@@ -161,4 +161,4 @@ The following parameters and descriptions characterise all implemented parameter
     choice &= normalised\ in-betweenness-centrality 
 \end{align}
 
-In CPlan an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort. 
+In \acrshort{acr:CPlan} an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort.

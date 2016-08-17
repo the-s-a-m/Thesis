@@ -60,6 +60,7 @@ To problem was then solved by using a \gls{APSP} algorithm like Dijkstra or Floy
     \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
 \end{figure}
 
+\pagebreak
 \section{Single-Linkage Result}
 The figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis of Weimar using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
 
@@ -67,8 +68,8 @@ The problem is caused by the used reduction formula. Single linkage uses the min
 
 \begin{figure}
     \centering
-    \begin{mdframed}[style=mdthight]
-        \includegraphics[width=\textwidth]{clusteranalysis_singlelinkage.png}
+    \begin{mdframed}[style=mdthight, userdefinedwidth=0.7\textwidth, align=center]
+        \includegraphics[width=\linewidth]{clusteranalysis_singlelinkage.png}
     \end{mdframed}
     \caption{Single-Linkage hierarchical cluster analysis of Weimar\label{fig:SingleLinkage}}
 \end{figure}

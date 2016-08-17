@@ -164,6 +164,6 @@ This chapter was created to inform the reader about certain improvements and obs
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This method creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
-    \item The vector represented by the class Matrix2d is clockwise despite the norm is counter clockwise.
+    \item The vector represented by the class Matrix2d is clockwise despite the norm being counter clockwise.
     \item Line intersections of the class Geometry2D was not correct detected an therefore corrected.
 \end{itemize}
