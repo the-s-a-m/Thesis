@@ -1,20 +1,20 @@
 \chapter{Background}
 This chapter describes state of the art concepts and algorithms, which were studied and used during this thesis. The background is divided into five sections.
 
-Firstly grammars, which can be used to analyse or generate street networks are discussed. In that section \textit{Shape Grammars}, \textit{L-Systems} and the theory \textit{Space Syntax} are explained and analysed.
+Firstly, grammars, which can be used to analyse or generate street networks are discussed. In that section \textit{Shape Grammars}, \textit{L-Systems} and the theory \textit{Space Syntax} are explained and analysed.
 
-Secondly the application \gls{acr:CPlan} is described. This software is a computational analysis and synthesis tool for cities. During this thesis it was extended with multiple algorithms.
+Secondly, the application \gls{acr:CPlan} is described. This software is a computational analysis and synthesis tool for cities. During this thesis it was extended with multiple algorithms.
 
-Thirdly clustering algorithms are explained. Those unsupervised machine learning algorithms have the purpose to separate data with specific characteristics into meaningful groups. In this section the clustering algorithms K-Means and hierarchical clustering (Single-Linkage, \acrshort{WPGMA}, \acrshort{UPGMA}) are discussed. In later chapters the usage and implementation of those algorithms will be explained.
+Thirdly, clustering algorithms are explained. Those unsupervised machine learning algorithms have the purpose to separate data with specific characteristics into meaningful groups. In this section the clustering algorithms K-Means and hierarchical clustering (Single-Linkage, \acrshort{WPGMA}, \acrshort{UPGMA}) are discussed. In later chapters the usage and implementation of those algorithms will be explained.
 
-Fourthly street networks measurement methods, that allow to analyse and compare street subgraphs are described.
+Fourthly, street networks measurement methods, that allow to analyse and compare street subgraphs are described.
 
-Lastly the idea of all pairs shortest path algorithms are explained and compared against a single-source shortest path algorithm.
+Lastly, the idea of all pairs shortest path algorithms are explained and compared with a single-source shortest path algorithm.
 
 \section{Shape Grammars} \label{sec:shape_grammar}
 The main key of a shape grammars is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. A shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}.
 
-A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes, and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
+A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
 
 \subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
@@ -52,7 +52,7 @@ A painting is generated based on an undefined count of shape rules. This require
 
 \subsection{Painting Rules}
 \label{sec:Shape_Grammar_Painting_Rules}
-Painting rules describe witch shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by the common operators. An example can be viewed in figure \ref{fig:shape_grammar_gen_specifications}
+Painting rules describe which shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by the common operators. An example can be viewed in figure \ref{fig:shape_grammar_gen_specifications}
 
 \subsection{Limiting Shapes}
 \label{sec:Shape_Grammar_Limiting_Shapes}
@@ -60,7 +60,7 @@ These shapes define a limiting area on the canvas, where shape painting is allow
 The area could have any form, but normally it is defined as a rectangle. Like a camera view the limiting shape defines the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape.
 
 \subsection{Example}
-These specifications \ref{fig:shape_grammar_gen_specifications} have been used to generate the output image \ref{fig:Shape Grammars/Example}. In the output image \ref{fig:Shape Grammars/Example} the relevant steps can be observed. The levels are generated as described in the section \ref{sec:Shape_Grammar_Selection_Rules}. Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally steps 18 and 19 are on Level 2.
+The specifications from section \ref{fig:shape_grammar_gen_specifications} have been used to generate the output image \ref{fig:Shape Grammars/Example}. In this result the relevant steps can be observed. The levels are generated as described in section \ref{sec:Shape_Grammar_Selection_Rules}. Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally steps 18 and 19 are on Level 2.
 \begin{figure}[!ht]
     \centering
     \includegraphics{shape_grammar_generativ_spec.jpg}
@@ -95,7 +95,7 @@ In the following section we debate the usefulness of generating street networks 
 
 \pagebreak
 \section{L-Systems} \label{sec:L-Systems}
-L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant life: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations, where in each iteration productions are applied.
+L-System is a well established modelling approach for the synthesis of realistic plant images. There are many papers describing L-Systems and how they are applied to generate plant life: "In these cases L-System productions capture the \textit{development} of plant components over time." \citep{PrusinkiewiczEtAl:2001} Productions are applied in parallel, so that all plant parts grow and age equally. The growth is stopped at a defined terminal age. This age is the number of iterations where in each iteration productions are applied.
 
 The context-free productions in \citep{PrusinkiewiczEtAl:2001} are defined using the following syntax.
 \begin{equation} \label{eq:lsystem context free}
@@ -126,13 +126,13 @@ The axial line-based space syntax was first introduced in 1976 by B. Hiller, A. 
 The theory was later extended and integrated into \textit{Geographic Information System} (GIS) as point-based space syntax (graph). This systems are used to plan and analyse the human interaction with the environment.
 
 \subsection{Axial line-based space syntax and limitations}
-In space syntax streets are represented by axial lines. 
+In space syntax, streets are represented by axial lines. 
 \textit{"Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces."} \citep{integrationSpaceSyntaxGIS:2002}
-This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can by broken into segments at the intersections \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn till the hole space is covered.
+This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines as shown in figure \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can be broken into segments at the intersections, which is visualised in figure \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn until the hole space is covered.
 
-Axial maps have many limitations. First the complexity to create an axial map is high because of the generating procedure. If an additional area is added the hole process of detection should be repeated because a longer start line could exist. The process is non-deterministic because a curve could be separated into a unknown count of lines.
+Axial maps have many limitations. First the complexity to create an axial map is high because of the generating procedure. If an additional area is added the whole process of detection should be repeated because a longer start line could exist. The process is non-deterministic because a curve could be separated into a unknown count of lines.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{The-figure-ground-plan-of-Barnsbury-Axial-map.jpg}
@@ -150,9 +150,9 @@ Axial maps have many limitations. First the complexity to create an axial map is
 \end{figure}
 
 \subsection{Point-based space syntax}
-A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited the visitor can decide which direction he will travel next. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph based approach.
+A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited, the visitor can decide in which direction he will travel onward. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph-based approach.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{space_syntax_gis_characteristic_points.jpg}
@@ -170,4 +170,4 @@ A point-based space syntax is a decision based approach as described by Bin Jian
 \end{figure}
 
 \subsection{Comparison with CPlan}
-The application CPlan \ref{CPlan} does handle the street networks as graphs. As a result the same measurements methods can be applied as mentioned for the point-based space syntax. The clustering algorithms later discussed \ref{sec:K-Means}, \ref{sec:hierarchicalClustering} are applied on vertex/points and unidirectional edges between the points.
+\acrshort{acr:CPlan} (section \ref{CPlan}) does handle the street networks as graphs. This results in the same measurements methods, which can be applied as mentioned for the point-based space syntax. The clustering algorithms --- later discussed in sections \ref{sec:K-Means} and \ref{sec:hierarchicalClustering} --- are applied on vertex / points and unidirectional edges between the vertices.
