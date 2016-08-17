@@ -3,7 +3,7 @@
 \section{Guideline Source Code}
 This section provides a guideline through the important parts of the C\# source code, which was developed during this thesis. It's meant as an entry point which can be used to navigate more easily through the code, which implements the discussed concepts.
 
-The main solution should be opened from: 
+The main solution should be opened with Visual Studio from: 
 \path{GIT_REPO\cpg_all\BasicSystems\SynthesisWPF\SynthesisWPF\SynthesisWPF.sln}
 
 \gls{GUI} components were inserted into the sub-project Synthesis\_WPF\_MVVM. These dialogs were created in the sub folder \textit{Dialogs}:
@@ -15,7 +15,7 @@ The main solution should be opened from:
     \item Measured Clusters \ref{sec:measurements_full_table}
 \end{itemize}
 
-Algorithms were inserted into the sub-project Optimization. These classes have been created for this thesis:
+Algorithms were inserted into the sub-project Optimization. These classes / interfaces have been created for this thesis:
 \begin{itemize}
     \item Tree representation of a graph (model) \newline
     \path{.\Chromosomes\InstructionTreePisaAbs.cs}
@@ -43,51 +43,51 @@ Algorithms were inserted into the sub-project Optimization. These classes have b
 
 \pagebreak
 \section{K-Means Clustering Options} \label{sec:k-means_clustering_options}
-To apply centroid based clustering to a street network a specialized gui dialog was created where all parameters can be set. As you can see in figure \ref{fig:applied_k-means_GUI}.
+To apply centroid based clustering to a street network a specialized \gls{GUI} dialog was created where all parameters can be set. As you can see in figure \ref{fig:applied_k-means_GUI}.
 \begin{itemize}
-    \item If 'Show Visualisation' is activated the clustering process will be visualized.
+    \item If 'Show Visualisation' is activated the clustering process will be visualised.
     \item The counter 'Number of Tries' represents the count how often the clustering algorithm will be executed to extract the best result.
-    \item 'Iterations per Try' describe how many iterations are maximal made per try. 
-    \item If 'Shortest Path' is selected a shortest path algorithm will be applied after the centroid were set.
+    \item 'Iterations per Try' describe how many iterations are maximal made per try.
+    \item If 'Shortest Path' is selected, a shortest path algorithm will be applied after the centroid were set.
 \end{itemize}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.47\linewidth]{k-means_clustering_applied.png}
-    \caption{This gui dialog represents the parameters which could be applied to the K-Mean clustering algorithm.}
+    \caption{This \gls{GUI} dialog represents the parameters which could be applied to the K-Mean clustering algorithm.}
     \label{fig:applied_k-means_GUI}
 \end{figure}
 
 \pagebreak
 \section{Hierarchical Clustering Options} \label{sec:hierarchical_clustering_options}
-A specialized gui was created to set parameters for the hierarchical clustering analysis. The reduction formula can be selected at the top \ref{fig:applied_HC_clustering_GUI}.
+A specialised \gls{GUI} was created to set parameters for the hierarchical clustering analysis. The reduction formula can be selected at the top \ref{fig:applied_HC_clustering_GUI}.
 \begin{itemize}
     \item If the option 'Show Slider Dialog' is selected the cluster count can be changed in an additional dialog \ref{fig:applied_HC_clustering_slider_GUI}.
     \item The field 'Number of Clusters' represents the number of clusters which will be generated.
-    \item If 'Modify Output' is selected always the biggest cluster will be split instead as the hierarchy was created.
+    \item If 'Modify Output' is selected, always the biggest cluster will be split instead as the hierarchy was created. The results are more equal cluster sizes.
 \end{itemize}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.47\linewidth]{HC_clustering_applied.png}
-    \caption{This gui dialog represents the parameters which could be applied to the hierarchical clustering algorithm.}
+    \caption{This \gls{GUI} dialog represents the parameters which could be applied to the hierarchical clustering algorithm.}
     \label{fig:applied_HC_clustering_GUI}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.47\linewidth]{HC_clustering_applied_slider.png}
-    \caption{This gui dialog represents the optional 'Slide Dialog' which allows direct changes of the cluster count.}
+    \caption{This \gls{GUI} dialog represents the optional 'Slide Dialog' which allows direct changes of the cluster count.}
     \label{fig:applied_HC_clustering_slider_GUI}
 \end{figure}
 
 \pagebreak
 \section{Cluster Measurement Options} \label{sec:cluster_measurement_options}
-To compare clusters the process was visualized for this thesis. A dialog allows to select two clusters and compare the measured results \ref{fig:applied_clustering_analysis_GUI}. The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
+To compare clusters, the process was visualised for this thesis. A dialog allows to select two clusters and compare the measured results \ref{fig:applied_clustering_analysis_GUI}. The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]{cluster_applied_compare.png}
-    \caption{This gui dialog allows to select two clusters and to compare the measured values.}
+    \caption{This \gls{GUI} dialog allows to select two clusters and to compare the measured values.}
     \label{fig:applied_clustering_analysis_GUI}
 \end{figure}
 
@@ -160,7 +160,7 @@ This table represent the full measured data with the cluster analysis method.
 
 \pagebreak
 \section{Application Improvements}
-This chapter was created to inform the reader about certain improvements and observations made in the application CPlan \ref{CPlan}.
+This chapter was created to inform the reader about certain improvements and observations made in the application \gls{CPlan} \ref{CPlan}.
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This method creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.
