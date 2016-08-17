@@ -1,25 +1,25 @@
 \pagebreak
 \chapter{Implementation}
 \section{Tree Creation}
-To create a tree from a graph there are different approaches to describe the angles as mentioned in section \ref{sec:tree_creation_angle}. For the implementation in CPlan the used approach was the method two where straight forward is described with +180 degrees. If only positive angles exist the absolute value of a given graph would also generate a correct result.
+When creating a tree from a graph there are different approaches how the angles can be described, as mentioned in section \ref{sec:tree_creation_angle}. For the implementation in \acrshort{acr:CPlan} the used approach was the second method where straight forward streets are described with +180 degree angles. If only positive angles exist, the absolute value of a given graph will generate a correct result as well.
 
-Because a tree can not fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
+Because a tree cannot fully represent a graph, many points exist multiple times in the resulting tree. To recreate a graph, junctions should be added where streets intersect without junctions. And the resulting graph should be snapped where points are at the same position. Additionally the existing multiple points in the graph should be removed.
 
-This forward an backward transformation between a graph and a tree allows to run a genetic algorithm like mutation or crossover on a tree and display the result as graph. These genetic algorithm were already implemented by the \gls{iA}.
+This forward and backward transformations between a graph and a tree allow to run a genetic algorithm like mutation or crossover on a tree and display the result as a graph. These genetic algorithm were already implemented by the \gls{iA}.
 
 \pagebreak
 \section{K-Means}
 To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is based on the approach described in section \ref{sec:K-Means}. Some libraries used by CPlan provide the K-Means clustering already but this approach would not allow a visualisation of the progress and a speed up by parallelisation.
 
 \subsection{Connected Cluster Implementation} \label{sec:K-Means_shortest_path_impl}
-As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in \ref{sec:K-Means_shortest_path} are removed.
+As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in section \ref{sec:K-Means_shortest_path} are removed.
 
-Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the section Measurements \ref{sec:measurements-speed}.
+Additional calculation time is needed for the shortest path algorithm. The differences can be compared in the measurements section \ref{sec:measurements-speed}.
 
 \subsection{Speed Optimization}
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The street network of Zurich has 13 times more edges than Weimar, which resulted in long processing times. A speed improvement was achieved by running the K-Means iterations paralllised. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements-speed}.
 
-Additional acceleration would be possible by using K-Means++ \ref{sec:k-means++} or a K-D tree \ref{sec:k-means_KD-tree}.
+Additional acceleration would be possible by using K-Means++ (section \ref{sec:k-means++}) or a K-D tree (section \ref{sec:k-means_KD-tree}).
 
 \pagebreak
 \section{WPGMA / UPGMA}
@@ -28,9 +28,9 @@ In section \ref{sec:concept_memory_usage} of the concept chapter, the problem of
 
 The easiest optimisation is to convert all distances to a single-precision floating-point format. The loss of precision is not affecting the result, as mostly only the $<$ and $>$ relations of the different distances are important.
 
-A second optimisation that can be applied is, to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored. This improvement is visualised in figure \ref{fig:memory_usage_01}.
+A second optimisation that can be applied is to remove redundant information. When storing the full matrix of all distances, most values are stored twice. The matrix is mirrored along the diagonal, because the used street networks are undirected graphs. So the memory usage can almost be cut in half if those duplicates are not stored. This improvement is visualised in figure \ref{fig:memory_usage_01}.
 
-The third and last applied optimisation was to change the way, how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
+The third and last applied optimisation was to change the way how cluster distances are stored if the reduction formula \acrshort{UPGMA} or \acrshort{WPGMA} is used. Each time, when two clusters are combined, the distances of the new formed cluster to every other cluster are calculated. This combination step is done using the distances stored for the two old clusters. Afterwards the distances which were stored for the old clusters are no longer used. To reduce the memory usage, the distances of the new cluster can therefore be stored at the location where the distances of one of the old clusters were stored. Figure \ref{fig:memory_usage_02} visualises this optimisation.
 
 When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-precision floating point numbers have to be stored. The memory complexity still lies in $O(n^2)$, but the improvements allow most modern computers to analyse medium to big sized street networks. As an example: For the used environment the memory usage would amount to about 1.36 Gigabyte for the street network of Zurich.
 
@@ -52,9 +52,9 @@ When applying those memory usage optimisations, $\frac{1}{2}n(n+1)$ single-preci
 
 \pagebreak
 \subsection{Output Modification} \label{sec:outout_modification}
-As shown in section \ref{sec:concept_cluster_sizes} there exist some cases, where hierarchical clustering has an output of clusters with highly varying size if standard splitting order is used. (Size meaning the vertex / street junction count in this context.)
+As shown in section \ref{sec:concept_cluster_sizes}, there exist some cases where hierarchical clustering has an output of clusters with highly varying size if standard splitting order is used. (Size meaning the vertex / street junction count in this context.)
 
-Depending on the requirements this is the desired result, as it is the optimal solution of the algorithm using the given distances. In other cases it is more important, that the created clusters are roughly the same size, than it is to abide the mathematically optimal solution.
+Depending on the requirements, this is the desired result, as it is the optimal solution of the algorithm using the given distances. In other cases it is more important that the created clusters are roughly the same size than it is to abide the mathematically optimal solution.
 
 To create relatively equally sized clusters from the resulted hierarchy of a hierarchical cluster algorithm the following approach was taken. Instead of splitting the hierarchy into clusters exactly in the order in which the hierarchy was created, the order is changed. By always splitting the biggest cluster (cluster with the most nodes), a result with much more equally sized clusters will be created. A clustering with such modified sizes is shown in figure \ref{fig:modified_cluster_size}.
 
@@ -79,7 +79,7 @@ To create relatively equally sized clusters from the resulted hierarchy of a hie
 
 \pagebreak
 \section{Normalising Street Networks}
-While testing clustering algorithms on the street network of Zurich one rough spot of this network was found: Not all streets, which lead to a junction are connected to it. As shown in figure \ref{fig:zuerich_error} floating streets exist (highlighted in purple). No end of any of these highlighted streets is connected to the rest of the street network.
+While testing clustering algorithms on the street network of Zurich, one rough spot of this network was found: Not all streets which lead to a junction are connected to it. As shown in figure \ref{fig:zuerich_error} floating streets exist (highlighted in purple). No end of any of these highlighted streets is connected to the rest of the street network.
 
 To handle those floating streets a network normalisation method was developed. The normalisation snaps (unites) all junctions and street end points, which are positioned close together, into one common junction. The result of this normalisation is shown in figure \ref{fig:zuerich_fixed}.
 
@@ -106,7 +106,7 @@ To handle those floating streets a network normalisation method was developed. T
 \section{Cluster colouring}
 To visualize the clustering of a street network in this thesis, clusters are marked with different colours. This section describes the details of this cluster colouring.
 
-The result of each clustering algorithm, which was implemented in this thesis, represents a cluster as set of vertices. Each of these vertices is a junction in the street network. The visualisation only draws streets but not the junctions, as the intersection of streets are intuitively seen as junctions. To colour the different clusters the following approach was taken:
+The result of each clustering algorithm which was implemented in this thesis represents a cluster as set of vertices. Each of these vertices are junctions in the street network. The visualisation only draws streets but not the junctions, as the intersection of streets are intuitively seen as junctions. To colour the different clusters the following approach was taken:
 
 \begin{itemize}
     \item Streets which connect two vertices that are part of the same cluster are coloured with that clusters colour.
@@ -161,4 +161,4 @@ The following parameters and descriptions characterise all implemented parameter
     choice &= normalised\ in-betweenness-centrality 
 \end{align}
 
-In \acrshort{acr:CPlan} an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract this values without any additional development effort.
+In \acrshort{acr:CPlan} an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract these values without any additional development effort.

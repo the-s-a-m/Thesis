@@ -9,13 +9,13 @@ The main solution should be opened with Visual Studio from:
 \gls{GUI} components were inserted into the sub-project Synthesis\_WPF\_MVVM. These dialogs were created in the sub folder \textit{Dialogs}:
 
 \begin{itemize}
-    \item K-Means Clustering Options \ref{sec:k-means_clustering_options}.
-    \item Hierarchical Clustering Options \ref{sec:hierarchical_clustering_options}.
-    \item Cluster Measurement Options \ref{sec:cluster_measurement_options}.
-    \item Measured Clusters \ref{sec:measurements_full_table}
+    \item K-Means Clustering Options (section \ref{sec:k-means_clustering_options})
+    \item Hierarchical Clustering Options (section \ref{sec:hierarchical_clustering_options})
+    \item Cluster Measurement Options (section \ref{sec:cluster_measurement_options})
+    \item Measured Clusters (section \ref{sec:measurements_full_table})
 \end{itemize}
 
-Algorithms were inserted into the sub-project Optimization. These classes / interfaces have been created for this thesis:
+Algorithms were inserted into the sub-project \textit{Optimization}. These classes / interfaces have been created for this thesis:
 \begin{itemize}
     \item Tree representation of a graph (model) \newline
     \path{.\Chromosomes\InstructionTreePisaAbs.cs}
@@ -59,7 +59,8 @@ To apply centroid based clustering to a street network a specialized \gls{GUI} d
 
 \pagebreak
 \section{Hierarchical Clustering Options} \label{sec:hierarchical_clustering_options}
-A specialised \gls{GUI} was created to set parameters for the hierarchical clustering analysis. The reduction formula can be selected at the top \ref{fig:applied_HC_clustering_GUI}.
+A specialised \gls{GUI} was created to set parameters for the hierarchical clustering analysis. The reduction formula can be selected at the top (figure \ref{fig:applied_HC_clustering_GUI}).
+
 \begin{itemize}
     \item If the option 'Show Slider Dialog' is selected the cluster count can be changed in an additional dialog \ref{fig:applied_HC_clustering_slider_GUI}.
     \item The field 'Number of Clusters' represents the number of clusters which will be generated.
@@ -82,7 +83,7 @@ A specialised \gls{GUI} was created to set parameters for the hierarchical clust
 
 \pagebreak
 \section{Cluster Measurement Options} \label{sec:cluster_measurement_options}
-To compare clusters, the process was visualised for this thesis. A dialog allows to select two clusters and compare the measured results \ref{fig:applied_clustering_analysis_GUI}. The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
+To compare clusters, the process was visualised for this thesis. A dialog allows to select two clusters and compare the measured results (figure \ref{fig:applied_clustering_analysis_GUI}). The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
 
 \begin{figure}[ht]
     \centering
@@ -160,7 +161,7 @@ This table represent the full measured data with the cluster analysis method.
 
 \pagebreak
 \section{Application Improvements}
-This chapter was created to inform the reader about certain improvements and observations made in the application \gls{acr:CPlan} \ref{CPlan}.
+This chapter was created to inform the reader about certain improvements and observations made in \gls{acr:CPlan} (section \ref{CPlan}).
 \begin{itemize}
     \item Some calls to the methods IEnumerable.ToArray() and IEnumerable.ToList() were removed. This method creates a new array / list and stores every item of the IEnumerable in this new collection. As a result the application had an extremely large footprint. To further reduce this overhead some methods were changed to take IEnumerable parameters instead of arrays.
     \item Certain graph and geometry extension methods were fixed. It would be good practice to create unit tests for such methods.

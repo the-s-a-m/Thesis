@@ -48,14 +48,14 @@ The used parameters were for all measurements the following (Those parameters ca
 \begin{itemize}
     \item Show slider dialog (figure \ref{fig:applied_HC_clustering_slider_GUI}): no
     \item Number of clusters: 10
-    \item Modify Output \ref{sec:outout_modification}: yes
+    \item Modify Output (section \ref{sec:outout_modification}): yes
 \end{itemize}
 
 The different bars show the speed measurements of the implemented variations of hierarchical clustering algorithms. Each algorithm was measured in conjunction with different \acrshort{APSP} algorithms. The following hierarchical clustering implementations were measured:
 
 \begin{itemize}
     \item \textbf{UPGMA (without distance caching):} Hierarchical clustering using the \acrshort{UPGMA} reduction formula, without using cluster distance caching. Distances between clusters were calculated every time they were needed.
-    \item \textbf{UPGMA (fast / cached distances):} Hierarchical clustering using the \acrshort{UPGMA} reduction formula. Different than the previous, here distance caching \ref{sec:concept_distance_caching} was applied.
+    \item \textbf{UPGMA (fast / cached distances):} Hierarchical clustering using the \acrshort{UPGMA} reduction formula. Different than the previous, here distance caching (see section \ref{sec:concept_distance_caching}) was applied.
     \item \textbf{WPGMA (fast / cached distances):} Same clustering as the previous, but using the \acrshort{WPGMA} reduction formula.
 \end{itemize}
 
@@ -63,7 +63,7 @@ The following \acrshort{APSP} algorithms were measured:
 
 \begin{itemize}
     \item \textbf{Floyd-Warshall:} Regular Floyd-Warshall algorithm.
-    \item \textbf{Dijkstra:} Regular \acrshort{SSSP} Dijkstra algorithm started from each vertex separately to create an \acrshort{APSP} algorithm. See \ref{sec:shortest_path} for more details.
+    \item \textbf{Dijkstra:} Regular \acrshort{SSSP} Dijkstra algorithm started from each vertex separately to create an \acrshort{APSP} algorithm. See more details in section \ref{sec:shortest_path}.
     \item \textbf{Dijkstra Parallel:} The same as the previous with the difference that all Dijkstra algorithm runs are executed parallelised.
 \end{itemize}
 
@@ -80,7 +80,7 @@ The caching of cluster distances resulted in a significant speed improvement ove
 \pagebreak
 \section{Cluster Analysis}
 \label{sec:measurements-cluster-analysis}
-In this section the provided measurement methods \ref{sec:clusterRating} are used to compare the measured results between the different districts/areas. The following images were generated with the cluster algorithm FastUPGMA \ref{sec:UPGMAandWPGMA} on Weimar with \textit{Modified Output} and \textit{Number of Clusters} count 16.
+Here the provided measurement methods from section \ref{sec:clusterRating} are used to compare the measured results between the different districts / areas. The following figures were generated with hierarchical clustering using UPGMA (section \ref{sec:UPGMAandWPGMA}) on Weimar with \textit{Modified Output} and \textit{Number of Clusters} count 16.
 
 A example for every district from the section \ref{sec:concept_cluster_analysis} was found. Three different colours can be observed. Red labelled edges are within the cluster. Grey edges are transitions between different clusters and black edges are outside of the cluster.
 
@@ -108,7 +108,7 @@ Like anticipated in section \ref{sec:businessDistinct} the business district (fi
 \end{figure}
 \FloatBarrier
 
-A detected outskirts subgraph can be viewed in figure \ref{fig:result_outskirts_district}. The measured results can be found in table \ref{tab:measured_cluster_ratings} cluster number C3. They show as expected a high street length variance and median. The density is very high because of a low street count on a big area.
+A detected outskirts subgraph can be viewed in figure \ref{fig:result_outskirts_district}. The measured results can be found in table \ref{tab:measured_cluster_ratings} cluster number C3. They show a high street length variance and median as expected. The density is very high because of a low street count on a big area.
 
 \begin{figure}[ht]
     \centering
@@ -123,7 +123,7 @@ A detected outskirts subgraph can be viewed in figure \ref{fig:result_outskirts_
 \FloatBarrier
 \subsection{Measured Data}
 \label{sec:ClusterAnalysisMeasurements}
-The following table \ref{tab:cluterAnalysisDescription} contains the parameters with additional descriptions. Of every parameter the minimal (min), maximal (max), mean (average) and the median value can be calculated. Because the min, max values don't have any relevance they were skipped in this table. All measurements can be observed in the appendix in \ref{sec:measurements_full_table}.
+The following table \ref{tab:cluterAnalysisDescription} contains the parameters with additional descriptions. Of every parameter the minimal (min), maximal (max), mean (average) and the median value can be calculated. Because the min, max values don't have any relevance they were skipped in this table. All measurements can be observed in the appendix section \ref{sec:measurements_full_table}.
 
 \begin{table}[!ht]
 \centering

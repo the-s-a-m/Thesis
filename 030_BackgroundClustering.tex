@@ -16,12 +16,12 @@ Because the K-Means algorithm can find local minima, this process needs to be ex
 The K-Means algorithm was later extended to set reasonable start centroids. This extensions allows to run a K-Means run with $O(log\ k)$ \cite{k-means++:2007}.
 
 \subsection{KD-Tree} \label{sec:k-means_KD-tree}
-A K-Dimensional tree could to improve the time complexity of the k-means algorithm \citep{kmeans:2002}. This tree separates k-dimensional data into a structure, where queries for single data points or ranges can be evaluated with way better performance.
+A K-Dimensional tree could improve the time complexity of the k-means algorithm \citep{kmeans:2002}. This tree separates k-dimensional data into a structure, where queries for single data points or ranges can be evaluated with way better performance.
 
 \pagebreak
 \FloatBarrier
-\section{Hierarchical Clustering} 
-\label{sec:hierarchicalClustering}
+\section{Hierarchical Clustering} \label{sec:hierarchicalClustering}
+
 Hierarchical clustering also known as connectivity based clustering is an area of algorithms, which clusters nodes together that are near to each other. The advantage over K-Means is that graph distances can be used instead of the euclidean distance.
 
 The result of a hierarchical clustering algorithm is a tree also called hierarchy, hence the name. This result can be used to create $1$ to $n$ clusters, where $n$ is the number of data entries. Those data entries are in some cases also called nodes in this document.
@@ -31,7 +31,7 @@ As described in \cite{clustering:2005}, there are generally two main strategies 
 
 \begin{itemize}
     \item \textbf{Agglomerative}: Bottom up strategy. In the beginning each node is an own cluster. Clusters are combined until only a single cluster remains.
-    \item \textbf{Divisive}: Top down strategy. All nodes are contained in one cluster at the start. This cluster is then divided into sub clusters.
+    \item \textbf{Divisive}: Top down strategy. All nodes are contained in one cluster at the start. This cluster is then divided into sub-clusters.
 \end{itemize}
 
 The time complexity of the divisive strategy with $O(2^n)$ is not performing well enough for the size of the street networks on which the algorithms have to run. The agglomerative strategy runs in $O(n^2 log(n))$ and in some special cases in $O(n^2)$ time complexity. The hierarchical clustering algorithms implemented for this thesis run in $O(n^2)$ time complexity. They are based on the paper "Optimal implementations of UPGMA and other common clustering algorithms" \cite{clustering:2007}.
@@ -70,7 +70,7 @@ For every of these reduction formulae the following holds:
 \end{split}
 \end{equation}
 
-For both the single linkage and the \acrshort{UPGMA} reduction formula exists a dissimilarity function (\ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the cluster distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the \acrshort{WPGMA} reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
+For both the single linkage and the \acrshort{UPGMA} reduction formula exists a dissimilarity function (listings \ref{eq:df_single_linkage} and \ref{eq:df_upgma}). These are alternative formulations of the reduction formulae which determine the cluster distance by traversing all nodes of both clusters. The created cluster hierarchy is not used in these functions. For the \acrshort{WPGMA} reduction formula no dissimilarity function exists, as shown in \cite{clustering:2007}.
 
 \begin{align}
 \label{eq:df_single_linkage}
@@ -116,7 +116,7 @@ Using this method it is possible to create 1 to $n$ clusters from any hierarchy,
 
 \section{Cluster Analysis}
 \label{sec:clusterRating}
-To evaluate the generated clusters different measurement methods are necessary. Jun. Prof. Dr. Reinhard König from the ETH Zurich proposed the following parameters.
+To evaluate the generated clusters different measurement methods are necessary. Jun. Prof. Dr. Reinhard König from the ETH Zurich proposed the following parameters:
 
 \begin{itemize}
     \item Geometry based measurements:
@@ -134,7 +134,7 @@ To evaluate the generated clusters different measurement methods are necessary. 
         \item In-Betweenness-Centrality (Choice)
     \end{itemize}
 \end{itemize}
-The centrality based ratings and the block area calculation were pre implemented in CPlan \ref{CPlan}. Additional a GUI to compared and stored the results as JSON-File for each generated cluster has been added.
+The centrality based ratings and the block area calculation were already implemented in \acrshort{acr:CPlan} (section \ref{CPlan}). Additionally a GUI to compare and store the results as JSON-File for each generated cluster has been added.
 
 Some initial measurements and comparisons are made in the cluster analysis chapter \ref{sec:measurements-cluster-analysis}.
 
@@ -142,13 +142,13 @@ Some initial measurements and comparisons are made in the cluster analysis chapt
 In the paper \textit{A typology of street patterns}\citep{blockArea:2014} the method is described how cities/areas can be classified and compared by analysing the block areas instead of the streets. First the block area is calculated and then the result is divided by the circumscribed circle area.
 
 \subsection{Centrality}
-The parameter \textit{Integration} describes the closeness centrality. This means the normed sum of the distances from all other vertex based on te shortest path algorithm is calculated. The vertex with the lowest value must be the most central.
+The parameter \textit{Integration} describes the closeness centrality. This means the normed sum of the distances from all other vertex based on the shortest path algorithm is calculated. The vertex with the lowest value must be the most central.
 
 With \textit{Choice} the betweenness centrality is described. The approach is to calculate the shortest path between every vertex. Every time a given vertex is visited the betweenness-centrality value of the vertex is raised by one. As a result the highest measured value indicates for a vertex to be in or near the centre of a graph.
 
 \subsection{Variance}
 The parameter variance describes the sigma of the normal curve of the distribution function.
-First of all the measured data is round to fit into a distribution function \ref{eq:distribution_function}. Then the expected value \ref{eq:expected_value} and the variance \ref{eq:variance} is calculated. Finally the standard deviation (square root of V(x)) is computed \ref{eq:standard_deviation}.
+First of all the measured data is round to fit into a distribution function (listing \ref{eq:distribution_function}). Then the expected value (listing \ref{eq:expected_value}) and the variance (listing \ref{eq:variance}) is calculated. Finally the standard deviation (square root of V(x)) is computed (listing \ref{eq:standard_deviation}).
 \begin{align}
 \label{eq:distribution_function} 
 F(x) &= P(X \leq x) =  \sum_{t\in{X}, t\leq{x}}{f(t)} \\
