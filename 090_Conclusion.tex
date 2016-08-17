@@ -10,6 +10,6 @@ Afterwards the reduction formulae \gls{UPGMA} and \gls{WPGMA} were implemented. 
 
 To produce clusters which were more equal in size, the output was then modified. This means instead of splitting the hierarchy in the same order as it was created, always the biggest cluster (with the most nodes) was split. The modification leads to better balanced cluster sizes as often preferred in city clustering.
 
-During tests with big street networks high memory usage was a problem. As a result three optimisations were made \ref{sec:memory_usage}. Firstly single-precision floating-point numbers were used. Secondly a data structure which does not store redundant values was introduced. Lastly the cached cluster distances were saved at no longer used positions of node distance matrix.
+During tests with big street networks high memory usage was a problem. As a result three optimisations were made \ref{sec:memory_usage}. Firstly single-precision floating-point numbers were used. Secondly a data structure which does not store redundant values was introduced. Lastly the cached cluster distances were saved at no longer used positions of the node distance matrix.
 
 To rate the created clusters many graph analysis parameters were implemented \ref{sec:measurements-cluster-analysis}. The clusters and values can be compared and exported into a JSON-file for later use.
