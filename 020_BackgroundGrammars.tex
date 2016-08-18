@@ -11,10 +11,11 @@ Fourthly, street networks measurement methods, that allow to analyse and compare
 
 Lastly, the idea of all pairs shortest path algorithms are explained and compared with a single-source shortest path algorithm.
 
+\pagebreak
 \section{Shape Grammars} \label{sec:shape_grammar}
 The main key of a shape grammars is to generate paintings by a new defined grammar based on shapes, selection rules, painting rules and limiting shapes. A shape grammar is a language based on an alphabet of shapes and generated shapes \citep{shapeGrammars:1972}.
 
-A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas.
+A class of paintings defines the pair (S,M). S represents the shape specifications and M the material specifications. The shape specification contains a shape grammar, defining a language of two dimensional shapes and a selection rule. M specifies a finite list of material specifications and one limiting shape on a canvas (see \citep{shapeGrammars:1972}).
 
 \subsection{Shape Grammar Definition}
 \label{sec:Shape_Grammar_Definition}
@@ -53,12 +54,12 @@ A painting is generated based on an undefined count of shape rules. This require
 
 \subsection{Painting Rules}
 \label{sec:Shape_Grammar_Painting_Rules}
-Painting rules describe which shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by the common operators. An example can be viewed in figure \ref{fig:shape_grammar_gen_specifications}
+Painting rules describe which shape should be painted inside of a defined area. Like in a Venn diagram the rules contain multiple levels 0 - n. By combining these levels the painting colour is described\citep{shapeGrammars:1972}. The assignments are made by the common operators. An example can be viewed in figure \ref{fig:shape_grammar_gen_specifications}.
 
 \subsection{Limiting Shapes}
 \label{sec:Shape_Grammar_Limiting_Shapes}
 These shapes define a limiting area on the canvas, where shape painting is allowed. 
-The area could have any form, but normally it is defined as a rectangle. Like a camera view the limiting shape defines the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape.
+The area could have any form, but normally it is defined as a rectangle. Like a camera view the limiting shape defines the scale of a painting and its viewpoint. Therefore the initial/start shape could be outside of the limiting shape (see \citep{shapeGrammars:1972}).
 
 \subsection{Example}
 The specifications from section \ref{fig:shape_grammar_gen_specifications} have been used to generate the output image \ref{fig:Shape Grammars/Example}. In this result the relevant steps can be observed. The levels are generated as described in section \ref{sec:Shape_Grammar_Selection_Rules}. Level 0 is represented by steps 0 and 1. Steps 2 to 5 are on level 1 and finally steps 18 and 19 are on Level 2.
@@ -151,7 +152,7 @@ Axial maps have many limitations. First the complexity to create an axial map is
 \end{figure}
 
 \subsection{Point-based space syntax}
-A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited, the visitor can decide in which direction he will travel onward. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph-based approach.
+A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited, the visitor can decide in which direction he will travel onward. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph-based approach (see \citep{integrationSpaceSyntaxGIS:2002}).
 
 \begin{figure}[!ht]
     \centering
