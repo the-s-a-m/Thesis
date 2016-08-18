@@ -82,6 +82,93 @@ A specialised \gls{GUI} was created to set parameters for the hierarchical clust
 \end{figure}
 
 \pagebreak
+\section{Speed Measurements} \label{sec:speed_measurement_tables}
+
+In section \ref{sec:measurements-speed} speed measurements were described evaluated. Tables \ref{tab:speed_measurements_kmeans} and \ref{tab:speed_measurements_hierarchical_clustering} list the original measurement data for the sake of completeness.
+
+The following environment was used for these measurements:
+
+\begin{itemize}
+    \item \textbf{.Net Framework Version:} 4.6
+    \item \textbf{Architecture:} 64-bit (x86-64)
+    \item \textbf{Operating System:} Windows 10
+    \item \textbf{Hardware Model:} Acer Aspire V3 772G
+    \item \textbf{Processor:} Intel Core i7-4702MQ (Quad Core)
+    \item \textbf{RAM:} 32 GB
+\end{itemize}
+
+\begin{table}[!hb]
+    \centering
+    \begin{tabular}{ | l | l | l | l | } \hline
+        \textbf{Original} & \textbf{Parallel} & \textbf{Original \& Shortest Path} & \textbf{Parallel \& Shortest Path}  \\
+        \hline
+
+        29628 ms & 16104 ms & 33106 ms & 16838 ms \\
+        28633 ms & 16268 ms & 31312 ms & 17135 ms \\
+        28894 ms & 15959 ms & 31382 ms & 18046 ms \\
+        29374 ms & 16149 ms & 32998 ms & 17590 ms \\
+        29027 ms & 17704 ms & 32108 ms & 17991 ms \\
+        28969 ms & 15937 ms & 32251 ms & 17923 ms \\
+        28954 ms & 18308 ms & 32158 ms & 17291 ms \\
+        29060 ms & 16462 ms & 31480 ms & 17132 ms \\
+        30612 ms & 16756 ms & 33418 ms & 18817 ms \\
+        28604 ms & 18461 ms & 31413 ms & 18280 ms \\
+        \hline
+    \end{tabular}
+    \caption{K-Means Speed Measurements}
+    \label{tab:speed_measurements_kmeans}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{ | l | l | l | l | } \hline
+        \textbf{Variation} & \textbf{Original} & \textbf{Parallel} & \textbf{Original \& Shortest Path} \\
+        \hline
+
+        \multirow{10}{*}{\begin{minipage}{3cm}UPGMA (without distance caching)\end{minipage}}
+        & 98618 ms & 63001 ms & 61006 ms \\
+        & 100678 ms & 62909 ms & 60212 ms \\
+        & 101714 ms & 63299 ms & 60778 ms \\
+        & 98792 ms & 61560 ms & 62275 ms \\
+        & 98842 ms & 61374 ms & 61336 ms \\
+        & 98099 ms & 61835 ms & 61557 ms \\
+        & 97791 ms & 61881 ms & 61784 ms \\
+        & 97526 ms & 61623 ms & 61812 ms \\
+        & 97946 ms & 61226 ms & 61629 ms \\
+        & 97756 ms & 61813 ms & 62769 ms \\
+        \hline
+
+        \multirow{10}{*}{\begin{minipage}{3cm}UPGMA (fast / cached distances)\end{minipage}}
+        & 15122 ms & 2172 ms & 865 ms \\
+        & 15240 ms & 2124 ms & 852 ms \\
+        & 15005 ms & 2135 ms & 864 ms \\
+        & 14920 ms & 2126 ms & 870 ms \\
+        & 15006 ms & 2132 ms & 853 ms \\
+        & 15033 ms & 2107 ms & 863 ms \\
+        & 15053 ms & 2101 ms & 844 ms \\
+        & 15099 ms & 2117 ms & 860 ms \\
+        & 15188 ms & 2089 ms & 859 ms \\
+        & 15178 ms & 2095 ms & 857 ms \\
+        \hline
+
+        \multirow{10}{*}{\begin{minipage}{3cm}WPGMA (fast / cached distances)\end{minipage}}
+        & 15012 ms & 2091 ms & 834 ms \\
+        & 15036 ms & 2086 ms & 847 ms \\
+        & 15179 ms & 2117 ms & 844 ms \\
+        & 15152 ms & 2123 ms & 862 ms \\
+        & 15135 ms & 2075 ms & 843 ms \\
+        & 15239 ms & 2122 ms & 836 ms \\
+        & 15074 ms & 2168 ms & 845 ms \\
+        & 15065 ms & 2108 ms & 835 ms \\
+        & 15099 ms & 2062 ms & 846 ms \\
+        & 15051 ms & 2107 ms & 869 ms \\
+        \hline
+    \end{tabular}
+    \caption{Hierarchical Clustering Speed Measurements}
+    \label{tab:speed_measurements_hierarchical_clustering}
+\end{table}
+
+\pagebreak
 \section{Cluster Measurement Options} \label{sec:cluster_measurement_options}
 To compare clusters, the process was visualised for this thesis. A dialog allows to select two clusters and compare the measured results (figure \ref{fig:applied_clustering_analysis_GUI}). The selected clusters are marked by colours in the main view \ref{fig:applied_clustering_analysis_visualized_GUI}.
 
