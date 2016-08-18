@@ -124,8 +124,8 @@ To evaluate the generated clusters different measurement methods are necessary. 
         \item Area based on the convex hull of the cluster area
         \item Total length of the streets
         \item Ratio between the area and total length
-        \item Distribution variance of the street length
-        \item Distribution variance of the street angles
+        \item Sigma of the distribution variance of the street length
+        \item Sigma of the distribution variance of the street angles
         \item Ratio between street block size and surrounding circle area (minima, maxima, mean)
     \end{itemize}
     \item Centrality-based measurements normalized by the street count (minima, maxima, mean):
@@ -146,9 +146,9 @@ The parameter \textit{Integration} describes the closeness centrality. This mean
 
 With \textit{Choice} the betweenness centrality is described. The approach is to calculate the shortest path between every vertex. Every time a given vertex is visited the betweenness-centrality value of the vertex is raised by one. As a result the highest measured value indicates for a vertex to be in or near the centre of a graph.
 
-\subsection{Variance}
-The parameter variance describes the sigma of the normal curve of the distribution function.
-First of all the measured data is round to fit into a distribution function (listing \ref{eq:distribution_function}). Then the expected value (listing \ref{eq:expected_value}) and the variance (listing \ref{eq:variance}) is calculated. Finally the standard deviation (square root of V(x)) is computed (listing \ref{eq:standard_deviation}).
+\subsection{Sigma}
+The parameter \textit{Sigma} describes the standard deviation of the normal curve of the distribution function.
+First of all the measured data is round to fit into a distribution function (listing \ref{eq:distribution_function}). Then the expected value (listing \ref{eq:expected_value}) and the variance (listing \ref{eq:variance}) is calculated. Finally the standard deviation (square root of V(x)) or sigma is computed (listing \ref{eq:standard_deviation}).
 \begin{align}
 \label{eq:distribution_function} 
 F(x) &= P(X \leq x) =  \sum_{t\in{X}, t\leq{x}}{f(t)} \\
