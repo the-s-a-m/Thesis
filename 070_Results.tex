@@ -60,6 +60,17 @@ The problem was then solved by using a \gls{APSP} algorithm like Dijkstra or Flo
     \caption{K-Means clustering with shortest path\label{fig:Kmeansshortestp}}
 \end{figure}
 
+\subsection{Additional Features} \label{sec:result_kmeans_additional_features}
+Different additional features were tested while trying to improve the results of K-Means clustering. Most features lead to the problem that the clustering was not location based anymore. For example in some cases the historic city centre was divided so that there did not exists any two neighbouring vertices which were in the same cluster. The usage of block analysis --- concretely the relative block area (listing \ref{eq:block_relative_area}) --- as feature resulted in improved clusters as shown in figure \ref{fig:kmeans_additional_features}.
+
+\begin{figure}
+    \centering
+    \begin{mdframed}[style=mdthight]
+        \includegraphics[width=\textwidth]{kmeans_additional_features.png}
+    \end{mdframed}
+    \caption{K-Means clustering with additional feature (relative block area) \label{fig:kmeans_additional_features}}
+\end{figure}
+
 \pagebreak
 \section{Single-Linkage Result}
 Figure \ref{fig:SingleLinkage} shows the result of a hierarchical cluster analysis of Weimar using the single linkage reduction formula. The used distance function $d(i, j)$ was the shortest distance from $i$ to $j$ in the street graph. As it is clearly visible when looking at the result, this way of cluster analysis is not creating the desired output. There is one huge cluster in the middle and many one-node clusters at the border of the city.
