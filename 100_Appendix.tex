@@ -33,7 +33,7 @@ Algorithms were inserted into the sub-project \textit{Optimization}. These class
     \path{.\ClusterAnalysis\HierarchicalCluster.cs}
     \item Generic interface for cluster algorithms\newline
     \path{.\ClusterAnalysis\IClusterAnglorithm.cs}
-    \item Generic cluster output interface \newline 
+    \item Generic hierarchical cluster output interface \newline 
     \path{.\ClusterAnalysis\IHierarchicalClusterOutput.cs}
     \item K-Means clustering class \newline
     \path{.\ClusterAnalysis\KMeansCluster.cs}
@@ -189,7 +189,7 @@ To compare clusters, the process was visualised for this thesis. A dialog allows
 
 \FloatBarrier
 \section{Measured Clusters} \label{sec:measurements_full_table}
-This table represent the full measured data with the cluster analysis method.
+This table represent the full measured data with the cluster analysis method UPGMA (section \ref{sec:hierarchicalClustering}) on Weimar with \textit{Modified Output} and \textit{Number of Clusters} count 16. Addition informations can be found in section \ref{sec:measurements-cluster-analysis}.
 
 \begin{table}[h]
     \begin{center}
@@ -200,7 +200,7 @@ This table represent the full measured data with the cluster analysis method.
             & \textbf{C2} \ref{sec:businessDistinct}
             & \textbf{C3} \ref{sec:outskits}  \\ 
             \hline
-            \multirow{4}{*}{Total} 
+            \multirow{3}{*}{Total} 
             & Area & 1838.05 & 1956.59 & 7802.74 \\
             & Length & 806.92 & 643.50 & 1069.81 \\
             & Density & 2.28 & 3.04 & 7.29 \\
@@ -215,13 +215,13 @@ This table represent the full measured data with the cluster analysis method.
             \multirow{1}{*}{Vertex} 
             & Connections & 3.04 & 2.84 & 2.45 \\
             \hline
-            \multirow{5}{*}{Street Angle} 
+            \multirow{4}{*}{Street Angle} 
             & Min & 0.00 & 0.00 & 0.00 \\
             & Max & 151.80 & 358.84 & 359.80 \\
             & Mean & 119.03 & 123.75 & 137.18 \\
             & Sigma & 124.68 & 131.65 & 129.47 \\
             \hline
-            \multirow{5}{*}{Block} 
+            \multirow{7}{*}{Block} 
             & Count & 55 & 35 & 26 \\
             & Area Min & 0.01 & 0.09 & 0.00 \\
             & Area Max & 31.75 & 42.29 & 567.26 \\
@@ -230,12 +230,12 @@ This table represent the full measured data with the cluster analysis method.
             & A/Ac Max & 0.54 & 0.55 & 0.66 \\
             & A/Ac Mean & 0.18 & 0.23 & 0.18 \\
             \hline
-            \multirow{5}{*}{Integration} 
+            \multirow{3}{*}{Integration} 
             & Min & 0.46 & 0.48 & 0.60 \\
             & Max & 0.57 & 0.75 & 1.0 \\
             & Mean & 0.49 & 0.59 & 0.78 \\
             \hline
-            \multirow{5}{*}{Choice}
+            \multirow{3}{*}{Choice}
             & Min & 0.00 & 0.00 & 0.00 \\
             & Max & 1.00 & 0.67 & 0.34 \\
             & Mean & 0.10 & 0.05 & 0.04 \\
