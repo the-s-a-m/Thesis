@@ -5,19 +5,19 @@ A tree is generated from a certain area. To display and compare the differences 
 
 \begin{figure}[hb]
     \centering
-    \begin{subfigure}[b]{0.5\textwidth}
+    \begin{subfigure}[b]{0.45\textwidth}
         \begin{mdframed}[style=mdthight]
             \includegraphics[width=\textwidth]{tree_before.png}
         \end{mdframed}
         \caption{Subgraph of Weimar}
         \label{fig:tree_example}
     \end{subfigure}
-    \quad
-    \begin{subfigure}[b]{0.5\textwidth}
+    \par
+    \begin{subfigure}[b]{0.45\textwidth}
         \begin{mdframed}[style=mdthight]
             \includegraphics[width=\textwidth]{tree_after.png}
         \end{mdframed}
-        \caption{Recreated Subgraph from tree of Weimar}
+        \caption{Recreated Subgraph from the tree of Weimar}
         \label{fig:tree_example_after}
     \end{subfigure}
     \caption{Subgraph before \ref{fig:tree_example} and after \ref{fig:tree_example_after} tree creation}
@@ -25,12 +25,12 @@ A tree is generated from a certain area. To display and compare the differences 
 
 \FloatBarrier
 \section{K-Means}
-The K-Means algorithm assigns points by using random centroids and assign all nearest points to them. Then the centroids are moved into the centre of their assigned points. This process is repeated until no point is moved.
+The K-Means algorithm first places random centroids and assigns all points to their nearest centroid. Then each centroid is moved into the centre of its assigned points. This process is repeated until no point is moved.
 
 The implementation in \acrshort{acr:CPlan} (section \ref{CPlan}) produced figure \ref{fig:KmeansGenerated} based on the city of Weimar. All streets in one cluster are marked with the same colour, the transitions between clusters are marked black.
 
 \subsection{Connected Cluster Problem}
-As presumed the resulting subgraph had unexpected transitions between clusters. This means some clusters were not connected. In figure \ref{fig:KmeansProblem} the result can be observed in the read circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
+As presumed the resulting subgraph had unexpected transitions between clusters. This means some clusters were not connected. In figure \ref{fig:KmeansProblem} the result can be observed in the orange circle where only one point is marked as outer cluster. The two black lines represent the cluster transitions.
 
 \begin{figure}[!ht]
     \centering

@@ -120,7 +120,7 @@ There are papers which discuss how colours can be transformed to a perceptually 
 
 In this thesis a more concise approach was taken: The papers of R. M. Boynton \cite{boynton:1989} and K. L. Kelly \cite{kelly:1965} define 11, respectively 22 colours, which are easy to distinguish by human eye. Those colours are displayed in figure \ref{fig:colours}.
 
-Depending on the number of clusters one or the other of those colour sets (without black and white) were used. The colours were already sorted in a way that ensures the extraction of the first $n$ elements returns colours with maximal distance. If more than 20 clusters had to be coloured, the colours of Kelly were used multiple times.
+Depending on the number of clusters one or the other of those colour sets (without black and white) were used. The colours were already sorted in a way which ensures that the extraction of the first $n$ elements returns colours with maximal distance. If more than 20 clusters had to be coloured, the colours of Kelly were used multiple times.
 
 \begin{figure}
     \centering
@@ -147,21 +147,29 @@ Depending on the number of clusters one or the other of those colour sets (witho
 \pagebreak
 \section{Cluster Analysis}
 \label{sec:cluster_analysis_impl}
-The following parameters and descriptions characterise all implemented parameter to measure street networks. Additional conceptual information can be found in section \ref{sec:clusterRating}.
+The following parameters and descriptions characterise all implemented properties to measure street networks. Additional conceptual information can be found in section \ref{sec:clusterRating}.
 
 \begin{align}
-    total\ area &= area(convex\ hull)  \\
-    total\ length &= \sum_{e\ \in\ E}{} length(e)\  \\
-    density &=\ \frac{total\ area}{total\ length} \\
-    street\ length\ median &=  middle\ of\ the\ street\ length\ dataset \\
-    street\ length\ sigma &= \sigma\,\ where\ \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ 'street\ length\ median' \\
-    vertex\ connections\ mean &= \frac{1}{|V|} \sum_{v\ \in\ V}{} connection\_count(v) \\
-    street\ angle\ mean &= \frac{1}{|V|} \sum_{v\ \in\ V}{} angle(v) \\
-    street\ angle\ sigma &= \sigma\ where \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ median\ of\ all\ angles \\
-    block\ count &= count(blocks) \\
-    block\ area\ A/Ac &= \frac{area(block)}{circumscribed\_circle(block)} \label{eq:block_relative_area} \\
-    integration &= normalised\ in-centrality \\
-    choice &= normalised\ in-betweenness-centrality 
+    total\ area ={}&\ area(convex\ hull)  \\
+    total\ length ={}&\ \sum_{e\ \in\ E}{} length(e)\  \\
+    density ={}&\ \frac{total\ area}{total\ length} \\
+    street\ length\ median ={}&\ middle\ of\ the\ street\ length\ dataset \\
+    \begin{split}
+        street\ length\ sigma ={}&\ \sigma,\ where\ \sigma^2\text{ is the variance in a } \\
+            &\text{ normal distribution with mean m and } \\
+            &\ m\ =\ 'street\ length\ median'
+    \end{split} \\
+    vertex\ connections\ mean ={}&\ \frac{1}{|V|} \sum_{v\ \in\ V}{} connection\_count(v) \\
+    street\ angle\ mean ={}&\ \frac{1}{|V|} \sum_{v\ \in\ V}{} angle(v) \\
+    \begin{split}
+        street\ angle\ sigma ={}&\ \sigma,\ where\ \sigma^2\text{ is the variance in a } \\
+        &\text{ normal distribution with mean m and } \\
+        &\ m\ =\ 'median\ of\ all\ angles'
+    \end{split} \\
+    block\ count ={}&\ count(blocks) \\
+    block\ area\ A/Ac ={}&\ \frac{area(block)}{circumscribed\_circle(block)} \label{eq:block_relative_area} \\
+    integration ={}&\text{ normalised in-centrality} \\
+    choice ={}&\text{ normalised in-betweenness-centrality}
 \end{align}
 
 In \acrshort{acr:CPlan} an extension method was implemented for this thesis to directly calculate minimal, maximal, sum and count (mean) on an IEnumerable. This approach allows to directly extract these values without any additional development effort.

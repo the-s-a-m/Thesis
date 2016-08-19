@@ -132,7 +132,7 @@ In space syntax, streets are represented by axial lines.
 \textit{"Axial lines are used to represent directions of uninterrupted movement and visibility, so they represent the longest visibility lines in two-dimensional urban spaces."} \citep{integrationSpaceSyntaxGIS:2002}
 This approach has allowed many analysis methods of urban systems like way-finding process or criminal analysis. An axial map represents a fully filled free space with many axial lines as shown in figure \ref{fig:barnsbury_axial_map}. For a more detailed analysis the lines can be broken into segments at the intersections, which is visualised in figure \ref{fig:barnsbury_segmented_axial_map}. To generate the axial map always the longest not visited space is selected and line drawn until the hole space is covered.
 
-Axial maps have many limitations. First the complexity to create an axial map is high because of the generating procedure. If an additional area is added the whole process of detection should be repeated because a longer start line could exist. The process is non-deterministic because a curve could be separated into a unknown count of lines.
+Axial maps have many limitations. First the complexity to create an axial map is high because of the generating procedure. If an additional area is added the whole process of detection should be repeated because a longer start line could exist. The process is non-deterministic because a curve could be separated into an unknown count of lines.
 
 \begin{figure}[!ht]
     \centering
@@ -152,7 +152,7 @@ Axial maps have many limitations. First the complexity to create an axial map is
 \end{figure}
 
 \subsection{Point-based space syntax}
-A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited, the visitor can decide in which direction he will travel onward. The distances between two point can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph-based approach (see \citep{integrationSpaceSyntaxGIS:2002}).
+A point-based space syntax is a decision based approach as described by Bin Jiang and Christope Claramunt in \textit{Integration of Space Syntax into GIS: New Perspectives for Urban Morphology} \citep{integrationSpaceSyntaxGIS:2002}. Every time a point in a street network is visited, the visitor can decide in which direction he will travel onward. The distances between two points can directly be measured and described. Every point can be assigned to an ID and marked with x and y coordinates \ref{fig:space_syntax_gis_characteristic_points}. This approach is at least equivalent to the predefined syntax created by B. Hiller et al.\citep{spaceSyntax:1976} because a visibility graph can be create to represent axial lines \ref{fig:space_syntax_gis_visibility_graph}. The point-based space syntax therefore is a graph-based approach (see \citep{integrationSpaceSyntaxGIS:2002}).
 
 \begin{figure}[!ht]
     \centering
