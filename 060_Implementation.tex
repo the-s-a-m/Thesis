@@ -9,7 +9,7 @@ This forward and backward transformations between a graph and a tree allow to ru
 
 \pagebreak
 \section{K-Means}
-To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in CPlan \citep{cPlan:2015} is based on the approach described in section \ref{sec:K-Means}. Some libraries used by CPlan provide the K-Means clustering already but this approach would not allow a visualisation of the progress and a speed up by parallelisation.
+To separate street networks the centroid based clustering algorithm K-Mean can be used. The added implementation in \acrshort{acr:CPlan} \citep{cPlan:2015} is based on the approach described in section \ref{sec:K-Means}. Some libraries used by CPlan provide the K-Means clustering already but this approach would not allow a visualisation of the progress and a speed up by parallelisation.
 
 \subsection{Connected Cluster Implementation} \label{sec:K-Means_shortest_path_impl}
 As described in section \ref{sec:connected_cluster_approach} the edge based distances can be calculated with a \gls{APSP} algorithm. Based on these distances the cluster points are then assigned. The result is a connected graph. This means every vertex can be reached from every other vertex within a cluster. In the generated figure \ref{fig:Kmeansshortestp} the artefacts described in section \ref{sec:K-Means_shortest_path} are removed.
@@ -20,6 +20,9 @@ Additional calculation time is needed for the shortest path algorithm. The diffe
 The ETH-Zurich provided the following networks: Bad Berka (552 nodes, 626 edges), Weimar (2012 nodes, 2646 edges) and Zurich (27446 nodes, 35121 edges). The street network of Zurich has 13 times more edges than Weimar, which resulted in long processing times. A speed improvement was achieved by running the K-Means iterations paralllised. Every iteration can be executed free of side effects. The measurements and comparisons of the results are provided in the following section \ref{sec:measurements-speed}.
 
 Additional acceleration would be possible by using K-Means++ (section \ref{sec:k-means++}) or a K-D tree (section \ref{sec:k-means_KD-tree}).
+
+\subsection{Additional Features}
+Different implementations with additional features were developed and tested. The idea was to augment the clustering results, so that different districts could more easily be detected. As described in the result chapter in section \ref{sec:result_kmeans_additional_features}, the usage of most features did not yield the desired result. The utilisation of the average relative block area (in section \ref{sec:clusterRating} or listing \ref{eq:block_relative_area}) was the most successful applied feature.
 
 \pagebreak
 \section{WPGMA / UPGMA}
@@ -156,7 +159,7 @@ The following parameters and descriptions characterise all implemented parameter
     street\ angle\ mean &= \frac{1}{|V|} \sum_{v\ \in\ V}{} angle(v) \\
     street\ angle\ sigma &= \sigma\ where \sim\mathcal{N}(m,\sigma^2)\ and\ m\ =\ median\ of\ all\ angles \\
     block\ count &= count(blocks) \\
-    block\ area\ A/Ac &= \frac{area(block)}{circumscribed\_circle(block)} \\
+    block\ area\ A/Ac &= \frac{area(block)}{circumscribed\_circle(block)} \label{eq:block_relative_area} \\
     integration &= normalised\ in-centrality \\
     choice &= normalised\ in-betweenness-centrality 
 \end{align}

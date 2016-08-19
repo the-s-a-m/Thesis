@@ -164,5 +164,3 @@ V(x) &= \int\limits_{-\infty}^\infty (x - E(X))^2 \cdot f(x)dx \\
 \Gls{APSP} algorithms calculate the shortest path between any two vertices in a graph. A common \acrshort{APSP} algorithm is the algorithm from Floyd and Warshall. It is very simple and directly yields the distance matrix between any two vertices in $O(|V|^3)$ time complexity even if the graph has edges of negative weight.
 
 The \gls{SSSP} algorithm from Dijkstra can also be used as an \acrshort{APSP} when starting a separate run of it from each vertex. A single execution of the Dijkstra algorithm has a worst case performance of $O(|E|+|V|log|V|)$. So the described strategy for \acrshort{APSP} runs in $O(|V||E| + |V|^2 log|V|)$ time complexity. This shows that for graphs with low density this is more performant than Floyd-Warshall. Furthermore the different instances of the algorithm can be executed in parallel. The Dijkstra algorithm does in general only work for graphs with exclusively non-negative edge weights.
-
-%TODO reference?
